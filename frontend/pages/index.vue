@@ -1,75 +1,123 @@
 <template>
-  <div class="main">
-    <div class="landing">
-      <div class="flex-spacer"></div>
-      <h1>
-        World United
-        <div class="underline"></div>
-      </h1>
-      <div class="slogans">
-        <p>The movement for a world government.</p>
-        <p>Let's take responsibility on a global level.</p>
-      </div>
-      <div class="flex-spacer"></div>
-      <div class="flex-spacer"></div>
-    </div>
-  </div>
+    <main>
+        <section id="landing">
+            <div class="background-pane"></div>
+            <Dots />
+            <div class="landing-content">
+                <div class="heading-wrapper">
+                    <h1>World United</h1>
+                    <div class="underline"></div>
+                </div>
+                <div class="slogans">
+                    <p>
+                        The movement for a
+                        <span class="highlighted">world government</span>.
+                    </p>
+                    <p>
+                        Let's take responsibility on a
+                        <span class="highlighted">global level</span>.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="our-world-is-broken">
+            <div class="background-pane"></div>
+        </section>
+    </main>
 </template>
 
 <script>
-export default {};
+export default {
+    head() {
+        return {
+            title: "World United",
+        };
+    },
+};
 </script>
 
 <style lang="scss">
-.main {
-  background: linear-gradient(
-    180deg,
-    #4b62b4 0%,
-    #303a5e 100vh,
-    #42569c 130vh,
-    #343e62 100%
-  );
-  height: 300vh;
+main {
+    section#landing {
+        position: relative; // for absolute children
 
-  .landing {
-    height: calc(100 * var(--reactive-vh));
-    display: flex;
-    flex-flow: column;
-    align-items: flex-start;
-    filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.25));
+        .background-pane {
+            z-index: -2;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url("~assets/img/blue-background-1.png");
+            background-size: 100% 100%;
+        }
+        .Dots {
+            z-index: -1;
+            position: absolute;
+            top: 65%;
+            top: 100%;
+            transform: translateY(-30%);
+        }
 
-    h1 {
-      display: inline-block;
-      font-family: "Bebas Neue";
-      font-size: 11vw;
-      line-height: 100%;
-      letter-spacing: 0.8vw;
-      margin-left: 10vw;
-      position: relative;
+        .landing-content {
+            padding: 5vw 0;
+            filter: drop-shadow(0vw 0.33vw 0.14vw rgba(0, 0, 0, 0.25));
 
-      .underline {
-        position: absolute;
-        width: 100%;
-        border-bottom: 3px solid white;
-        bottom: -0px;
-        left: 0;
-      }
+            .heading-wrapper {
+                display: inline-block;
+                padding: 2vw;
+                margin-left: 10vw;
+
+                h1 {
+                    display: inline-block;
+                    font-family: "Bebas Neue";
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 11vw;
+                    line-height: 100%;
+                    letter-spacing: 0.8vw;
+
+                    &:hover {
+                        -webkit-text-fill-color: transparent;
+                        -webkit-text-stroke: 3px white;
+                    }
+                }
+                .underline {
+                    border-bottom: 3px solid white;
+                    transform: translateY(-1vw);
+                }
+            }
+
+            .slogans {
+                display: inline-block;
+                margin-left: 15vw;
+                width: 40vw;
+
+                p {
+                    padding: 1.5vw 0;
+                    font-size: 2.6vw;
+                    letter-spacing: 0.2vw;
+                    line-height: 120%;
+
+                    span.highlighted {
+                        font-style: italic;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
     }
 
-    .slogans {
-      margin-left: 15vw;
+    section#our-world-is-broken {
+        height: 200vh;
+        position: relative; // for absolute children
 
-      p {
-        font-size: 2.6vw;
-        line-height: 100%;
-        padding: 14px 0;
-      }
+        .background-pane {
+            z-index: -2;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url("~assets/img/blue-background-2.png");
+            background-size: 100% 100%;
+        }
     }
-
-    .flex-spacer {
-      flex: 1 1 0;
-      width: 100%;
-    }
-  }
 }
 </style>
