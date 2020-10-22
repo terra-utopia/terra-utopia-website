@@ -9,7 +9,12 @@
                     height="16"
                     viewBox="0 0 16 16"
                 >
-                    <circle cx="8" cy="8" r="2" />
+                    <circle
+                        cx="8"
+                        cy="8"
+                        r="2"
+                        fill="rgba(255, 255, 255, 0.5)"
+                    />
                 </pattern>
                 <pattern
                     id="dot-pattern-highlight"
@@ -18,7 +23,7 @@
                     height="16"
                     viewBox="0 0 16 16"
                 >
-                    <circle cx="8" cy="8" r="2" />
+                    <circle cx="8" cy="8" r="2" fill="rgba(255, 255, 255, 1)" />
                 </pattern>
                 <clipPath id="clip-path" clipPathUnits="objectBoundingBox">
                     <path
@@ -29,9 +34,9 @@
                     <feDropShadow
                         dx="0"
                         dy="0"
-                        stdDeviation="4"
+                        stdDeviation="2.5"
                         flood-color="white"
-                        flood-opacity="0.5"
+                        flood-opacity="0.75"
                     />
                 </filter>
             </defs>
@@ -56,6 +61,7 @@
 
 <script>
 export default {
+    name: "Dots",
     data() {
         return {
             clientX_abs: 0, // absolute, means relative to viewport
@@ -99,20 +105,5 @@ export default {
 .Dots {
     width: 100%;
     height: 70vw;
-
-    svg {
-        defs {
-            pattern#dot-pattern {
-                circle {
-                    fill: rgba(255, 255, 255, 0.5);
-                }
-            }
-            pattern#dot-pattern-highlight {
-                circle {
-                    fill: rgba(255, 255, 255, 1);
-                }
-            }
-        }
-    }
 }
 </style>
