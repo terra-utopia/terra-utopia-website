@@ -23,10 +23,13 @@ export default {
 *,
 *::before,
 *::after {
+    /* DEFAULTS */
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    border: none;
     outline: none;
+    background: none;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -37,12 +40,12 @@ html {
     color: white;
 }
 
-.text-shadow-effect {
+.drop-shadow-large {
     filter: drop-shadow(0vw 0.41vw 0.28vw rgba(0, 0, 0, 0.4));
 }
 
 @media (max-width: 600px) {
-    .text-shadow-effect {
+    .drop-shadow-large {
         filter: drop-shadow(0vw 0.6vw 0.4vw rgba(0, 0, 0, 0.4));
     }
 }

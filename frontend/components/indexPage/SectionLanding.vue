@@ -10,7 +10,7 @@
             Act Globally
         </div>
         <DotsBackground />
-        <div class="content-wrapper text-shadow-effect">
+        <div class="content-wrapper drop-shadow-large">
             <div class="heading-wrapper1">
                 <div class="heading-wrapper2">
                     <h1>World United</h1>
@@ -23,7 +23,7 @@
                     <span class="highlighted">world government</span>.
                 </p>
                 <p>
-                    Let's take responsibility on a
+                    It is time to take responsibility on a
                     <span class="highlighted">global level</span>.
                 </p>
             </div>

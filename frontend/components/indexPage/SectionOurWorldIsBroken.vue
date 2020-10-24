@@ -5,24 +5,38 @@
             :strictVertical="true"
             :stretchGaps="true"
         />
-        <div class="content-wrapper text-shadow-effect">
-            <div class="heading-wrapper1">
+        <div class="content-wrapper">
+            <div class="heading-wrapper1 drop-shadow-large">
                 <div class="heading-wrapper2">
                     <h2>Our world is broken.</h2>
                     <div class="underline"></div>
                 </div>
             </div>
-            <div class="bookshelf-wrapper">
+            <div class="bookshelf-wrapper drop-shadow-large">
                 <Bookshelf />
             </div>
+            <InfoBox
+                v-bind="$options.staticData.infoBox_climateChange"
+            ></InfoBox>
+            <!-- 'v-bind' passes props 'slides' and 'paragraphs' -->
         </div>
     </section>
 </template>
 
 
+<script>
+import { infoBox_climateChange } from "../../assets/content/necessity-of-a-world-government.js";
+
+export default {
+    staticData: {
+        infoBox_climateChange,
+    },
+};
+</script>
+
+
 <style lang="scss">
 section#our-world-is-broken {
-    height: 200vh;
     position: relative; // for absolute children
 
     .PreRenderedGradient {
@@ -34,7 +48,7 @@ section#our-world-is-broken {
             border-top: 1px solid red;
         }
     }
-    .content-wrapper {
+    & > .content-wrapper {
         padding-top: 5vw;
         padding-bottom: 22vw;
 
