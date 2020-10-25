@@ -13,10 +13,7 @@
                 <div class="caption">{{ slide.caption }}</div>
             </SlideShowItem>
             <template v-slot:alternative>
-                <p
-                    class="slogan"
-                    v-html="'Humanity is failing to stop climate change'"
-                ></p>
+                <p class="slogan">{{ slogan }}</p>
             </template>
         </SlideShow>
         <ActionButton
@@ -39,6 +36,10 @@ export default {
             type: Array, // Array of {imageSrc: String, caption: String}
             required: true,
         },
+        slogan: {
+            type: String,
+            required: true,
+        },
         paragraphs: {
             type: Array, // Array of String
             required: true,
@@ -56,7 +57,7 @@ export default {
 .InfoBox {
     width: 80vw;
 
-    margin: 0 auto;
+    margin: 6vw auto;
 
     border: 1px solid white;
     background: rgba(255, 255, 255, 0.05);

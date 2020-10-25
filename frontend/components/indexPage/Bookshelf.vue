@@ -32,7 +32,7 @@ export default {
     display: inline-block; // for text-align to work
     position: relative;
     width: 70vw;
-    height: 35vw; // has to be static because bookshelf entries are 'position:absolute'
+    height: 35vw; // has to be hard-coded because bookshelf entries are 'position:absolute'
 
     .origin-bar {
         position: absolute;

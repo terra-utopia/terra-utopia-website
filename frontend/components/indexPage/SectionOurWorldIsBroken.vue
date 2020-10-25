@@ -14,22 +14,32 @@
             </div>
             <div class="bookshelf-wrapper drop-shadow-large">
                 <Bookshelf />
+                <EarthStripesBackground />
             </div>
-            <InfoBox
-                v-bind="$options.staticData.infoBox_climateChange"
-            ></InfoBox>
-            <!-- 'v-bind' passes props 'slides' and 'paragraphs' -->
+            <div class="countries-are-the-problem">
+                <div class="sandwich">
+                    <p>Countries can not fix it.</p>
+                    <p>They are the problem.</p>
+                </div>
+            </div>
+            <InfoBox v-bind="$options.staticData.infobox_ClimateChange" />
+            <!-- 'v-bind' passes the object's key-value pairs as instance props ('slides', 'slogan', 'paragraphs') -->
+            <InfoBox v-bind="$options.staticData.infobox_SocialInequality" />
         </div>
     </section>
 </template>
 
 
 <script>
-import { infoBox_climateChange } from "../../assets/content/necessity-of-a-world-government.js";
+import {
+    infobox_ClimateChange,
+    infobox_SocialInequality,
+} from "../../assets/content/necessity-of-a-world-government.js";
 
 export default {
     staticData: {
-        infoBox_climateChange,
+        infobox_ClimateChange,
+        infobox_SocialInequality,
     },
 };
 </script>
@@ -74,11 +84,40 @@ section#our-world-is-broken {
                 }
             }
         }
+
         .bookshelf-wrapper {
             padding: 3vw 0;
             text-align: center;
+            position: relative; // for <EarthStripesBackground>
+            border: 1px solid blue;
 
             .Bookshelf {
+            }
+
+            .EarthStripesBackground {
+                // z-index: -1;
+                // z-index: 2;
+                position: absolute;
+                bottom: -50%;
+                left: -24px;
+            }
+        }
+        .countries-are-the-problem {
+            z-index: 0;
+            // width: 20rem;
+
+            // padding: 0.8rem;
+
+            .sandwich {
+                display: inline-block;
+                margin: 6vw 5% 6vw auto;
+                border-top: 1px solid white;
+                border-bottom: 1px solid white;
+                p {
+                    font-size: 1.6rem;
+                    text-align: center;
+                    padding: 0.5rem 0;
+                }
             }
         }
     }
