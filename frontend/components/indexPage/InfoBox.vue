@@ -1,30 +1,29 @@
 <template>
     <div class="InfoBox">
-        <div class="heading-wrapper drop-shadow-large">
-            <h3>Climate Crisis</h3>
-            <div class="underline"></div>
+        <h3 class="drop-shadow-large">{{ title }}</h3>
+        <SlideShow :slides="slides" :slogan="slogan"> </SlideShow>
+        <div class="wrapper-for-opener-button" :class="{ hide: expanded }">
+            <button
+                class="opener-button drop-shadow-large"
+                @click="expanded = true"
+            >
+                <div class="placeholder-message">Analyze</div>
+                <div class="real-message">Analyze</div>
+            </button>
         </div>
-        <SlideShow class="drop-shadow-large">
-            <SlideShowItem v-for="(slide, index) in slides" :key="index">
-                <FixedAspectRatio :heightPercentage="100 / Math.sqrt(2)">
-                    <img :src="slide.imageSrc" />
-                </FixedAspectRatio>
-                <div class="bottom-shadow"></div>
-                <div class="caption">{{ slide.caption }}</div>
-            </SlideShowItem>
-            <template v-slot:alternative>
-                <p class="slogan">{{ slogan }}</p>
-            </template>
-        </SlideShow>
-        <ActionButton
-            v-show="!expanded"
-            message="Analyze"
-            @click="expanded = true"
-        ></ActionButton>
-        <div v-show="expanded" class="content-body">
-            <p v-for="(paragraph, index) in paragraphs" :key="index">
-                {{ paragraph }}
-            </p>
+        <div class="content-body" :class="{ expanded }">
+            <TruncatedHeight
+                :expanded="expanded"
+                :transition="'height 1.5s ease-out'"
+            >
+                <p
+                    v-for="(paragraph, index) in paragraphs"
+                    :class="{ expanded }"
+                    :key="index"
+                >
+                    {{ paragraph }}
+                </p>
+            </TruncatedHeight>
         </div>
     </div>
 </template>
@@ -32,12 +31,16 @@
 <script>
 export default {
     props: {
-        slides: {
-            type: Array, // Array of {imageSrc: String, caption: String}
+        title: {
+            type: String,
             required: true,
         },
         slogan: {
             type: String,
+            required: true,
+        },
+        slides: {
+            type: Array, // Array of {imageSrc: String, caption: String}
             required: true,
         },
         paragraphs: {
@@ -53,119 +56,113 @@ export default {
 };
 </script>
 
-<style lang="scss" sc>
+<style lang="scss">
+/* mobile-first (<480px) */
+
 .InfoBox {
-    width: 80vw;
-
-    margin: 6vw auto;
-
+    width: 92vw;
+    margin: 11vw auto; // automatic centering
     border: 1px solid white;
     background: rgba(255, 255, 255, 0.05);
-    padding: 1.5vw;
-    text-align: center; // for the button
+    padding: 3.5vw;
 
     &:hover {
         background: rgba(255, 255, 255, 0.08);
-        .heading-wrapper > h3 {
+        h3 {
             padding-right: 16px;
         }
     }
-    .heading-wrapper {
+    h3 {
         text-align: right;
-        padding: 1vw 2vw;
-
-        h3 {
-            display: inline-block;
-            font-weight: 500;
-            font-style: italic;
-            font-size: 2.5rem;
-            transition: padding-right 0.5s ease-out;
-        }
-        .underline {
-            width: 100%;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-        }
+        font-weight: 500;
+        font-style: italic;
+        font-size: 7.2vw;
+        // font-size: 2.5rem;
+        transition: padding-right 0.5s ease-out; // toggled above, on parent hover
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        margin-bottom: 4vw;
     }
-    .SlideShow {
-        width: 75%;
-        // height is bloated by child
-        margin: 1vw auto calc(1vw + 32px) auto;
-        position: relative;
+    .wrapper-for-opener-button {
+        position: relative; // for absolute child button
+        width: 100%;
+        height: 10.5vw; // has to be hardcoded because child is absolute
 
-        .SlideShowItem {
-            // width 100%, height bloated by child
-            position: relative;
+        button.opener-button {
+            position: absolute;
+            display: inline-block;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 2vw 7vw;
+            background: white;
+            font-size: 5.5vw;
+            color: #445387;
+            font-weight: bold;
+            letter-spacing: 0.05rem;
+            text-shadow: 0 0.8vw 0.8vw rgba(0, 0, 0, 0.3);
+            transition: all 0.8s ease-out; // transform, opacity
 
-            .FixedAspectRatio {
-                width: 100%;
-                // height bloated by child
+            .placeholder-message {
+                position: static;
+                opacity: 0;
+            }
+            .real-message {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                transition: letter-spacing 0.3s ease-out;
+            }
+            &:hover {
+                cursor: pointer;
 
-                img {
-                    width: 100%;
-                    height: 100%;
+                .real-message {
+                    letter-spacing: 0.12rem;
                 }
             }
-            .bottom-shadow {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(
-                    to top,
-                    rgba(0, 0, 0, 0.6) 0%,
-                    rgba(0, 0, 0, 0.6) 8%,
-                    transparent 25%
-                );
-            }
-            .caption {
-                position: absolute;
-                bottom: 10px;
-                left: 24px;
-                padding: 4px 8px;
-                background: rgba(255, 255, 255, 0.1);
-                color: white;
-                font-size: 0.8rem;
+        }
+        &.hide {
+            height: 0;
+            button.opener-button {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-30px);
+                pointer-events: none;
             }
         }
-        p.slogan {
-            position: absolute;
-            bottom: 42px;
-            left: 24px;
-            display: inline-block;
-            padding: 4px 12px;
-            width: auto;
-            max-width: 80%;
-            white-space: pre-wrap;
-            text-align: left;
-            font-size: 1.2rem;
-            border: 1px solid white;
-            background: rgba(255, 255, 255, 0.18);
-            &:hover {
-                background: rgba(255, 255, 255, 0.24);
-            }
-        }
-    }
-    .ActionButton {
-        display: inline-block; // for text-align to work
-        margin-top: 2vw;
-        margin-bottom: 0.5vw;
     }
     .content-body {
-        width: 75%;
-        margin: 1vw auto;
-        text-align: justify;
-        font-size: 1.1rem;
-        line-height: 1.7rem;
-        letter-spacing: 0.08rem;
-        text-shadow: 0 3px 2px rgba(0, 0, 0, 0.6);
-        color: #fdfdff;
-        font-weight: 300;
-
-        p {
-            padding: 1vw 0;
-            text-indent: 2vw;
+        &.expanded {
+            min-height: 10.5vw; // to ensure smooth patch/replacement of the height of .wrapper-for-opener-button
         }
+        .TruncatedHeight {
+            p {
+                padding: 3vw 0;
+                text-indent: 4vw;
+                text-align: justify;
+                font-size: 1rem;
+                line-height: 1.7rem;
+                letter-spacing: 0.08rem;
+                text-shadow: 0 3px 2px rgba(0, 0, 0, 0.6);
+                color: #fdfdff;
+                font-weight: 300;
+                opacity: 0;
+                transition: opacity 1.5s linear;
+                &.expanded {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+@keyframes content-body-fadein {
+    from {
+        height: 10.5vw;
+        opacity: 0;
+    }
+    to {
+        height: 100vw;
+        opacity: 1;
     }
 }
 </style>

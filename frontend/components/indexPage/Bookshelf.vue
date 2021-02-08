@@ -1,5 +1,5 @@
 <template>
-    <div class="Bookshelf">
+    <div class="Bookshelf drop-shadow-large">
         <div class="origin-bar">
             <BookshelfEntry
                 v-for="(title, index) of bookshelf"
@@ -16,7 +16,7 @@ export default {
         return {
             bookshelf: [
                 "Climate Crisis",
-                "Global Inequality",
+                "Social Inequality",
                 "War and Weapons of\nMass Destruction",
                 "Human Rights\nViolations",
                 "Mega Corporations",
@@ -24,15 +24,26 @@ export default {
             ],
         };
     },
+    mounted() {
+        const updateBaseSize = () => {
+            this.$el.style.setProperty(
+                "--base-size",
+                `${this.$el.offsetWidth * 0.01}px`
+            );
+        };
+        updateBaseSize();
+        window.addEventListener("resize", updateBaseSize);
+    },
 };
 </script>
 
 <style lang="scss">
 .Bookshelf {
-    display: inline-block; // for text-align to work
-    position: relative;
-    width: 70vw;
-    height: 35vw; // has to be hard-coded because bookshelf entries are 'position:absolute'
+    position: relative; // for absolute child
+    --base-size: 1vw; // overwritten on hydration with javascript
+    height: calc(
+        75 * var(--base-size)
+    ); // has to be hard-coded because bookshelf entries are 'position:absolute'
 
     .origin-bar {
         position: absolute;

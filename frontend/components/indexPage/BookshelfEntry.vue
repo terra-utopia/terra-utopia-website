@@ -14,17 +14,6 @@
         <div class="line-up"></div>
         <div class="line-diagonal"></div>
         <a>{{ title }}</a>
-        <!-- <div class="flag">
-            <svg viewBox="-2 -2 72 6" fill="none">
-                <path
-                    d="M 0 4 L 9 0 L 70 0"
-                    stroke="black"
-                    stroke-width="0.4"
-                    fill="none"
-                />
-            </svg>
-            
-        </div> -->
     </div>
 </template>
 
@@ -37,15 +26,6 @@ export default {
             type: String,
         },
     },
-    // computed: {
-    //     titleTwoLines() {
-    //         let lines = this.title.split("\n");
-    //         if (lines.length === 1) {
-    //             lines.push(" ");
-    //         }
-    //         return lines.join("\n");
-    //     },
-    // },
 };
 </script>
 
@@ -56,11 +36,16 @@ export default {
     flex-grow: 1; // grow and shrink as needed
     position: relative; // for absolute positioned child
     transition: flex-grow 0.6s ease-in-out;
+    text-align: center;
 
     svg.jump-to-arrow {
-        width: 3.5vw;
+        display: inline-block;
+        width: calc(5 * var(--base-size));
         filter: drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.4))
-            drop-shadow(0.3vw 0.1vw 0 red);
+            drop-shadow(
+                calc(0.43 * var(--base-size)) calc(0.14 * var(--base-size)) 0
+                    red
+            );
 
         #lower-arrow {
             transform: translateY(0);
@@ -71,25 +56,28 @@ export default {
         position: absolute;
         width: 100%;
         bottom: 100%;
-        height: 10vw; // actually 5.8vw, but because of rotation we want to cover the missing area too!
-        // border: 1px solid red;
+        height: calc(
+            14.3 * var(--base-size)
+        ); // actually it should be smaller, but because of rotation we want to cover the missing area too!
+        // outline: 1px solid red;
     }
     div.hitbox-diagonal {
         position: absolute;
         width: 100%;
         bottom: 100%;
-        height: 24vw;
+        height: calc(34.29 * var(--base-size));
         transform-origin: 50% 100%;
-        transform: translateY(-5.8vw) rotate(34deg);
-        // border: 1px solid red;
+        transform: translateY(calc(calc(-6.72 - 2.57) * var(--base-size)))
+            rotate(34deg);
+        // outline: 1px solid red;
     }
     div.line-up {
         position: absolute;
         left: 50%;
         bottom: 100%;
         border-left: 1px solid rgba(255, 255, 255, 0.7);
-        transform: translateX(-50%) translateY(-1.8vw); // translateX to account for border shift, 50% because the border apprently makes the width of the div
-        height: 4vw;
+        transform: translateX(-50%) translateY(calc(-2.57 * var(--base-size))); // translateX to account for border shift, 50% because the border apprently makes the width of the div
+        height: calc(6.8 * var(--base-size));
     }
     div.line-diagonal {
         position: absolute;
@@ -97,19 +85,26 @@ export default {
         bottom: 100%;
         border-left: 1px solid rgba(255, 255, 255, 0.7);
         transform-origin: 50% 100%; // 50% because the border apprently makes the width of the div
-        transform: translateX(-50%) translateY(-5.8vw) rotate(34deg); // translateX to account for 1px border shift
-        height: 24vw;
+        transform: translateX(-50%)
+            translateY(calc(calc(-6.72 - 2.57) * var(--base-size)))
+            rotate(34deg); // translateX to account for 1px border shift
+        height: calc(48 * var(--base-size));
     }
     a {
         display: inline-block; // just because its cool
         position: absolute;
-        font-size: 2.5vw;
+        font-size: calc(4.3 * var(--base-size));
         white-space: pre;
         text-align: right;
         right: 50%;
         top: 0;
+        letter-spacing: calc(0.25 * var(--base-size));
         transform-origin: 100% 0%;
-        transform: translate(11vw, -27.5vw) rotate(-56deg);
+        transform: translate(
+                calc(22.6 * var(--base-size)),
+                calc(-52.2 * var(--base-size))
+            )
+            rotate(-56deg);
         transition: letter-spacing 0.6s ease-in-out;
     }
     &:hover {
@@ -117,12 +112,29 @@ export default {
         flex-grow: 2;
 
         a {
-            letter-spacing: 0.15vw;
+            letter-spacing: calc(0.5 * var(--base-size));
         }
         svg.jump-to-arrow {
             #lower-arrow {
                 transform: translateY(25%);
             }
+        }
+    }
+}
+
+@media (min-width: 480px) {
+    .BookshelfEntry {
+        div.line-diagonal,
+        div.hitbox-diagonal {
+            height: calc(34.29 * var(--base-size));
+        }
+        a {
+            font-size: calc(3.57 * var(--base-size));
+            transform: translate(
+                    calc(15.71 * var(--base-size)),
+                    calc(-40.2 * var(--base-size))
+                )
+                rotate(-56deg);
         }
     }
 }

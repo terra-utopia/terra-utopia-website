@@ -6,24 +6,33 @@
             :stretchGaps="true"
         />
         <div class="content-wrapper">
-            <div class="heading-wrapper1 drop-shadow-large">
-                <div class="heading-wrapper2">
-                    <h2>Our world is broken.</h2>
-                    <div class="underline"></div>
-                </div>
+            <p class="humanity-we-have-to-talk drop-shadow-large">
+                Humanity, <span class="underlined">we have to talk</span>.<br />
+                Our world is broken.
+            </p>
+            <Bookshelf />
+            <div class="anchor-for-background-text">
+                <div class="background-text">the thing is...</div>
             </div>
-            <div class="bookshelf-wrapper drop-shadow-large">
-                <Bookshelf />
-                <EarthStripesBackground />
-            </div>
-            <div class="countries-are-the-problem">
+            <div class="countries-are-the-problem drop-shadow-large">
                 <div class="sandwich">
                     <p>Countries can not fix it.</p>
                     <p>They are the problem.</p>
                 </div>
             </div>
+            <p class="read-on drop-shadow-large">
+                Read on to find out why the most<br />
+                reasonable solution<br />
+                is to unite as
+                <span class="highlighted"
+                    >one effective<br />
+                    world government</span
+                >.
+            </p>
+            <div class="anchor-for-earth-stripes-background">
+                <EarthStripesBackground />
+            </div>
             <InfoBox v-bind="$options.staticData.infobox_ClimateChange" />
-            <!-- 'v-bind' passes the object's key-value pairs as instance props ('slides', 'slogan', 'paragraphs') -->
             <InfoBox v-bind="$options.staticData.infobox_SocialInequality" />
         </div>
     </section>
@@ -55,69 +64,103 @@ section#our-world-is-broken {
         width: 100%;
         height: 100%;
         canvas {
-            border-top: 1px solid red;
+            // border-top: 1px solid red;
         }
     }
     & > .content-wrapper {
-        padding-top: 5vw;
+        padding-top: 15vw;
         padding-bottom: 22vw;
 
-        .heading-wrapper1 {
-            // just to ensure we still fill full width
+        p.humanity-we-have-to-talk {
             text-align: right;
-            padding: 3vw 0;
+            font-size: 7vw;
+            font-style: italic;
+            font-weight: 500;
+            margin-right: 3vw;
+            line-height: 140%;
+            letter-spacing: 0.25vw;
 
-            .heading-wrapper2 {
-                text-align: right;
-                display: inline-block; // shrink to fit content
-                margin-right: 6vw;
-                padding: 1vw;
+            span.underlined {
+                position: relative;
 
-                h2 {
-                    font-size: 4vw;
-                    font-style: italic;
-                    font-weight: 500;
-                }
-                .underline {
-                    border-bottom: 0.2vw solid white;
-                    transform: translateY(0vw);
+                &::after {
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    left: 0;
+                    top: 100%;
+                    border-bottom: 2px solid white;
+                    transform: translateY(-1vw);
                 }
             }
         }
 
-        .bookshelf-wrapper {
-            padding: 3vw 0;
-            text-align: center;
-            position: relative; // for <EarthStripesBackground>
-            border: 1px solid blue;
+        .Bookshelf {
+            margin-right: 18%;
+        }
+        .anchor-for-background-text {
+            z-index: -1;
+            position: relative;
+            height: 22vw;
 
-            .Bookshelf {
-            }
-
-            .EarthStripesBackground {
-                // z-index: -1;
-                // z-index: 2;
+            .background-text {
                 position: absolute;
-                bottom: -50%;
-                left: -24px;
+                display: inline-block;
+                top: 50%;
+                left: 50%;
+                transform-origin: center center;
+                transform: translate(-50%, -50%) translateY(8vw) rotate(10deg);
+                font-size: 17vw;
+                font-weight: 900;
+                color: rgba(255, 255, 255, 0.05);
+                white-space: nowrap;
             }
         }
-        .countries-are-the-problem {
-            z-index: 0;
-            // width: 20rem;
 
-            // padding: 0.8rem;
+        .countries-are-the-problem {
+            position: relative; // for proper z-index stacking in relation to above .bookshelf-wrapper
+            margin-top: 6vw;
+            margin-bottom: 16vw;
+            text-align: center;
+            font-weight: 500;
+            font-style: italic;
 
             .sandwich {
                 display: inline-block;
-                margin: 6vw 5% 6vw auto;
                 border-top: 1px solid white;
                 border-bottom: 1px solid white;
+                padding: 1vw 4vw;
+
                 p {
-                    font-size: 1.6rem;
+                    font-size: 6vw;
                     text-align: center;
                     padding: 0.5rem 0;
                 }
+            }
+        }
+        .read-on {
+            font-size: 4.8vw;
+            text-align: center;
+            letter-spacing: 0.12vw;
+            line-height: 150%;
+
+            span.highlighted {
+                font-style: italic;
+                font-weight: 500;
+            }
+        }
+        .anchor-for-earth-stripes-background {
+            z-index: -1;
+            position: relative;
+            height: 15vw;
+            // outline: 1px solid red;
+
+            .EarthStripesBackground {
+                position: absolute;
+                width: 50vw;
+                left: -4vw;
+                top: 50%;
+                transform: translateY(-50%);
             }
         }
     }

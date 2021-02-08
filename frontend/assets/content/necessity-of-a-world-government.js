@@ -1,4 +1,6 @@
 export const infobox_ClimateChange = {
+    title: "Climate Crisis",
+    slogan: "Humanity is failing to stop climate change",
     slides: [
         {
             imageSrc: '/img/climate-change/wildfire.jpg',
@@ -6,7 +8,7 @@ export const infobox_ClimateChange = {
         },
         {
             imageSrc: '/img/climate-change/desertification.jpg',
-            caption: 'Desertification continues, and droughts kill agriculture.',
+            caption: 'Desertification advances, and droughts kill agriculture.',
         },
         {
             imageSrc: '/img/climate-change/glaciers-melting.jpg',
@@ -17,7 +19,6 @@ export const infobox_ClimateChange = {
             caption: 'Meanwhile we are still subsidizing fossil fuels.',
         },
     ],
-    slogan: "Humanity is failing to stop climate change",
     paragraphs: [
         `Climate change and associated problems like the sixth mass extinction and the exploitation of natural resources threaten the natural livelihood of all human beings. Fighting climate change will only be effective for the next 10 years, according to the IPCC. From there on critical tipping points will be reached, triggering a cascade of self reinforcing events that will result in a climate collapse. Within the next 5 decades, a drastic shortage of water and nutrition, the resulting wars for these resources and the devastating effects of natural disasters, like wildfires and floods, will decimate the world population and cause unimaginable suffering for all humans on earth.`,
         `To prevent this catastrophe, every nation on earth has to contribute with all their power. But since spending the money and effort needed to decarbonize a country is a short term disadvantage in the global economic competition, no nation is willing to act sufficiently. This social phenomenon is known as “tragedy of the commons”. It states that every country will blame others for not acting, rather than taking measures itself. This egoistic approach of maximizing short term benefits is causing global inaction that will inevitably lead to the climate collapse in the long term.`,
@@ -28,6 +29,8 @@ export const infobox_ClimateChange = {
 
 
 export const infobox_SocialInequality = {
+    title: "Social Inequality",
+    slogan: "Everyone maximizes the own capital",
     slides: [
         {
             imageSrc: '/img/social-inequality/lack-of-education.jpg',
@@ -43,14 +46,13 @@ export const infobox_SocialInequality = {
         },
         {
             imageSrc: '/img/social-inequality/distribution-of-wealth.jpg',
-            caption: 'Maybe life would be better for us all if we distributed wealth',
+            caption: 'Maybe life would be better for us all if we distributed wealth more equally.',
         },
         {
             imageSrc: '/img/social-inequality/dignity-healthcare.jpg',
             caption: 'Life can become horrible without social welfare',
         },
     ],
-    slogan: "Everybody keeps their \"capital\"",
     paragraphs: [
         `After decades of economic growth, humanity has only been able to increase the standard of living on average, but failed to distribute its wealth across the world. While the nations of the global north achieve ever higher standards of living, especially for a few extremely wealthy individuals, most nations in the “developing world” are unable to prosper. The wealthy nations are dictating the prices and the products they want to buy by imposing tariffs and threatening to buy products from cheaper selling competitors. This forces less wealthy nations to exploit their natural resources and their people.`,
         `Not only does this form of exploitation waste the potential of the exploited countries and does therefore restrain the growth of the global wealth, but it also constitutes a substantial threat to international social peace. Due to the gap between rich and poor countries widening and the effects of the climate crisis becoming more severe, the likelihood of mass migration increases. If wealthy countries then refuse to grant asylum to millions of people, global conflicts of unimaginable extent will occur.`,

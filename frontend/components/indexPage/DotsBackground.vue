@@ -1,5 +1,5 @@
 <template>
-    <div class="Dots">
+    <div class="DotsBackground">
         <svg width="100%" height="100%">
             <defs>
                 <pattern
@@ -100,10 +100,3 @@ export default {
     },
 };
 </script>
-
-<style lang="scss">
-.Dots {
-    width: 100%;
-    height: 70vw;
-}
-</style>

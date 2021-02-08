@@ -5,6 +5,7 @@
     </main>
 </template>
 
+
 <script>
 export default {
     head() {
@@ -14,6 +15,7 @@ export default {
     },
 };
 </script>
+
 
 <style lang="scss">
 main {

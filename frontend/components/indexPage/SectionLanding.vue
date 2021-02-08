@@ -6,16 +6,13 @@
             :stretchGaps="true"
         />
         <div class="background-text">
-            &nbsp;&nbsp;End Nationalism <br />
+            &nbsp;&nbsp;End Nationalism<br />
             Act Globally
         </div>
         <DotsBackground />
         <div class="content-wrapper drop-shadow-large">
-            <div class="heading-wrapper1">
-                <div class="heading-wrapper2">
-                    <h1>World United</h1>
-                    <div class="underline"></div>
-                </div>
+            <div class="heading-wrapper">
+                <h1>World United</h1>
             </div>
             <div class="slogans">
                 <p>
@@ -32,7 +29,7 @@
 </template>
 
 <style lang="scss">
-/* desktop-first design, mobile with media query later */
+/* mobile-first (<480px) */
 
 section#landing {
     position: relative; // for absolute children
@@ -46,129 +43,73 @@ section#landing {
     .background-text {
         z-index: -1;
         position: absolute;
-        top: 68%;
         transform: translate(-15%, -50%) rotate(-16.18deg);
         transform-origin: center center;
-        color: rgba(255, 255, 255, 0.03);
-        font-size: 16vw;
+        font-size: 20vw;
         font-weight: 900;
         text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.03);
         white-space: nowrap;
         line-height: 100%;
+        top: 68%;
+        // font-size: 16vw;
     }
-    .Dots {
+    .DotsBackground {
         z-index: -1;
         position: absolute;
-        top: 100%;
         transform: translateY(-50%);
+        width: 100%;
+        height: 90vw;
+        top: 100%;
+        // height: 70vw;
     }
 
     .content-wrapper {
-        padding-top: 5vw;
-        padding-bottom: 22vw;
+        padding-top: 14vw;
+        padding-bottom: 48vw;
 
-        .heading-wrapper1 {
-            // just to ensure we still fill full width
+        .heading-wrapper {
+            text-align: center;
 
-            .heading-wrapper2 {
-                display: inline-block; // shrink to fit content
-                padding: 2vw;
-                margin-left: 10vw;
-                text-align: center;
+            h1 {
+                display: inline-block;
+                font-family: "Bebas Neue";
+                font-style: normal;
+                font-weight: normal;
+                font-size: 15vw;
+                line-height: 90%;
+                letter-spacing: 0.8vw;
+                padding-left: calc(
+                    0.03 * 15vw
+                ); // correction for wrong font-family textbox
+                border-bottom: 2px solid white; // 3px
 
                 &:hover {
                     -webkit-text-fill-color: transparent;
-                    -webkit-text-stroke: 3px white;
-                }
-                h1 {
-                    font-family: "Bebas Neue";
-                    font-style: normal;
-                    font-weight: normal;
-                    font-size: 11vw;
-                    line-height: 85%;
-                    letter-spacing: 0.8vw;
-                    padding-left: 0.4vw; // correct wrong font-family textbox
-                }
-                .underline {
-                    border-bottom: 3px solid white;
-                    transform: translateY(0vw);
+                    -webkit-text-stroke: 1.5px white; // 3px
                 }
             }
         }
 
         .slogans {
-            display: inline-block;
-            margin-left: 15vw;
-            width: 40vw;
+            margin-top: 6vw;
+            text-align: center;
+            // margin-left: 15vw;
+            // width: 40vw;
 
             p {
-                padding: 1.5vw 0;
-                font-size: 2.6vw;
-                letter-spacing: 0.2vw;
+                display: inline-block;
+                width: 70%;
+                padding: 3vw 0;
+                // padding: 1.5vw 0;
+                font-size: 6vw;
+                // font-size: 2.6vw;
+                letter-spacing: 0.5vw;
                 line-height: 120%;
 
                 span.highlighted {
                     font-style: italic;
                     font-weight: 500;
-                }
-            }
-        }
-    }
-}
-
-@media (max-width: 600px) {
-    // mobile design
-
-    section#landing {
-        .background-pane {
-        }
-        .background-text {
-            top: 85%;
-            font-size: 20vw;
-        }
-        .Dots {
-            height: 90vw;
-            top: 120%;
-        }
-
-        .content-wrapper {
-            padding-top: 18vw;
-            padding-bottom: 18vw;
-            text-align: center;
-
-            .heading-wrapper1 {
-                .heading-wrapper2 {
-                    padding: 4vw;
-                    margin-left: 0;
-
-                    &:hover {
-                        -webkit-text-stroke: 2px white;
-                    }
-                    h1 {
-                        font-size: 16vw;
-                        // line-height: 85%;
-                        // letter-spacing: 0.8vw;
-                    }
-                    .underline {
-                        border-bottom-width: 2px;
-                        // transform: translateY(0vw);
-                    }
-                }
-            }
-
-            .slogans {
-                margin-left: 0;
-                margin-top: 6vw;
-                width: 72vw;
-
-                p {
-                    padding: 3vw 0;
-                    font-size: 6vw;
-                    // letter-spacing: 0.2vw;
-                    // line-height: 120%;
-
-                    span.highlighted {
-                    }
                 }
             }
         }

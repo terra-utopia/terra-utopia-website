@@ -23,6 +23,8 @@ export default {
 };
 </script>
 
+
+
 <style lang="scss">
 .FixedAspectRatio {
     // this wrapper exists to prevent css overwrite by parent context

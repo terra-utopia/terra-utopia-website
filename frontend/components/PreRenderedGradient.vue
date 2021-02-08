@@ -22,11 +22,16 @@ export default {
             type: Boolean,
             default: false,
         },
+        maxRenderFrameRate: {
+            type: Number,
+            default: 8,
+        },
     },
     data() {
         return {
             svgImage: undefined,
-            isNewSvgImage: undefined, // dont worry, will be set before first read
+            svgImageWasUpdated: undefined, // dont worry, will be set before first read (with call 'this.loadNewSvgImage();' in 'mounted')
+            lastReRenderTimestamp: 0, // Milliseconds
         };
     },
     mounted() {
@@ -41,7 +46,7 @@ export default {
     methods: {
         loadNewSvgImage() {
             const svg = `
-                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">    <!-- THIS 100% ONLY WORKS IN RENDERED IMAGES, NOT IN STAND-ALONE SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">    <!-- THIS 100% SIZING ONLY WORKS IN RENDERED IMAGES, NOT IN STAND-ALONE SVG FILES OR HTML -->
                     <foreignObject x="0" y="0" width="100%" height="100%" externalResourcesRequired="true">
                         <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; background: ${this.background};"></div>
                     </foreignObject>
@@ -52,27 +57,33 @@ export default {
             let img = new Image();
             img.addEventListener("load", () => {
                 this.svgImage = img;
-                this.isNewSvgImage = true;
+                this.svgImageWasUpdated = true;
             });
             img.src = svgDataUrl;
         },
         renderLoop() {
-            // only render if there already is an image!
-            if (this.svgImage) {
-                // check if canvas layout dimensions are up-to-date
+            // only render if there already is an image! and please regard the maxRenderFrameRate
+            const frameRateOkay =
+                performance.now() - this.lastReRenderTimestamp >=
+                1000 / this.maxRenderFrameRate;
+            if (this.svgImage && frameRateOkay) {
+                // compute up-to-date canvas layout dimensions
                 let w = this.$refs.canvas.offsetWidth; // * window.devicePixelRatio   // (disabled because it caused again flickering ...)
                 let h = this.$refs.canvas.offsetHeight; // * window.devicePixelRatio
                 if (this.strictVertical) {
                     w = 1;
                 }
+                // check if we need to re-render (either due to resize, or due to new svg image)
                 if (
                     !(
                         this.$refs.canvas.width === w &&
                         this.$refs.canvas.height === h
                     ) ||
-                    this.isNewSvgImage
+                    this.svgImageWasUpdated
                 ) {
-                    this.isNewSvgImage = false;
+                    console.log("ok we re-render now");
+                    this.lastReRenderTimestamp = performance.now();
+                    this.svgImageWasUpdated = false;
                     // now: re-size and re-render
                     this.$refs.canvas.width = w;
                     this.$refs.canvas.height = h;

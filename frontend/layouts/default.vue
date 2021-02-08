@@ -6,13 +6,7 @@
 
 
 <script>
-import { install_reactive_vh } from "../assets/js/reactive_vh.js";
-export default {
-    beforeMount() {
-        // not called on server-render 👍 (because not allowed, because using window context)
-        install_reactive_vh();
-    },
-};
+export default {};
 </script>
 
 
@@ -28,6 +22,7 @@ export default {
     margin: 0;
     padding: 0;
     border: none;
+    border-radius: 0;
     outline: none;
     background: none;
 
