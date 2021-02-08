@@ -1,1 +1,32 @@
 # world-united-website
+
+
+
+# Development
+
+## Git Commands
+
+```bash
+# show current state of everything
+git status
+
+# list configured remote repositories
+git remote -v
+
+# stage all changes in a file to the index
+git add <file or directory>
+git add .
+
+# save a new commit with currently staged changes
+git commit -m "<message>"
+
+# push changes to a remote repository
+git push
+git push origin
+git push origin main
+
+# download and checkout new commits from a remote repository
+git pull
+git pull origin
+git pull origin main
+```
