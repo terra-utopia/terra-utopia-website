@@ -1,4 +1,8 @@
-# world-united-website
+# terra-utopia-website
+
+ The source code for https://terra-utopia.world
+
+<br><br><br>
 
 
 
@@ -29,4 +33,8 @@ git push origin main
 git pull
 git pull origin
 git pull origin main
+
+# show current changes
+git diff  # unstaged changes
+git diff --staged # staged changes
 ```
