@@ -1,5 +1,6 @@
 <template>
     <div>
+        <NavBar />
         <Nuxt />
     </div>
 </template>
@@ -10,10 +11,8 @@ export default {};
 </script>
 
 
-<style lang="scss">
-@import "../assets/fonts/loadCustomFonts";
-@import "../assets/fonts/useCustomFonts";
 
+<style lang="scss">
 *,
 *::before,
 *::after {
@@ -21,27 +20,25 @@ export default {};
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border: none;
-    border-radius: 0;
-    outline: none;
-    background: none;
+    border: none;  // for <button>
+    border-radius: 0;  // for <button>
+    outline: none;  // for <button>, <input>
+    background: none;  // for <button>
+    font-weight: 400;  // for <h1>
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 html {
-    font-size: 16px; // used for 'rem' units
-    color: white;
+    min-height: 100%;
 }
 
-.drop-shadow-large {
-    filter: drop-shadow(0vw 0.41vw 0.28vw rgba(0, 0, 0, 0.4));
-}
-
-@media (max-width: 600px) {
-    .drop-shadow-large {
-        filter: drop-shadow(0vw 0.6vw 0.4vw rgba(0, 0, 0, 0.4));
-    }
+html {
+    font-family: Jost;
+    font-size: 20px; // used for 'rem' units
+    font-weight: 400;
+    color: #303B5E;
+    background: repeating-linear-gradient(#3271d0, #303B5E 1500px, #3271d0 3000px);
 }
 </style>

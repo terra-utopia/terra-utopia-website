@@ -38,3 +38,15 @@ git pull origin main
 git diff  # unstaged changes
 git diff --staged # staged changes
 ```
+
+
+
+## Nuxt Commands
+
+```bash
+npm run dev  # dev server
+
+npm run generate  # generate static files in 'dist/'
+
+npm run start  # i think? will start a 
+```

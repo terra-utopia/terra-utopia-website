@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} "=terra-utopia.world"
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=307]
