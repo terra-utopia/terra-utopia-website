@@ -2,6 +2,7 @@
     <div>
         <NavBar />
         <Nuxt />
+        <Footer />
     </div>
 </template>
 
@@ -24,10 +25,15 @@ export default {};
     border-radius: 0;  // for <button>
     outline: none;  // for <button>, <input>
     background: none;  // for <button>
-    font-weight: 400;  // for <h1>
-
+    text-decoration: none; // for <a>
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+h1 {
+    font-weight: 400;
+}
+a {
+    color: inherit;
 }
 
 html {

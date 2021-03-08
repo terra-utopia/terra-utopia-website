@@ -14,7 +14,7 @@
             </Card>
             <Card :heading="'The Common Ground'" :isSuperHeading="false">
                 <p><span class="highlighted">Every human being</span> should have the right and the possibility to pursue a self-determined life in the absence of physical and psychological violence. Furthermore it must be possible for everyone to claim their human rights.</p>
-                <p>This is the minimal consensus that we hope all humans can agree upon. However in our modern world there are <span class="highlighted">numerous</span> threats to this common ground. Some of the most concerning ones are listed here:</p>
+                <p>This is the minimal consensus that we hope all humans can agree upon. However in our modern world there are <span class="highlighted">numerous threats</span> to this common ground. Some of the most concerning ones are listed here:</p>
             </Card>
         </div>
     </main>
@@ -59,8 +59,8 @@ export default {
             @include text-shadow-standard;
 
             p {
-                margin: 0 0 20px 0;
-                font-size: 24px; // asdfdafasdfasdf
+                margin: 10px 0;
+                font-size: 24px;
 
                 .highlighted {
                     @include semi-bold-italic;
