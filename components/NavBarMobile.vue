@@ -1,22 +1,25 @@
 <template>
-
-    <nav class="NavBarMobile" :class="{ collapsed: collapsed}">
+    <nav class="NavBarMobile" :class="{ collapsed: collapsed }">
         <div class="nav-header-container">
             <!-- LOGO -->
             <NuxtLink to="/" class="home-logo">
-                <img src="~/assets/svg/Logo.svg" />
+                <img src="~/assets/logo.svg" />
             </NuxtLink>
 
             <!-- MOBILE NAVIGATION HEADER -->
             <div class="nav-header">
-                <NuxtLink :to="activeEntry.to" v-html="activeEntry.name"></NuxtLink>
-                <img src="~/assets/svg/menu-icon.svg" />
+                <NuxtLink
+                    :to="activeEntry.to"
+                    v-html="activeEntry.name"
+                ></NuxtLink>
+                <img src="~/assets/menu-icon.svg" />
             </div>
         </div>
 
         <!-- Main Navigation List -->
         <div class="nav-link-container">
-            <NuxtLink v-for="(entry, i) in entries"
+            <NuxtLink
+                v-for="(entry, i) in entries"
                 :to="entry.to"
                 v-html="entry.name"
                 :key="i"
@@ -42,18 +45,17 @@ export default {
 
 
 <style lang="scss" scoped>
-@import '~assets/shared-styles';
+@import "~/assets/shared-styles.scss";
 
 .NavBarMobile {
-    
     .nav-header-container {
         position: relative; //XXX
         overflow: auto; // necessary to make the containers height match the height of its content
         padding: 20px 40px;
 
         a.home-logo {
-            float:left;
-            
+            float: left;
+
             img {
                 width: 160px;
                 background: $c-extralight;
@@ -62,7 +64,7 @@ export default {
             }
 
             transform: scale(1);
-            transition: .6s;
+            transition: 0.6s;
             &:hover {
                 transform: scale(1.05);
             }
@@ -85,7 +87,7 @@ export default {
         background: $nav-white-bg;
         border: $nav-white-border;
         border-radius: $nav-border-r;
-        
+
         a {
             padding: 8px 16px 8px 32px;
             text-align: right;
@@ -93,10 +95,11 @@ export default {
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
             font-size: 16px;
             @include bold-italic;
-            position: relative;  // for absolute '::after'
+            position: relative; // for absolute '::after'
 
-            &:not(:last-child)::after {  // separation lines
-                content: '';
+            &:not(:last-child)::after {
+                // separation lines
+                content: "";
                 position: absolute;
                 top: 100%;
                 left: 16px;
@@ -110,7 +113,6 @@ export default {
     }
 
     &.collapsed {
-
     }
 }
 </style>

@@ -39,14 +39,23 @@ git diff  # unstaged changes
 git diff --staged # staged changes
 ```
 
+<br><br>
 
 
 ## Nuxt Commands
 
 ```bash
-npm run dev  # dev server
+# for 'target: static' ...
 
-npm run generate  # generate static files in 'dist/'
+# dev server
+npm run dev
 
-npm run start  # i think? will start a 
+# generate static 'dist/'
+npm run generate
+
+# serve 'dist/' files
+npm run start
+
+
+# tip: see "scripts" field in 'package.json'
 ```

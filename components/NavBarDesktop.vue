@@ -1,14 +1,14 @@
 <template>
     <nav class="NavBarDesktop">
-
         <!-- LOGO -->
         <NuxtLink to="/" class="home-logo">
-            <img src="~/assets/svg/Logo.svg" />
+            <img src="~/assets/logo.svg" />
         </NuxtLink>
 
         <!-- Main Navigation List -->
         <div class="nav-link-container">
-            <NuxtLink v-for="(entry, i) in entries"
+            <NuxtLink
+                v-for="(entry, i) in entries"
                 :to="entry.to"
                 v-html="entry.name"
                 :key="i"
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~assets/shared-styles';
+@import "~/assets/shared-styles.scss";
 
 .NavBarDesktop {
     padding: 20px 40px;
@@ -48,13 +48,14 @@ export default {
         }
 
         transform: scale(1);
-        transition: .6s;
+        transition: 0.6s;
         &:hover {
             transform: scale(1.05);
         }
     }
 
-    div.mobile-navigation-header {  // disabled on desktop
+    div.mobile-navigation-header {
+        // disabled on desktop
         display: none;
     }
 
@@ -64,7 +65,7 @@ export default {
         flex-flow: row;
         align-items: center;
         justify-content: space-around;
-        
+
         a {
             position: relative;
             padding: 8px;
@@ -76,13 +77,13 @@ export default {
             font-size: 24px;
             @include bold-italic;
 
-            @media(max-width:1450px){
+            @media (max-width: 1450px) {
                 font-size: 20px;
             }
             @media (max-width: 1260px) {
                 min-width: initial;
             }
-            
+
             &.active {
                 text-decoration: underline;
             }
@@ -90,13 +91,13 @@ export default {
             &.disabled {
                 text-shadow: none;
                 color: rgba($c-extralight, 0.5);
-                
+
                 cursor: default;
             }
 
             &:not(.disabled) {
                 &::after {
-                    content: '';
+                    content: "";
                     width: 100%;
                     height: 100%;
                     background: rgba(#fff, 0);
@@ -107,7 +108,7 @@ export default {
                     left: 0px;
                     z-index: -1;
                     transform: scale(0.95);
-                    transition: .6s;
+                    transition: 0.6s;
                 }
 
                 &:hover::after {
@@ -119,5 +120,4 @@ export default {
         }
     }
 }
-
 </style>

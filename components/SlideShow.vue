@@ -40,7 +40,8 @@
 
 
 <script>
-import { moduloWithNegative } from "../../assets/js/utils.js";
+import { moduloUniversal } from '~/assets/util.js';
+
 
 export default {
     props: {
@@ -61,7 +62,7 @@ export default {
     methods: {
         rotateIndex(delta) {
             this.activeIndex += delta;
-            this.activeIndex = moduloWithNegative(
+            this.activeIndex = moduloUniversal(
                 // unneccessary in theory, because buttons are disabled on the boundaries or index interval
                 this.activeIndex,
                 this.slides.length
