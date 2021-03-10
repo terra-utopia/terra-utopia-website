@@ -21,11 +21,15 @@
             <NuxtLink
                 v-for="(entry, i) in entries"
                 :to="entry.to"
-                v-html="entry.name"
                 :key="i"
                 class="nav-link"
-                :class="{ disabled: !entry.to, active: entry.active }"
+                :class="{ disabled: !entry.to }"
             >
+                <img
+                    v-if="entry.active"
+                    src="~/assets/active-nav-link-pointer.svg"
+                />
+                <span v-html="entry.name"></span>
             </NuxtLink>
         </div>
     </nav>
@@ -64,7 +68,7 @@ export default {
             }
 
             transform: scale(1);
-            transition: 0.6s;
+            transition: 0.3s;
             &:hover {
                 transform: scale(1.05);
             }
@@ -106,13 +110,30 @@ export default {
                 right: 8px;
                 border-top: $nav-white-border;
             }
+
             &:hover {
                 background: $nav-white-bg;
+            }
+
+            img {
+                animation: jumping-pointer 1s infinite ease-in-out;
             }
         }
     }
 
     &.collapsed {
+    }
+}
+
+@keyframes jumping-pointer {
+    0% {
+        transform: translateX(-12px);
+    }
+    50% {
+        transform: translateX(-2px);
+    }
+    100% {
+        transform: translateX(-12px);
     }
 }
 </style>

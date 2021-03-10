@@ -1,11 +1,9 @@
 <template>
     <nav class="NavBarDesktop">
-        <!-- LOGO -->
         <NuxtLink to="/" class="home-logo">
             <img src="~/assets/logo.svg" />
         </NuxtLink>
 
-        <!-- Main Navigation List -->
         <div class="nav-link-container">
             <NuxtLink
                 v-for="(entry, i) in entries"
@@ -13,9 +11,8 @@
                 v-html="entry.name"
                 :key="i"
                 class="nav-link"
-                :class="{ disabled: !entry.to, active: entry.active }"
-            >
-            </NuxtLink>
+                :class="{ disabled: /*!entry.to*/ false, active: entry.active }"
+            />
         </div>
     </nav>
 </template>
@@ -26,6 +23,7 @@ export default {
     props: ['entries'],
 };
 </script>
+
 
 <style lang="scss" scoped>
 @import "~/assets/shared-styles.scss";
@@ -48,15 +46,10 @@ export default {
         }
 
         transform: scale(1);
-        transition: 0.6s;
+        transition: 0.3s;
         &:hover {
             transform: scale(1.05);
         }
-    }
-
-    div.mobile-navigation-header {
-        // disabled on desktop
-        display: none;
     }
 
     .nav-link-container {
@@ -64,13 +57,12 @@ export default {
         display: flex;
         flex-flow: row;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-around; // only important for really really wide monitors ??
 
         a {
             position: relative;
-            padding: 8px;
-            margin: 0 5px;
-            min-width: 120px;
+            padding: 6px 16px;
+            margin: 0 16px;
             text-align: center;
             color: $c-extralight;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
@@ -80,8 +72,11 @@ export default {
             @media (max-width: 1450px) {
                 font-size: 20px;
             }
-            @media (max-width: 1260px) {
-                min-width: initial;
+            @media (max-width: 1300px) {
+                margin: 0 5px;
+            }
+            @media (max-width: 1140px) {
+                padding: 6px 8px;
             }
 
             &.active {
@@ -100,20 +95,20 @@ export default {
                     content: "";
                     width: 100%;
                     height: 100%;
-                    background: rgba(#fff, 0);
+                    background: $nav-white-bg;
+                    border: $nav-white-border;
                     border-radius: $nav-border-r;
-                    border: 1px solid rgba(#fff, 0);
                     position: absolute;
                     bottom: 0px;
                     left: 0px;
                     z-index: -1;
+                    opacity: 0;
                     transform: scale(0.95);
-                    transition: 0.6s;
+                    transition: 0.3s;
                 }
 
                 &:hover::after {
-                    background: $nav-white-bg;
-                    border: $nav-white-border;
+                    opacity: 1;
                     transform: scale(1);
                 }
             }
