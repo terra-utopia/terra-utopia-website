@@ -1,32 +1,16 @@
 <template>
-    <nav class="NavBar" :class="{ opened: opened, mobileNavigation: mobileNavigation }">
-
-        <!-- LOGO -->
-        <NuxtLink to="/">
-            <img src="~/assets/svg/Logo.svg" />
-        </NuxtLink>
-
-        <!-- MOBILE NAVIGATION HEADER -->
-        <div class="mobile-navigation-header">
-            <NuxtLink :to="activeEntry.to" v-html="activeEntry.name"></NuxtLink>
-            <img src="~/assets/svg/menu-icon.svg" />
-        </div>
-
-        <!-- Main Navigation List -->
-        <NuxtLink v-for="(entry, i) in entries"
-            :to="entry.to"
-            v-html="entry.name"
-            :key="i"
-            class="nav-link"
-            :class="{ disabled: !entry.to, active: entry.active }"
-        >
-        </NuxtLink>
-    </nav>
+    <NavBarDesktop v-if="!isMobileNavigation"
+        :entries="entries"
+    />
+    <NavBarMobile v-else
+        :entries="entries"
+        :activeEntry="activeEntry"
+    />
 </template>
 
 <script>
 const entries = [
-    { name: 'Home <br> Necessity Of A World State', to: '/'},
+    { name: 'Home • Necessity Of A World State', to: '/'},
     { name: 'Structure Of The World State', to: '/abc' },
     { name: 'Roadmap', to: '' },
     { name: 'A New Economic System', to: '' },
@@ -39,42 +23,25 @@ const entries = [
 export default {
     data() {
         return {
-            opened: true,
-            mobileNavigation: undefined,
+            isMobileNavigation: false,  // will be dynamically overwritten in `created()` (client-only)
         }
     },
     computed: {
         entries() {
-            console.log('entries computed:', entries.map(entry => Object.assign({ ...entry }, { active: entry.to === this.$route.path })))
             return entries.map(entry => Object.assign({ ...entry }, { active: entry.to === this.$route.path }));
         },
         activeEntry() {
             return this.entries.filter(entry => { return entry.active })[0];
-        }
+        },
     },
     created() {
-        const updateMobileNavigation = () => {
-            this.mobileNavigation;  // XXX
+        if (process.client) {  // only react to screen size if we're on a physical device (instead of the render server)
+            const updateMobileNavigation = () => {
+                this.isMobileNavigation = window.innerWidth < 990;
+            }
+            updateMobileNavigation(); // initial evaluation of screen size
+            window.addEventListener('resize', updateMobileNavigation); // always reevaluate when screen size changes
         }
-
-        updateMobileNavigation();
-        window.addEventListener('resize', updateMobileNavigation)
     },
 };
 </script>
-
-<style lang="scss" scoped>
-.NavBar {
-
-    a {
-
-        &.disabled {
-
-        }
-    }
-}
-
-.NavBar.opened {
-    
-}
-</style>

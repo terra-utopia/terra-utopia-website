@@ -1,11 +1,13 @@
 // === COLORS ===
 
-$dark-blue: #30395C;
-$main-blue: #3E529D;
-$white: #FFFFFF;
-$bg: #FAFBFF;
-$bg-shade: #EFF1F7;
+$c-extradark: #30395C;
+$c-dark: #3E529D;
+$c-light: #EFF1F7;
+$c-extralight: #FAFBFF;
 
+$nav-border-r: 4px;
+$nav-white-border: 1px solid rgba(#fff, 0.65);
+$nav-white-bg: rgba(#fff, 0.15);
 
 
 // === FONT SIZE CLASSES ===
@@ -33,4 +35,12 @@ $bg-shade: #EFF1F7;
     font-weight: 600;
     font-style: italic;
 }
+
+@mixin bold-italic {
+    font-weight: 700;
+    font-style: italic;
+}
+
+
+
 
