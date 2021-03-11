@@ -8,7 +8,7 @@
 
             <!-- MOBILE NAVIGATION HEADER -->
             <div class="nav-header-wrapper">
-                <div class="nav-header">
+                <div class="nav-header" v-on:click="toggleNavCollapsed">
                     <NuxtLink
                         :to="activeEntry.to"
                         v-html="activeEntry.name"
@@ -46,6 +46,11 @@ export default {
             collapsed: true,
         };
     },
+    methods:{
+        toggleNavCollapsed(event) {
+            this.collapsed = !this.collapsed;
+        }
+    }
 };
 </script>
 
@@ -63,14 +68,16 @@ export default {
         a.home-logo {
 
             img {
-                width: 160px;
+                width: 0px;
+                opacity: 0;
+                transition: opacity 0.2s linear, width .6s ease-in-out;
                 background: $c-extralight;
                 border-radius: 50%;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
             }
 
             transform: scale(1);
-            transition: 0.3s;
+            transition: transform 0.3s;
             &:hover {
                 transform: scale(1.05);
             }
@@ -99,10 +106,16 @@ export default {
 
                 a{
                     margin: 0 5px;
+                    transform: translateX(100%);
+                    transition: transform 1s ease-in-out;
                 }
 
                 img{
                     margin: 5px;
+                }
+
+                &:hover{
+                    cursor: pointer;
                 }
 
             }
@@ -150,6 +163,28 @@ export default {
     }
 
     &.collapsed {
+        
+        .nav-header-container{
+
+            a.home-logo{
+
+                img{
+                    transition: opacity .2s linear .4s, width .6s ease-in-out;
+                    width: 160px;
+                    opacity: 1;
+                }
+            }
+
+            .nav-header-wrapper{
+
+                .nav-header{
+
+                    a{
+                        transform: translateX(0%);
+                    }
+                }
+            }
+        }
     }
 }
 
