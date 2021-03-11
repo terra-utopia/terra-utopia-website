@@ -57,8 +57,8 @@ export default {
     .nav-header-container {
         display: flex;
         align-items: center;
-        overflow: auto; // necessary to make the containers height match the height of its content
-        padding: 20px 40px;
+        overflow: visible; // necessary to make the containers height match the height of its content
+        margin: 20px 40px;
 
         a.home-logo {
 
@@ -80,19 +80,31 @@ export default {
             width: 100%;
 
             .nav-header {
-                text-align: center;
                 width: fit-content;
                 float: right;
-                color: $c-extralight;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-                font-size: 20px;
-                @include bold-italic;
+                
+                padding: 5px;
                 background: $nav-white-bg;
                 border: $nav-white-border;
                 border-radius: $nav-border-r;
 
+                text-align: center;
+                color: $c-extralight;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+                font-size: 20px;
+                @include bold-italic;
+
                 display: flex;
                 align-items: center;
+
+                a{
+                    margin: 0 5px;
+                }
+
+                img{
+                    margin: 5px;
+                }
+
             }
         }
     }
