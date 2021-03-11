@@ -7,12 +7,14 @@
             </NuxtLink>
 
             <!-- MOBILE NAVIGATION HEADER -->
-            <div class="nav-header">
-                <NuxtLink
-                    :to="activeEntry.to"
-                    v-html="activeEntry.name"
-                ></NuxtLink>
-                <img src="~/assets/menu-icon.svg" />
+            <div class="nav-header-wrapper">
+                <div class="nav-header">
+                    <NuxtLink
+                        :to="activeEntry.to"
+                        v-html="activeEntry.name"
+                    ></NuxtLink>
+                    <img src="~/assets/menu-icon.svg" />
+                </div>
             </div>
         </div>
 
@@ -53,12 +55,12 @@ export default {
 
 .NavBarMobile {
     .nav-header-container {
-        position: relative; //XXX
+        display: flex;
+        align-items: center;
         overflow: auto; // necessary to make the containers height match the height of its content
         padding: 20px 40px;
 
         a.home-logo {
-            float: left;
 
             img {
                 width: 160px;
@@ -73,11 +75,25 @@ export default {
                 transform: scale(1.05);
             }
         }
+        
+        .nav-header-wrapper{
+            width: 100%;
 
-        .nav-header {
-            float: right;
-            text-align: center;
-            height: 100%;
+            .nav-header {
+                text-align: center;
+                width: fit-content;
+                float: right;
+                color: $c-extralight;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+                font-size: 20px;
+                @include bold-italic;
+                background: $nav-white-bg;
+                border: $nav-white-border;
+                border-radius: $nav-border-r;
+
+                display: flex;
+                align-items: center;
+            }
         }
     }
 
