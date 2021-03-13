@@ -9,11 +9,14 @@
             <!-- MOBILE NAVIGATION HEADER -->
             <div class="nav-header-wrapper">
                 <div class="nav-header" v-on:click="toggleNavCollapsed">
-                    <NuxtLink
-                        :to="activeEntry.to"
-                        v-html="activeEntry.name"
-                    ></NuxtLink>
-                    <img src="~/assets/menu-icon.svg" />
+                    <div class="nav-header-text-wrapper">
+                        <NuxtLink
+                            class="nav-header-text"
+                            :to="activeEntry.to"
+                            v-html="activeEntry.name"
+                        ></NuxtLink>
+                    </div>
+                    <img class="menu-icon" src="~/assets/menu-icon.svg" />
                 </div>
             </div>
         </div>
@@ -44,11 +47,68 @@ export default {
     data() {
         return {
             collapsed: true,
+            dimensionsNavHeaderTextWrapper: {
+                height: 0,
+                width: 0
+            }
         };
     },
     methods:{
-        toggleNavCollapsed(event) {
+        toggleNavCollapsed() {
             this.collapsed = !this.collapsed;
+            this.collapseNavHeader();
+        },
+        collapseNavHeader(){
+            let navHeaderTextWrapper = document.getElementsByClassName("nav-header-text-wrapper")[0];
+            let navHeaderText = document.getElementsByClassName("nav-header-text")[0];
+            let menuIcon = document.getElementsByClassName("menu-icon")[0];
+
+            if (this.collapsed) {
+                console.log(this.dimensionsNavHeaderTextWrapper.width);
+                navHeaderTextWrapper.style.width = this.dimensionsNavHeaderTextWrapper.width+"px";
+                navHeaderTextWrapper.style.height = this.dimensionsNavHeaderTextWrapper.height+"px";
+                navHeaderTextWrapper.addEventListener(this.getTransitionEndEventName(), this.changeNavHeaderTextPosition);
+            } else {
+                this.dimensionsNavHeaderTextWrapper.width = navHeaderTextWrapper.getBoundingClientRect().width;
+                this.dimensionsNavHeaderTextWrapper.height = navHeaderTextWrapper.getBoundingClientRect().height;
+                navHeaderText.style.width = this.dimensionsNavHeaderTextWrapper.width-parseFloat(window.getComputedStyle(navHeaderText).marginRight)-parseFloat(window.getComputedStyle(navHeaderText).marginLeft)+"px";
+                navHeaderText.style.height = this.dimensionsNavHeaderTextWrapper.height-parseFloat(window.getComputedStyle(navHeaderText).marginTop)-parseFloat(window.getComputedStyle(navHeaderText).marginBottom)+"px";
+                navHeaderText.style.position = "absolute";
+                navHeaderText.style.top = "50%";
+                navHeaderText.style.transform = "translateY(-50%)";
+                navHeaderText.style.left = "0px";
+                navHeaderTextWrapper.style.width = this.dimensionsNavHeaderTextWrapper.width+"px";
+                navHeaderTextWrapper.style.height = this.dimensionsNavHeaderTextWrapper.height+"px";
+                setTimeout(() => { // render engine stizzzle
+                    navHeaderTextWrapper.style.width = "0px";
+                    navHeaderTextWrapper.style.height = parseInt(window.getComputedStyle(menuIcon).height)+parseInt(window.getComputedStyle(menuIcon).marginTop)+parseInt(window.getComputedStyle(menuIcon).marginBottom)+"px";
+                }, 0);
+            }
+        },
+        changeNavHeaderTextPosition(){
+            if (this.collapsed) {
+                let navHeaderTextWrapper = document.getElementsByClassName("nav-header-text-wrapper")[0];
+                let navHeaderText = document.getElementsByClassName("nav-header-text")[0];
+                navHeaderText.style.position = "initial";
+                navHeaderText.style.width = "initial";
+                navHeaderText.style.height = "initial";
+                navHeaderTextWrapper.style.width = "initial";
+                navHeaderTextWrapper.style.height = "initial";
+            }
+        },
+        getTransitionEndEventName() {
+            var transitions = {
+                "transition"      : "transitionend",
+                "OTransition"     : "oTransitionEnd",
+                "MozTransition"   : "transitionend",
+                "WebkitTransition": "webkitTransitionEnd"
+            }
+            let bodyStyle = document.body.style;
+            for(let transition in transitions) {
+                if(bodyStyle[transition] != undefined) {
+                    return transitions[transition];
+                }
+            }
         }
     }
 };
@@ -63,14 +123,15 @@ export default {
         display: flex;
         align-items: center;
         overflow: visible; // necessary to make the containers height match the height of its content
-        margin: 20px 40px;
+        margin: 20px 20px;
 
         a.home-logo {
+            margin: 0px 10px;
 
             img {
                 width: 0px;
                 opacity: 0;
-                transition: opacity 0.2s linear, width .6s ease-in-out;
+                transition: opacity 0.2s linear, width .6s ease-in-out; // transition to opened state
                 background: $c-extralight;
                 border-radius: 50%;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -85,6 +146,7 @@ export default {
         
         .nav-header-wrapper{
             width: 100%;
+            margin: 0px 10px;
 
             .nav-header {
                 width: fit-content;
@@ -104,10 +166,14 @@ export default {
                 display: flex;
                 align-items: center;
 
-                a{
-                    margin: 0 5px;
-                    transform: translateX(100%);
-                    transition: transform 1s ease-in-out;
+                .nav-header-text-wrapper{
+                    position: relative;
+                    overflow: hidden;
+                    transition: width .8s ease-in-out, height .8s ease-in-out;
+                    
+                    .nav-header-text{
+                        margin: 0 5px;
+                    }
                 }
 
                 img{
@@ -169,19 +235,9 @@ export default {
             a.home-logo{
 
                 img{
-                    transition: opacity .2s linear .4s, width .6s ease-in-out;
+                    transition: opacity .2s linear .4s, width .6s ease-in-out; //transition to collapsed state
                     width: 160px;
                     opacity: 1;
-                }
-            }
-
-            .nav-header-wrapper{
-
-                .nav-header{
-
-                    a{
-                        transform: translateX(0%);
-                    }
                 }
             }
         }
