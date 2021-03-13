@@ -64,7 +64,6 @@ export default {
             let menuIcon = document.getElementsByClassName("menu-icon")[0];
 
             if (this.collapsed) {
-                console.log(this.dimensionsNavHeaderTextWrapper.width);
                 navHeaderTextWrapper.style.width = this.dimensionsNavHeaderTextWrapper.width+"px";
                 navHeaderTextWrapper.style.height = this.dimensionsNavHeaderTextWrapper.height+"px";
                 navHeaderTextWrapper.addEventListener(this.getTransitionEndEventName(), this.changeNavHeaderTextPosition);
@@ -79,10 +78,9 @@ export default {
                 navHeaderText.style.left = "0px";
                 navHeaderTextWrapper.style.width = this.dimensionsNavHeaderTextWrapper.width+"px";
                 navHeaderTextWrapper.style.height = this.dimensionsNavHeaderTextWrapper.height+"px";
-                setTimeout(() => { // render engine stizzzle
-                    navHeaderTextWrapper.style.width = "0px";
-                    navHeaderTextWrapper.style.height = parseInt(window.getComputedStyle(menuIcon).height)+parseInt(window.getComputedStyle(menuIcon).marginTop)+parseInt(window.getComputedStyle(menuIcon).marginBottom)+"px";
-                }, 0);
+                let renderTrigger =  window.getComputedStyle(navHeaderTextWrapper).height; // render engine stizzzle
+                navHeaderTextWrapper.style.width = "0px";
+                navHeaderTextWrapper.style.height = parseInt(window.getComputedStyle(menuIcon).height)+parseInt(window.getComputedStyle(menuIcon).marginTop)+parseInt(window.getComputedStyle(menuIcon).marginBottom)+"px";
             }
         },
         changeNavHeaderTextPosition(){
