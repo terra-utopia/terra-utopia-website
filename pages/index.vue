@@ -36,7 +36,8 @@ export default {
 @import '../assets/shared-styles.scss';
 
 @mixin shadow-wide {
-    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.4)) drop-shadow(0 4px 50px rgba(0,0,0, 0.25));
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4), 0 4px 50px rgba(0,0,0, 0.25);
+    // filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.4)) drop-shadow(0 4px 50px rgba(0,0,0, 0.25));
 }
 
 @mixin text-shadow-standard {

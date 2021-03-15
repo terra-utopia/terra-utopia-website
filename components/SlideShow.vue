@@ -1,5 +1,5 @@
 <template>
-    <div class="SlideShow drop-shadow-large">
+    <div class="SlideShow">
         <div
             v-for="(slide, index) in slides"
             class="SlideShow-item"

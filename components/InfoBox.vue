@@ -1,10 +1,10 @@
 <template>
     <div class="InfoBox">
-        <h3 class="drop-shadow-large">{{ title }}</h3>
+        <h3>{{ title }}</h3>
         <SlideShow :slides="slides" :slogan="slogan"> </SlideShow>
         <div class="wrapper-for-opener-button" :class="{ hide: expanded }">
             <button
-                class="opener-button drop-shadow-large"
+                class="opener-button"
                 @click="expanded = true"
             >
                 <div class="placeholder-message">Analyze</div>

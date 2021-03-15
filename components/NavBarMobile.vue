@@ -1,42 +1,43 @@
 <template>
-    <nav class="NavBarMobile" :class="{ collapsed: collapsed }">
-        <div class="nav-header-container">
-            <!-- LOGO -->
+    <nav class="NavBarMobile">
+        
+        <div class="collapsed-container">
+            
             <NuxtLink to="/" class="home-logo">
                 <img src="~/assets/logo.svg" />
             </NuxtLink>
 
-            <!-- MOBILE NAVIGATION HEADER -->
-            <div class="nav-header-wrapper">
-                <div class="nav-header" v-on:click="toggleNavCollapsed">
-                    <div class="nav-header-text-wrapper">
-                        <NuxtLink
-                            class="nav-header-text"
-                            :to="activeEntry.to"
-                            v-html="activeEntry.name"
-                        ></NuxtLink>
-                    </div>
-                    <img class="menu-icon" src="~/assets/menu-icon.svg" />
-                </div>
+            <div class="nav-header" @click="toggleNavCollapsed()">
+                <NuxtLink
+                    class="nav-header-text"
+                    :to="activeEntry.to"
+                    v-html="activeEntry.name"
+                ></NuxtLink>
+                <img class="nav-menu-icon" src="~/assets/nav-menu-icon.svg" />
             </div>
         </div>
 
-        <!-- Main Navigation List -->
-        <div class="nav-link-container">
-            <NuxtLink
-                v-for="(entry, i) in entries"
-                :to="entry.to"
-                :key="i"
-                class="nav-link"
-                :class="{ disabled: !entry.to }"
-            >
-                <img
-                    v-if="entry.active"
-                    src="~/assets/active-nav-link-pointer.svg"
-                />
-                <span v-html="entry.name"></span>
-            </NuxtLink>
+        <div class="opened-container"  :class="{ collapsed: collapsed }">
+            <button @click="toggleNavCollapsed()">
+                <img class="nav-menu-icon" src="~/assets/nav-menu-icon.svg" />
+            </button >
+            <div class="nav-link-container">
+                <NuxtLink
+                    v-for="(entry, i) in entries"
+                    :to="entry.to"
+                    :key="i"
+                    class="nav-link"
+                    :class="{ disabled: !entry.to }"
+                >
+                    <img
+                        v-if="entry.active"
+                        src="~/assets/active-nav-link-pointer.svg"
+                    />
+                    <span v-html="entry.name"></span>
+                </NuxtLink>
+            </div>
         </div>
+        
     </nav>
 </template>
 
@@ -49,87 +50,53 @@ export default {
             collapsed: true,
             dimensionsNavHeaderTextWrapper: {
                 height: 0,
-                width: 0
-            }
+                width: 0,
+            },
         };
     },
     methods:{
         toggleNavCollapsed() {
             this.collapsed = !this.collapsed;
-            this.collapseNavHeader();
-        },
-        collapseNavHeader(){
-            let navHeaderTextWrapper = document.getElementsByClassName("nav-header-text-wrapper")[0];
-            let navHeaderText = document.getElementsByClassName("nav-header-text")[0];
-            let menuIcon = document.getElementsByClassName("menu-icon")[0];
 
-            if (this.collapsed) {
-                navHeaderTextWrapper.style.width = this.dimensionsNavHeaderTextWrapper.width+"px";
-                navHeaderTextWrapper.style.height = this.dimensionsNavHeaderTextWrapper.height+"px";
-                navHeaderTextWrapper.addEventListener(this.getTransitionEndEventName(), this.changeNavHeaderTextPosition);
-            } else {
-                this.dimensionsNavHeaderTextWrapper.width = navHeaderTextWrapper.getBoundingClientRect().width;
-                this.dimensionsNavHeaderTextWrapper.height = navHeaderTextWrapper.getBoundingClientRect().height;
-                navHeaderText.style.width = this.dimensionsNavHeaderTextWrapper.width-parseFloat(window.getComputedStyle(navHeaderText).marginRight)-parseFloat(window.getComputedStyle(navHeaderText).marginLeft)+"px";
-                navHeaderText.style.height = this.dimensionsNavHeaderTextWrapper.height-parseFloat(window.getComputedStyle(navHeaderText).marginTop)-parseFloat(window.getComputedStyle(navHeaderText).marginBottom)+"px";
-                navHeaderText.style.position = "absolute";
-                navHeaderText.style.top = "50%";
-                navHeaderText.style.transform = "translateY(-50%)";
-                navHeaderText.style.left = "0px";
-                navHeaderTextWrapper.style.width = this.dimensionsNavHeaderTextWrapper.width+"px";
-                navHeaderTextWrapper.style.height = this.dimensionsNavHeaderTextWrapper.height+"px";
-                let renderTrigger =  window.getComputedStyle(navHeaderTextWrapper).height; // render engine stizzzle
-                navHeaderTextWrapper.style.width = "0px";
-                navHeaderTextWrapper.style.height = parseInt(window.getComputedStyle(menuIcon).height)+parseInt(window.getComputedStyle(menuIcon).marginTop)+parseInt(window.getComputedStyle(menuIcon).marginBottom)+"px";
+            if (!this.collapsed) {
+                addEventListenerOnce(window, 'click', this.toggleNavCollapsed);
             }
         },
-        changeNavHeaderTextPosition(){
-            if (this.collapsed) {
-                let navHeaderTextWrapper = document.getElementsByClassName("nav-header-text-wrapper")[0];
-                let navHeaderText = document.getElementsByClassName("nav-header-text")[0];
-                navHeaderText.style.position = "initial";
-                navHeaderText.style.width = "initial";
-                navHeaderText.style.height = "initial";
-                navHeaderTextWrapper.style.width = "initial";
-                navHeaderTextWrapper.style.height = "initial";
-            }
-        },
-        getTransitionEndEventName() {
-            var transitions = {
-                "transition"      : "transitionend",
-                "OTransition"     : "oTransitionEnd",
-                "MozTransition"   : "transitionend",
-                "WebkitTransition": "webkitTransitionEnd"
-            }
-            let bodyStyle = document.body.style;
-            for(let transition in transitions) {
-                if(bodyStyle[transition] != undefined) {
-                    return transitions[transition];
-                }
-            }
-        }
-    }
+    },
 };
+
+function addEventListenerOnce(target, eventType, listener) {
+    target.addEventListener(eventType, function () {
+        arguments;
+        this;
+        eventType;
+    });
+}
 </script>
 
 
 <style lang="scss" scoped>
 @import "~/assets/shared-styles.scss";
 
+img.nav-menu-icon {
+    transform: translateY(3px);
+}
+
 .NavBarMobile {
-    .nav-header-container {
+
+    .collapsed-container {
         display: flex;
+        flex-flow: row;
         align-items: center;
-        overflow: visible; // necessary to make the containers height match the height of its content
-        margin: 20px 20px;
+        overflow: visible;  // necessary to make the containers height match the height of its content (?? XXX)
+        padding: 20px;
+        margin-bottom: 28px;
 
         a.home-logo {
             margin: 0px 10px;
 
             img {
-                width: 0px;
-                opacity: 0;
-                transition: opacity 0.2s linear, width .6s ease-in-out; // transition to opened state
+                width: 160px;
                 background: $c-extralight;
                 border-radius: 50%;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -137,109 +104,122 @@ export default {
 
             transform: scale(1);
             transition: transform 0.3s;
-            &:hover {
+            &:hover {   
                 transform: scale(1.05);
             }
         }
         
-        .nav-header-wrapper{
-            width: 100%;
-            margin: 0px 10px;
+        .nav-header {
+            margin-left: auto;  // lets the element float to the right in the parent flex box
 
-            .nav-header {
-                width: fit-content;
-                float: right;
-                
-                padding: 5px;
-                background: $nav-white-bg;
-                border: $nav-white-border;
-                border-radius: $nav-border-r;
+            width: fit-content;
+             
+            padding: 8px 8px;
+            background: $nav-white-bg;
+            border: $nav-white-border;
+            border-radius: $nav-border-r;
 
-                text-align: center;
-                color: $c-extralight;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-                font-size: 20px;
-                @include bold-italic;
-
-                display: flex;
-                align-items: center;
-
-                .nav-header-text-wrapper{
-                    position: relative;
-                    overflow: hidden;
-                    transition: width .8s ease-in-out, height .8s ease-in-out;
-                    
-                    .nav-header-text{
-                        margin: 0 5px;
-                    }
-                }
-
-                img{
-                    margin: 5px;
-                }
-
-                &:hover{
-                    cursor: pointer;
-                }
-
-            }
-        }
-    }
-
-    .nav-link-container {
-        margin: 12px 16px 0 auto;
-        width: fit-content;
-        max-width: calc(100% - 12px - 12px);
-        display: flex;
-        flex-flow: column;
-        align-items: stretch;
-        background: $nav-white-bg;
-        border: $nav-white-border;
-        border-radius: $nav-border-r;
-
-        a {
-            padding: 8px 16px 8px 32px;
-            text-align: right;
+            text-align: center;
             color: $c-extralight;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-            font-size: 16px;
+            font-size: 20px;
             @include bold-italic;
-            position: relative; // for absolute '::after'
 
-            &:not(:last-child)::after {
-                // separation lines
-                content: "";
-                position: absolute;
-                top: 100%;
-                left: 16px;
-                right: 8px;
-                border-top: $nav-white-border;
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+
+            .nav-header-text{
+                margin-left: 4px;
             }
 
-            &:hover {
-                background: $nav-white-bg;
+            img.nav-menu-icon {
+                margin-left: 12px;
             }
 
-            img {
-                animation: jumping-pointer 1s infinite ease-in-out;
+            &:hover{
+                cursor: pointer;
             }
+
         }
+        
     }
 
-    &.collapsed {
-        
-        .nav-header-container{
+    .opened-container {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background: linear-gradient(to bottom, $c-special2 0%, $c-extradark 85%);
+        padding: 28px 20px 28px 10px;
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.50);
+        display: flex;
+        flex-flow: column;
+        align-items: flex-end;
 
-            a.home-logo{
+        button {  // burger-button
+            margin-top: 53px;
+            margin-bottom: 24px;
+            padding: 8px;
+            background: $nav-white-bg;
+            border: $nav-white-border;
+            border-radius: $nav-border-r;
+            cursor: pointer;
+        }
 
-                img{
-                    transition: opacity .2s linear .4s, width .6s ease-in-out; //transition to collapsed state
-                    width: 160px;
-                    opacity: 1;
+        .nav-link-container {
+            // width: fit-content;
+            max-width: calc(100% - 12px - 12px);
+            display: flex;
+            flex-flow: column;
+            align-items: stretch;
+            background: $nav-white-bg;
+            border: $nav-white-border;
+            border-radius: $nav-border-r;
+
+            a {
+                padding: 8px 16px 8px 32px;
+                text-align: right;
+                color: $c-extralight;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+                font-size: 16px;
+                @include bold-italic;
+                position: relative; // for absolute '::after'
+
+                &:not(:last-child)::after {
+                    // separation lines
+                    content: "";
+                    position: absolute;
+                    top: 100%;
+                    left: 16px;
+                    right: 8px;
+                    border-top: $nav-white-border;
+                }
+
+                &:hover {
+                    background: $nav-white-bg;
+                }
+
+                img {
+                    animation: jumping-pointer 1s infinite ease-in-out;
                 }
             }
         }
+
+        &:not(.collapsed) {
+            transition: clip-path .5s ease-in-out;
+            clip-path: circle(142% at 100% 0%);
+            
+        }
+        &.collapsed {
+            transition: clip-path .5s ease-in-out;
+            clip-path: circle(0% at 100% 0%);
+        }
     }
+    
+    
 }
 
 @keyframes jumping-pointer {
