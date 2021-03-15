@@ -29,7 +29,7 @@ export default {
             return this.entries.filter(entry => { return entry.active; })[0];
         },
     },
-    created() {
+    mounted() {
         if (process.client) {  // only react to screen size if we're on a physical device (instead of the render server)
             const updateMobileNavigation = () => {
                 this.isMobileNavigation = window.innerWidth < 1060;

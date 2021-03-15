@@ -13,14 +13,14 @@
                     :to="activeEntry.to"
                     v-html="activeEntry.name"
                 ></NuxtLink>
-                <img class="nav-menu-icon" src="~/assets/nav-menu-icon.svg" />
+                <img role="button" class="nav-menu-icon" src="~/assets/nav-menu-icon.svg" />
             </div>
         </div>
 
-        <div class="opened-container"  :class="{ collapsed: collapsed }">
-            <button @click="toggleNavCollapsed()">
+        <div class="opened-container" :class="{ collapsed: collapsed }">
+            <button>
                 <img class="nav-menu-icon" src="~/assets/nav-menu-icon.svg" />
-            </button >
+            </button>
             <div class="nav-link-container">
                 <NuxtLink
                     v-for="(entry, i) in entries"
@@ -29,15 +29,16 @@
                     class="nav-link"
                     :class="{ disabled: !entry.to }"
                 >
-                    <img
-                        v-if="entry.active"
-                        src="~/assets/active-nav-link-pointer.svg"
-                    />
-                    <span v-html="entry.name"></span>
+                    <span class="nav-link-text-wrapper">
+                        <span v-html="entry.name" />
+                        <img
+                            v-if="entry.active"
+                            src="~/assets/active-nav-link-pointer.svg"
+                        />
+                    </span>
                 </NuxtLink>
             </div>
         </div>
-        
     </nav>
 </template>
 
@@ -48,39 +49,28 @@ export default {
     data() {
         return {
             collapsed: true,
-            dimensionsNavHeaderTextWrapper: {
-                height: 0,
-                width: 0,
-            },
         };
     },
-    methods:{
+    methods: {
         toggleNavCollapsed() {
             this.collapsed = !this.collapsed;
 
             if (!this.collapsed) {
-                addEventListenerOnce(window, 'click', this.toggleNavCollapsed);
+                // collapse/close navigation on ANY click
+                window.addEventListener('click', this.toggleNavCollapsed, {
+                    capture: true,  // needed to not instantly trigger on the opening click
+                    once: true,
+                });
             }
         },
     },
 };
-
-function addEventListenerOnce(target, eventType, listener) {
-    target.addEventListener(eventType, function () {
-        arguments;
-        this;
-        eventType;
-    });
-}
 </script>
 
 
 <style lang="scss" scoped>
 @import "~/assets/shared-styles.scss";
 
-img.nav-menu-icon {
-    transform: translateY(3px);
-}
 
 .NavBarMobile {
 
@@ -111,14 +101,11 @@ img.nav-menu-icon {
         
         .nav-header {
             margin-left: auto;  // lets the element float to the right in the parent flex box
-
             width: fit-content;
-             
-            padding: 8px 8px;
+            padding-left: 4px;
             background: $nav-white-bg;
             border: $nav-white-border;
             border-radius: $nav-border-r;
-
             text-align: center;
             color: $c-extralight;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
@@ -130,7 +117,7 @@ img.nav-menu-icon {
             align-items: center;
 
             .nav-header-text{
-                margin-left: 4px;
+                margin: 5px 0 5px 4px;
             }
 
             img.nav-menu-icon {
@@ -160,24 +147,29 @@ img.nav-menu-icon {
         align-items: flex-end;
 
         button {  // burger-button
-            margin-top: 53px;
-            margin-bottom: 24px;
-            padding: 8px;
+            margin-top: 56px;    // positioning, to be exactly over the 'img.nav-menu-icon' from the '.opened-container'
+            margin-bottom: 16px;
             background: $nav-white-bg;
             border: $nav-white-border;
             border-radius: $nav-border-r;
             cursor: pointer;
+
+            img.nav-menu-icon {
+                display: block;  // fixes weird spacings of inline display (vertical-align: baseline)
+            }
         }
 
         .nav-link-container {
-            // width: fit-content;
+            margin-bottom: 56px;
             max-width: calc(100% - 12px - 12px);
-            display: flex;
-            flex-flow: column;
-            align-items: stretch;
+
             background: $nav-white-bg;
             border: $nav-white-border;
             border-radius: $nav-border-r;
+
+            display: flex;
+            flex-flow: column;
+            align-items: stretch;
 
             a {
                 padding: 8px 16px 8px 32px;
@@ -188,6 +180,9 @@ img.nav-menu-icon {
                 @include bold-italic;
                 position: relative; // for absolute '::after'
 
+                &:hover {
+                    background: $nav-white-bg;
+                }
                 &:not(:last-child)::after {
                     // separation lines
                     content: "";
@@ -197,25 +192,31 @@ img.nav-menu-icon {
                     right: 8px;
                     border-top: $nav-white-border;
                 }
+                
+                span.nav-link-text-wrapper {
+                    position: relative;  // for absolute positioned 'img' child
+                    margin-left: 18px;  // free space for potential jumping pointer/arrow
 
-                &:hover {
-                    background: $nav-white-bg;
-                }
-
-                img {
-                    animation: jumping-pointer 1s infinite ease-in-out;
+                    span.nav-link-text{
+                    }
+                    img {
+                        position: absolute;
+                        right: 100%;
+                        top: 50%;
+                        animation: jumping-pointer 1.0s infinite ease-in-out;
+                    }
                 }
             }
         }
 
+        $circle_center: calc(100% - 42px) 104px;
         &:not(.collapsed) {
-            transition: clip-path .5s ease-in-out;
-            clip-path: circle(142% at 100% 0%);
-            
+            transition: clip-path 0.5s linear;
+            clip-path: circle(142% at $circle_center);
         }
         &.collapsed {
-            transition: clip-path .5s ease-in-out;
-            clip-path: circle(0% at 100% 0%);
+            transition: clip-path 0.5s linear;
+            clip-path: circle(0% at $circle_center);
         }
     }
     
@@ -224,13 +225,13 @@ img.nav-menu-icon {
 
 @keyframes jumping-pointer {
     0% {
-        transform: translateX(-12px);
+        transform: translateY(-50%) translateX(-16px);
     }
     50% {
-        transform: translateX(-2px);
+        transform: translateY(-50%) translateX(-8px);
     }
     100% {
-        transform: translateX(-12px);
+        transform: translateY(-50%) translateX(-16px);
     }
 }
 </style>
