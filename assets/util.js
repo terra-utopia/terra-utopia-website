@@ -6,7 +6,7 @@
  * @param {number} divisor any positive number
  * @returns {number} the positive remainder, in the main interval [0; divisor)
  */
-function moduloUniversal(dividend, divisor) {
+export function moduloUniversal(dividend, divisor) {
     if (divisor < 0) {
         throw new Error(`the 'divisor' argument has to be a positive number`);
     }
@@ -29,4 +29,3 @@ function moduloUniversal(dividend, divisor) {
         ... % divisor = 0
     */
 }
-
