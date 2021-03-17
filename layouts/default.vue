@@ -40,7 +40,7 @@ a {
 }
 
 html {
-    min-height: 100%;
+    min-height: calc(100% + 1px); // 100% to ensure fully-rendered background, 1px to ensure consistent vertical scrollbar
 }
 
 html {
