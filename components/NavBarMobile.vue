@@ -17,10 +17,10 @@
             </div>
         </div>
 
-        <div class="blocking-pane" :class="{ collapsed: collapsed }" @click="collapsed=!collapsed"></div>        
+        <div class="blocking-pane" :class="{ collapsed: collapsed }" @click="collapsed=true"></div>
 
         <div class="opened-container" :class="{ collapsed: collapsed }">
-            <img class="cancel-icon" src="~/assets/cancel-icon.svg" @click="collapsed=!collapsed" />
+            <img class="cancel-icon" src="~/assets/cancel-icon.svg" @click="collapsed=true" />
             <div class="nav-link-container">
                 <NuxtLink
                     v-for="(entry, i) in entries"
@@ -28,6 +28,7 @@
                     :key="i"
                     class="nav-link"
                     :class="{ disabled: !entry.to }"
+                    @click.native="collapsed=true"
                 >
                     <span class="nav-link-text-wrapper">
                         <span v-html="entry.name" />
