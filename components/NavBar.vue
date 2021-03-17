@@ -4,9 +4,9 @@
 </template>
 
 <script>
-const entries = [
+const entriesRaw = [  // without 'active' property
     { name: 'Home • Necessity Of A World State', to: '/' },
-    { name: 'Structure Of The World State', to: '/abc' },
+    { name: 'Structure Of The World State', to: '/abc/' },
     { name: 'Roadmap', to: '' },
     { name: 'A New Economic System', to: '' },
     { name: 'Join', to: '' },
@@ -22,11 +22,15 @@ export default {
         };
     },
     computed: {
-        entries() {
-            return entries.map(entry => Object.assign({ ...entry }, { active: entry.to === this.$route.path }));
+        entries() {  // entriesRaw + 'active' property
+            return entriesRaw.map(entry => Object.assign({ ...entry }, { active: entry.to === this.$route.path }));
         },
         activeEntry() {
-            return this.entries.filter(entry => { return entry.active; })[0];
+            const activeEntry = this.entries.filter(entry => { return entry.active; })[0];
+            if (!activeEntry) {
+                console.warn(`WARNING: Why is there no active navigation entry??`);
+            }
+            return activeEntry;
         },
     },
     mounted() {
