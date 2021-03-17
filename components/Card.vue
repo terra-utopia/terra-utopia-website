@@ -36,7 +36,6 @@ export default {
     h1 {
         margin-bottom: 24px;
         @media (max-width: 650px) { margin-bottom: 16px; }
-        @media (max-width: 500px) { margin-bottom: 12px; }
         font-weight: 500; // medium
 
         &:not(.super-heading) {
