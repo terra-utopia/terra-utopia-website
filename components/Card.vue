@@ -1,6 +1,6 @@
 <template>
     <article class="Card">
-        <h1 :class="{'super-heading': isSuperHeading}">
+        <h1 v-if="heading" :class="{ 'super-heading': isSuperHeading }">
             <span v-for="(wordOrSpace, i) in heading.split(/(?= )|(?<= )/)" :key="i">{{ wordOrSpace }}</span>
         </h1>
         <slot></slot>
@@ -26,19 +26,26 @@ export default {
 @import '../assets/shared-styles.scss';
 
 .Card {
+    // width; determined by parent
     text-align: center;
     background: #FAFBFF;
-    padding: 20px 60px;
-    @media (max-width: 650px) { padding: 20px 20px }
+    padding: 40px 60px;
+    @media (max-width: 650px) { padding: 30px 20px; }
+    @media (max-width: 500px) { padding: 25px 20px; }
     
     h1 {
-        @include d-heading;
-        font-weight: 500;
+        margin-bottom: 24px;
+        @media (max-width: 650px) { margin-bottom: 16px; }
+        @media (max-width: 500px) { margin-bottom: 12px; }
+        font-weight: 500; // medium
 
+        &:not(.super-heading) {
+            @include d-heading;
+        }
         &.super-heading {
             @include d-super-heading;
             width: fit-content;
-            margin: 0 auto;
+            margin: { left: auto; right: auto; };
             text-transform: uppercase;
 
             span {

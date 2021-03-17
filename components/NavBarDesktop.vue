@@ -29,17 +29,18 @@ export default {
 @import "~/assets/shared-styles.scss";
 
 .NavBarDesktop {
-    padding: 20px 40px;
+    margin: 8px 40px 40px 40px;
     display: flex;
     flex-flow: row;
     flex-wrap: nowrap;
     align-items: flex-start;
 
     a.home-logo {
+        margin-top: 4px;
         margin-right: 24px;
 
         img {
-            width: 160px;
+            width: 140px;
             background: $c-extralight;
             border-radius: 50%;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);

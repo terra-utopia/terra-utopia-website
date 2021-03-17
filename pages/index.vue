@@ -14,7 +14,7 @@
             </Card>
             <Card :heading="'The Common Ground'" :isSuperHeading="false">
                 <p><span class="highlighted">Every human being</span> should have the right and the possibility to pursue a self-determined life in the absence of physical and psychological violence. Furthermore it must be possible for everyone to claim their human rights.</p>
-                <p>This is the minimal consensus that we hope all humans can agree upon. However in our modern world there are <span class="highlighted">numerous threats</span> to this common ground. Some of the most concerning ones are listed here:</p>
+                <p>This is the minimal consensus that surely all humans can agree upon. However in our modern world there are <span class="highlighted">numerous threats</span> to this common ground. Some of the most concerning ones are listed here:</p>
             </Card>
         </div>
     </main>
@@ -33,48 +33,27 @@ export default {
 
 
 <style lang="scss">
-@import '../assets/shared-styles.scss';
+@import '~/assets/shared-styles.scss';
 
-@mixin shadow-wide {
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4), 0 4px 50px rgba(0,0,0, 0.25);
-    // filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.4)) drop-shadow(0 4px 50px rgba(0,0,0, 0.25));
-}
-
-@mixin text-shadow-standard {
-    text-shadow: 0px 1.5px 3px rgba(0, 0, 0, 0.25);
-}
-
-@mixin text-shadow-large {
-    text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
-}
 
 .IndexPage {
     .main-column {
-        @include shadow-wide;
         width: 94%;
         max-width: 960px;
         margin: 0 auto;
 
         .Card {
-            margin: 20px 0;
-            @include text-shadow-standard;
+            margin-bottom: 32px;
+            @include d-large-text;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4), 0 4px 50px rgba(0,0,0, 0.25);
 
             p {
                 margin: 10px 0;
-                font-size: 24px;
 
                 .highlighted {
                     @include semi-bold-italic;
                 }
             }
-        }
-    }
-}
-
-@media (min-width: 480px) {
-    .IndexPage {
-        .main-column {
-            .Card {}
         }
     }
 }

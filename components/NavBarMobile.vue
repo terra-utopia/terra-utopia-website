@@ -80,18 +80,18 @@ export default {
         flex-flow: row;
         align-items: center;
         overflow: visible;  // necessary to make the containers height match the height of its content (?? XXX)
-        padding: 20px;
-        @media (max-width: 460px) { padding: 12px; }
-        margin-bottom: 28px;
+        margin: 8px 40px 40px 40px;
+        @media (max-width: 700px) { margin-left: 12px; margin-right: 12px; }
+        @media (max-width: 650px) { margin-bottom: 30px; }
+        @media (max-width: 410px) { margin-bottom: 20px; }
 
         a.home-logo {
-            margin-left: 10px;
-            @media (max-width: 650px) { margin-left: 0; }
+            margin-top: 4px;
             margin-right: 24px;
             @media (max-width: 410px) { margin-right: 12px; }
 
             img {
-                width: 160px;
+                width: 140px;
                 @media (max-width: 650px) { width: 120px; }
                 @media (max-width: 410px) { width: 100px; }
                 background: $c-extralight;
@@ -116,7 +116,8 @@ export default {
             color: $c-extralight;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
             @include bold-italic;
-            @media (max-width: 460px) { font-size: 18px; } // statt default '20px' von 'html:root'
+            @media (max-width: 460px) { font-size: 18px; } // instead of default '20px' von 'html:root'
+            @media (max-width: 380px) { font-size: 16px; }
 
             display: flex;
             flex-flow: row;
@@ -144,7 +145,7 @@ export default {
         right: 0;
         left: 0;
         height: calc(100% + 100px);  // to fix mobile browser problems with collapsible navigation header (dynamic height)
-        background: rgba(0, 0, 0, 0.50);
+        background: rgba(0, 0, 0, 0.65);
 
         transition: opacity 0.5s linear;
         &.collapsed {
@@ -161,12 +162,20 @@ export default {
         z-index: 1;
         width: 100%;
         top: 0;
-        left: 0;
+        right: 0;
+        @media (min-width: calc(600px + 32px + 50px)) {
+            right: 32px;
+            width: 600px;
+        }
+        
         background: linear-gradient(to bottom, $c-medium 0%, $c-dark 100%);
-        padding: 28px 20px 28px 10px;
+        padding: 28px 20px;
+        @media (max-width: 400px) { padding: 28px 12px; }
+
         border-radius: 0 0 20px 20px;
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.50);
         overflow: hidden; // to hide bg logo overflow
+        
         display: flex;
         flex-flow: column;
         align-items: flex-end;
@@ -187,8 +196,7 @@ export default {
         }
 
         .nav-link-container {
-            max-width: calc(100% - 12px - 12px);
-
+            // aligned right because of parent's `align-items: flex-end`
             background: $nav-white-bg;
             border: $nav-white-border;
             border-radius: $nav-border-r;
@@ -198,11 +206,13 @@ export default {
             align-items: stretch;
 
             a {
-                padding: 8px 16px 8px 32px;
+                padding: { top: 8px; bottom: 8px; left: 58px; right: 20px; };
+                @media (max-width: 400px) { padding: {left: 44px; right: 16px; } }
                 text-align: right;
                 color: $c-extralight;
                 text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
                 font-size: 16px;
+                line-height: 130%;
                 @include bold-italic;
                 position: relative; // for absolute '::after'
 
@@ -220,14 +230,13 @@ export default {
                 
                 span.nav-link-text-wrapper {
                     position: relative;  // for absolute positioned 'img' child
-                    margin-left: 18px;  // free space for potential jumping pointer/arrow
 
                     span.nav-link-text{
                     }
                     img {
                         position: absolute;
                         right: 100%;
-                        top: 50%;
+                        top: calc(0.5 * 1.3 * 16px * 1.11); // 50% line-height, plus a little deeper
                         animation: jumping-pointer 1.0s infinite ease-in-out;
                         filter: drop-shadow(0 2px 2px rgba(0,0,0,0.25));
                     }
