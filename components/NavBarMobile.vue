@@ -7,7 +7,7 @@
                 <img src="~/assets/logo.svg" />
             </NuxtLink>
 
-            <div class="nav-header" @click="toggleNavCollapsed()">
+            <div class="nav-header" @click="collapsed=!collapsed">
                 <NuxtLink
                     class="nav-header-text"
                     :to="activeEntry.to"
@@ -17,8 +17,10 @@
             </div>
         </div>
 
-        <div class="opened-container" :class="{ collapsed: collapsed }">
-            <button>
+        <div class="blocking-pane" :class="{ collapsed: collapsed }" @click="collapsed=!collapsed"></div>        
+
+        <div class="opened-container-xxx" :class="{ collapsed: collapsed }">
+            <button @click="collapsed=!collapsed">
                 <img class="nav-menu-icon" src="~/assets/nav-menu-icon.svg" />
             </button>
             <div class="nav-link-container">
@@ -39,6 +41,29 @@
                 </NuxtLink>
             </div>
         </div>
+
+        <!-- <div class="opened-container" :class="{ collapsed: collapsed }">
+            <button>
+                <img class="nav-menu-icon" src="~/assets/nav-menu-icon.svg" />
+            </button>
+            <div class="nav-link-container">
+                <NuxtLink
+                    v-for="(entry, i) in entries"
+                    :to="entry.to"
+                    :key="i"
+                    class="nav-link"
+                    :class="{ disabled: !entry.to }"
+                >
+                    <span class="nav-link-text-wrapper">
+                        <span v-html="entry.name" />
+                        <img
+                            v-if="entry.active"
+                            src="~/assets/active-nav-link-pointer.svg"
+                        />
+                    </span>
+                </NuxtLink>
+            </div>
+        </div> -->
     </nav>
 </template>
 
@@ -51,19 +76,19 @@ export default {
             collapsed: true,
         };
     },
-    methods: {
-        toggleNavCollapsed() {
-            this.collapsed = !this.collapsed;
+    // methods: {
+    //     toggleNavCollapsed() {
+    //         this.collapsed = !this.collapsed;
 
-            if (!this.collapsed) {
-                // collapse/close navigation on ANY click
-                window.addEventListener('click', this.toggleNavCollapsed, {
-                    capture: true,  // needed to not instantly trigger on the opening click
-                    once: true,
-                });
-            }
-        },
-    },
+    //         if (!this.collapsed) {
+    //             // collapse/close navigation on ANY click
+    //             window.addEventListener('click', this.toggleNavCollapsed, {
+    //                 capture: true,  // needed to not instantly trigger on the opening click
+    //                 once: true,
+    //             });
+    //         }
+    //     },
+    // },
 };
 </script>
 
@@ -132,19 +157,46 @@ export default {
         
     }
 
-    .opened-container {
+    .blocking-pane {
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: calc(100% + 100px);  // to fix mobile browser problems with collapsible navigation header (dynamic height)
+        background: rgba(0, 0, 0, 0.50);
+
+        transition: opacity 0.5s linear;
+        &.collapsed {
+            opacity: 0;
+            pointer-events: none;
+        }
+        &:not(.collapsed) {
+            opacity: 1;
+        }
+    }
+
+    .opened-container-xxx {
         position: absolute;
         z-index: 1;
         width: 100%;
         top: 0;
         left: 0;
-        background: linear-gradient(to bottom, $c-special2 0%, $c-extradark 85%);
+        background: linear-gradient(to bottom, $c-medium 0%, $c-dark 100%);
         padding: 28px 20px 28px 10px;
         border-radius: 0 0 20px 20px;
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.50);
         display: flex;
         flex-flow: column;
         align-items: flex-end;
+
+        transition: transform 1s ease-in-out;
+        &.collapsed {
+            transform: translateY(calc(-100% - 40px));
+        }
+        &:not(.collapsed) {
+            transform: translateY(0);
+        }
 
         button {  // burger-button
             margin-top: 56px;    // positioning, to be exactly over the 'img.nav-menu-icon' from the '.opened-container'
@@ -159,68 +211,152 @@ export default {
             }
         }
 
-        .nav-link-container {
-            margin-bottom: 56px;
-            max-width: calc(100% - 12px - 12px);
+        // .nav-link-container {
+        //     margin-bottom: 56px;
+        //     max-width: calc(100% - 12px - 12px);
 
-            background: $nav-white-bg;
-            border: $nav-white-border;
-            border-radius: $nav-border-r;
+        //     background: $nav-white-bg;
+        //     border: $nav-white-border;
+        //     border-radius: $nav-border-r;
 
-            display: flex;
-            flex-flow: column;
-            align-items: stretch;
+        //     display: flex;
+        //     flex-flow: column;
+        //     align-items: stretch;
 
-            a {
-                padding: 8px 16px 8px 32px;
-                text-align: right;
-                color: $c-extralight;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-                font-size: 16px;
-                @include bold-italic;
-                position: relative; // for absolute '::after'
+        //     a {
+        //         padding: 8px 16px 8px 32px;
+        //         text-align: right;
+        //         color: $c-extralight;
+        //         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+        //         font-size: 16px;
+        //         @include bold-italic;
+        //         position: relative; // for absolute '::after'
 
-                &:hover {
-                    background: $nav-white-bg;
-                }
-                &:not(:last-child)::after {
-                    // separation lines
-                    content: "";
-                    position: absolute;
-                    top: 100%;
-                    left: 16px;
-                    right: 8px;
-                    border-top: $nav-white-border;
-                }
+        //         &:hover {
+        //             background: $nav-white-bg;
+        //         }
+        //         &:not(:last-child)::after {
+        //             // separation lines
+        //             content: "";
+        //             position: absolute;
+        //             top: 100%;
+        //             left: 16px;
+        //             right: 8px;
+        //             border-top: $nav-white-border;
+        //         }
                 
-                span.nav-link-text-wrapper {
-                    position: relative;  // for absolute positioned 'img' child
-                    margin-left: 18px;  // free space for potential jumping pointer/arrow
+        //         span.nav-link-text-wrapper {
+        //             position: relative;  // for absolute positioned 'img' child
+        //             margin-left: 18px;  // free space for potential jumping pointer/arrow
 
-                    span.nav-link-text{
-                    }
-                    img {
-                        position: absolute;
-                        right: 100%;
-                        top: 50%;
-                        animation: jumping-pointer 1.0s infinite ease-in-out;
-                    }
-                }
-            }
-        }
-
-        $circle_center: calc(100% - 42px) 104px;
-        &:not(.collapsed) {
-            transition: clip-path 0.5s linear;
-            clip-path: circle(142% at $circle_center);
-        }
-        &.collapsed {
-            transition: clip-path 0.5s linear;
-            clip-path: circle(0% at $circle_center);
-        }
+        //             span.nav-link-text{
+        //             }
+        //             img {
+        //                 position: absolute;
+        //                 right: 100%;
+        //                 top: 50%;
+        //                 animation: jumping-pointer 1.0s infinite ease-in-out;
+        //             }
+        //         }
+        //     }
+        // }
     }
-    
-    
+
+    // .opened-container {
+    //     position: absolute;
+    //     z-index: 1;
+    //     width: 100%;
+    //     top: 0;
+    //     left: 0;
+    //     background: linear-gradient(to bottom, $c-medium 0%, $c-extradark 85%);
+    //     padding: 28px 20px 28px 10px;
+    //     border-radius: 0 0 20px 20px;
+    //     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.50);
+    //     display: flex;
+    //     flex-flow: column;
+    //     align-items: flex-end;
+
+    //     button {  // burger-button
+    //         margin-top: 56px;    // positioning, to be exactly over the 'img.nav-menu-icon' from the '.opened-container'
+    //         margin-bottom: 16px;
+    //         background: $nav-white-bg;
+    //         border: $nav-white-border;
+    //         border-radius: $nav-border-r;
+    //         cursor: pointer;
+
+    //         img.nav-menu-icon {
+    //             display: block;  // fixes weird spacings of inline display (vertical-align: baseline)
+    //         }
+    //     }
+
+    //     .nav-link-container {
+    //         margin-bottom: 56px;
+    //         max-width: calc(100% - 12px - 12px);
+
+    //         background: $nav-white-bg;
+    //         border: $nav-white-border;
+    //         border-radius: $nav-border-r;
+
+    //         display: flex;
+    //         flex-flow: column;
+    //         align-items: stretch;
+
+    //         a {
+    //             padding: 8px 16px 8px 32px;
+    //             text-align: right;
+    //             color: $c-extralight;
+    //             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    //             font-size: 16px;
+    //             @include bold-italic;
+    //             position: relative; // for absolute '::after'
+
+    //             &:hover {
+    //                 background: $nav-white-bg;
+    //             }
+    //             &:not(:last-child)::after {
+    //                 // separation lines
+    //                 content: "";
+    //                 position: absolute;
+    //                 top: 100%;
+    //                 left: 16px;
+    //                 right: 8px;
+    //                 border-top: $nav-white-border;
+    //             }
+                
+    //             span.nav-link-text-wrapper {
+    //                 position: relative;  // for absolute positioned 'img' child
+    //                 margin-left: 18px;  // free space for potential jumping pointer/arrow
+
+    //                 span.nav-link-text{
+    //                 }
+    //                 img {
+    //                     position: absolute;
+    //                     right: 100%;
+    //                     top: 50%;
+    //                     animation: jumping-pointer 1.0s infinite ease-in-out;
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     transition: transform 0.3s ease-in-out;
+    //     &:not(.collapsed) {
+    //         transform: translateY(0%);
+    //     }
+    //     &.collapsed {
+    //         transform: translateY(calc(-100% - 50px));
+    //     }
+
+    //     // $circle_center: calc(100% - 42px) 104px;
+    //     // &:not(.collapsed) {
+    //     //     transition: clip-path 0.5s linear;
+    //     //     clip-path: circle(142% at $circle_center);
+    //     // }
+    //     // &.collapsed {
+    //     //     transition: clip-path 0.5s linear;
+    //     //     clip-path: circle(0% at $circle_center);
+    //     // }
+    // }
 }
 
 @keyframes jumping-pointer {

@@ -14,6 +14,9 @@ export default {};
 
 
 <style lang="scss">
+@import "~/assets/shared-styles.scss";
+
+
 *,
 *::before,
 *::after {
@@ -45,6 +48,6 @@ html {
     font-size: 20px; // used for 'rem' units
     font-weight: 400;
     color: #303B5E;
-    background: repeating-linear-gradient(#3271d0, #303B5E 1500px, #3271d0 3000px);
+    background: repeating-linear-gradient($c-medium, $c-extradark 1500px, $c-medium 3000px);
 }
 </style>
