@@ -63,22 +63,15 @@ export default {
         a {
             position: relative;
             padding: 6px 16px;
+            @media (max-width: 1140px) { padding: 6px 8px; }
             margin: 0 16px;
+            @media (max-width: 1300px) { margin: 0 5px; }
             text-align: center;
             color: $c-extralight;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
             font-size: 24px;
+            @media (max-width: 1450px) { font-size: 20px; }
             @include bold-italic;
-
-            @media (max-width: 1450px) {
-                font-size: 20px;
-            }
-            @media (max-width: 1300px) {
-                margin: 0 5px;
-            }
-            @media (max-width: 1140px) {
-                padding: 6px 8px;
-            }
 
             &.active {
                 text-decoration: underline;

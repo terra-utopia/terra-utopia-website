@@ -1,6 +1,6 @@
 <template>
     <div class="InfoBox">
-        <h3>{{ title }}</h3>
+        <h2>{{ title }}</h2>
         <SlideShow :slides="slides" :slogan="slogan"> </SlideShow>
         <div class="wrapper-for-opener-button" :class="{ hide: expanded }">
             <button

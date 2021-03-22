@@ -40,11 +40,11 @@ $nav-white-bg: rgba(#fff, 0.15);
     line-height: 110%;
 
     @media (max-width: 380px) {
-        font-size: 10vw;
+        font-size: 10vw;  // same size as d-super-heading for really small screens
     }
     
     // max-font-size: 50px;
-    @media (min-width: calc(50px / 0.08)) {
+    @media (min-width: calc(50px / 0.08)) {  // 0.08 stands for 8vw (font-size)
         font-size: 50px;
     }
 }

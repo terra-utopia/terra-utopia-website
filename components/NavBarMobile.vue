@@ -29,7 +29,7 @@
                     class="nav-link"
                     :class="{ disabled: !entry.to }"
                     @click.native="collapsed=true"
-                >
+                >  <!-- .native is required for '<NuxtLink>' elements in general -->
                     <span class="nav-link-text-wrapper">
                         <span v-html="entry.name" />
                         <img
@@ -81,8 +81,8 @@ export default {
         flex-flow: row;
         align-items: center;
         overflow: visible;  // necessary to make the containers height match the height of its content (?? XXX)
-        margin: 8px 40px 40px 40px;
-        @media (max-width: 700px) { margin-left: 12px; margin-right: 12px; }
+        margin: { top: 8px; bottom: 40px; left: 40px; right: 40px; };
+        @media (max-width: 700px) { margin: { left: 12px; right: 12px; }; }
         @media (max-width: 650px) { margin-bottom: 30px; }
         @media (max-width: 410px) { margin-bottom: 20px; }
 
@@ -164,7 +164,7 @@ export default {
         width: 100%;
         top: 0;
         right: 0;
-        @media (min-width: calc(600px + 32px + 50px)) {
+        @media (min-width: calc(600px + 32px + 50px)) {  // when '.opened-container' becomes fix-width-sized not full-width-sized
             right: 32px;
             width: 600px;
         }

@@ -1,7 +1,7 @@
 <template>
     <div>
         <NavBar />
-        <Nuxt />
+        <Nuxt /><!-- the 'page' component -->
         <Footer />
     </div>
 </template>
@@ -40,7 +40,8 @@ a {
 }
 
 html {
-    min-height: calc(100% + 1px); // 100% to ensure fully-rendered background, 1px to ensure consistent vertical scrollbar
+    min-height: 100%;  // 100% to ensure fully-rendered background
+    overflow-y: scroll;
 }
 
 html {

@@ -44,7 +44,6 @@ export default {
 
         .Card {
             margin-bottom: 32px;
-            @include d-large-text;
             box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4), 0 4px 50px rgba(0,0,0, 0.25);
 
             p {
