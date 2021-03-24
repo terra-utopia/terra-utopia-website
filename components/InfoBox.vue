@@ -1,8 +1,8 @@
 <template>
-    <div class="InfoBox">
+    <div class="InfoBox" :class="{ expanded: expanded }">
         <h2>{{ title }}</h2>
-        <SlideShow :slides="slides" :slogan="slogan"> </SlideShow>
-        <div class="wrapper-for-opener-button" :class="{ hide: expanded }">
+        <!-- <SlideShow :slides="slides" :slogan="slogan"> </SlideShow> -->
+        <div class="wrapper-for-opener-button"> <!-- needed for fade-out transition that does not take up page area -->
             <button
                 class="opener-button"
                 @click="expanded = true"
@@ -11,18 +11,12 @@
                 <div class="real-message">Analyze</div>
             </button>
         </div>
-        <div class="content-body" :class="{ expanded }">
+        <div class="content-body">
             <TruncatedHeight
                 :expanded="expanded"
                 :transition="'height 1.5s ease-out'"
             >
-                <p
-                    v-for="(paragraph, index) in paragraphs"
-                    :class="{ expanded }"
-                    :key="index"
-                >
-                    {{ paragraph }}
-                </p>
+                <div v-html="htmlContent"></div>
             </TruncatedHeight>
         </div>
     </div>
@@ -43,8 +37,8 @@ export default {
             type: Array, // Array of {imageSrc: String, caption: String}
             required: true,
         },
-        paragraphs: {
-            type: Array, // Array of String
+        htmlContent: {
+            type: String,
             required: true,
         },
     },
@@ -57,17 +51,15 @@ export default {
 </script>
 
 <style lang="scss">
-/* mobile-first (<480px) */
+@import "~/assets/shared-styles.scss";
 
 .InfoBox {
-    width: 92vw;
-    margin: 11vw auto; // automatic centering
-    border: 1px solid white;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 3.5vw;
+    border: 1px solid $c-extradark;
+    background: rgba($c-extradark, 0.05);
+    padding: 42px;
 
     &:hover {
-        background: rgba(255, 255, 255, 0.08);
+        background: rgba($c-extradark, 0.08);  // little bit darker
         h3 {
             padding-right: 16px;
         }
@@ -76,11 +68,11 @@ export default {
         text-align: right;
         font-weight: 500;
         font-style: italic;
-        font-size: 7.2vw;
-        // font-size: 2.5rem;
-        transition: padding-right 0.5s ease-out; // toggled above, on parent hover
+        font-size: 7.2vw; // XXX
+        // media queries XXX
+        transition: padding-right 0.5s ease-out;  // toggled on parent hover (see above)
         border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-        margin-bottom: 4vw;
+        margin-bottom: 4vw; // XXX
     }
     .wrapper-for-opener-button {
         position: relative; // for absolute child button
@@ -143,9 +135,9 @@ export default {
                 line-height: 1.7rem;
                 letter-spacing: 0.08rem;
                 text-shadow: 0 3px 2px rgba(0, 0, 0, 0.6);
-                color: #fdfdff;
+                color: $c-extradark;
                 font-weight: 300;
-                opacity: 0;
+                opacity: 1; // XXX
                 transition: opacity 1.5s linear;
                 &.expanded {
                     opacity: 1;

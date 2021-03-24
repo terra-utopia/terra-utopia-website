@@ -16,13 +16,32 @@
                 <p><span class="highlighted">Every human being</span> should have the right and the possibility to pursue a self-determined life in the absence of physical and psychological violence. Furthermore it must be possible for everyone to claim their human rights.</p>
                 <p>This is the minimal consensus that surely all humans can agree upon. However in our modern world there are <span class="highlighted">numerous threats</span> to this common ground. Some of the most concerning ones are listed here:</p>
             </Card>
+            <Card :heading="'Global Crises'" :isSuperHeading="false">
+                <InfoBox v-for="(infobox, i) in $options._staticData.infoboxes" :key="i"
+                    :title="infobox.title"
+                    :slogan="infobox.slogan"
+                    :slides="infobox.slides"
+                    :htmlContent="infobox.htmlContent"
+                />
+            </Card>
         </div>
     </main>
 </template>
 
 
 <script>
+import {
+    infobox_ClimateChange,
+    infobox_SocialInequality,
+} from "~/assets/necessity-of-a-world-state.js";
+
 export default {
+    _staticData: {  // this custom property is not reactivley bound by Vue (in contrast to the 'data' property)
+        infoboxes: [
+            infobox_ClimateChange,
+            infobox_SocialInequality,
+        ],
+    },
     head() {
         return {
             title: "Terra Utopia - Home - The Necessity For A New Economic System",
@@ -34,7 +53,6 @@ export default {
 
 <style lang="scss">
 @import '~/assets/shared-styles.scss';
-
 
 .IndexPage {
     .main-column {
