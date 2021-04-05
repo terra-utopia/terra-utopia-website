@@ -1,16 +1,7 @@
 <template>
     <div class="InfoBox" :class="{ expanded: expanded }">
-        <h2>{{ title }}</h2>
+        <h2><span v-html="title"></span></h2>
         <!-- <SlideShow :slides="slides" :slogan="slogan"> </SlideShow> -->
-        <div class="wrapper-for-opener-button"> <!-- needed for fade-out transition that does not take up page area -->
-            <button
-                class="opener-button"
-                @click="expanded = true"
-            >
-                <div class="placeholder-message">Analyze</div>
-                <div class="real-message">Analyze</div>
-            </button>
-        </div>
         <div class="content-body">
             <TruncatedHeight
                 :expanded="expanded"
@@ -19,6 +10,8 @@
                 <div v-html="htmlContent"></div>
             </TruncatedHeight>
         </div>
+        <button v-show="!expanded" class="opener-button" @click="expanded=true">Read Text</button>
+        <button v-show="expanded" class="collapse-button" @click="expanded=false">Collapse</button>
     </div>
 </template>
 
@@ -53,96 +46,78 @@ export default {
 <style lang="scss">
 @import "~/assets/shared-styles.scss";
 
+
 .InfoBox {
     border: 1px solid $c-extradark;
     background: rgba($c-extradark, 0.05);
-    padding: 42px;
+    padding: 16px;
+    // @media (min-height: 600px) { padding: 42px; };
 
     &:hover {
         background: rgba($c-extradark, 0.08);  // little bit darker
-        h3 {
-            padding-right: 16px;
+        h2 {
+            span {
+                transform: translateX(-6px);
+            }
         }
     }
-    h3 {
+    h2 {
+        margin-bottom: 16px;
         text-align: right;
-        font-weight: 500;
-        font-style: italic;
-        font-size: 7.2vw; // XXX
-        // media queries XXX
-        transition: padding-right 0.5s ease-out;  // toggled on parent hover (see above)
-        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-        margin-bottom: 4vw; // XXX
-    }
-    .wrapper-for-opener-button {
-        position: relative; // for absolute child button
-        width: 100%;
-        height: 10.5vw; // has to be hardcoded because child is absolute
-
-        button.opener-button {
-            position: absolute;
-            display: inline-block;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 2vw 7vw;
-            background: white;
-            font-size: 5.5vw;
-            color: #445387;
-            font-weight: bold;
-            letter-spacing: 0.05rem;
-            text-shadow: 0 0.8vw 0.8vw rgba(0, 0, 0, 0.3);
-            transition: all 0.8s ease-out; // transform, opacity
-
-            .placeholder-message {
-                position: static;
-                opacity: 0;
-            }
-            .real-message {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                transition: letter-spacing 0.3s ease-out;
-            }
-            &:hover {
-                cursor: pointer;
-
-                .real-message {
-                    letter-spacing: 0.12rem;
-                }
-            }
-        }
-        &.hide {
-            height: 0;
-            button.opener-button {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-30px);
-                pointer-events: none;
-            }
+        @include medium-italic;
+        font-size: 24px;
+        // @media (min-height: px) { font-size: px; }; // XXX
+        border-bottom: 1px solid rgba($c-extradark, 0.5);
+        span {
+            display: inline-block; // because 'transform' does not work on 'inline' elements
+            transition: transform 0.3s ease-out;  // toggled on parent hover (see above)
         }
     }
     .content-body {
-        &.expanded {
-            min-height: 10.5vw; // to ensure smooth patch/replacement of the height of .wrapper-for-opener-button
-        }
+        @include d-small-text; // (font-size, text-shadow, letter-spacing)
+        color: $c-extradark;
+        opacity: 1;                         // XXX
+        transition: opacity 1.5s linear;    // XXX
+        &.expanded { opacity: 1; }          // XXX
+
         .TruncatedHeight {
             p {
                 padding: 3vw 0;
-                text-indent: 4vw;
+                text-indent: 20px;
                 text-align: justify;
-                font-size: 1rem;
-                line-height: 1.7rem;
-                letter-spacing: 0.08rem;
-                text-shadow: 0 3px 2px rgba(0, 0, 0, 0.6);
-                color: $c-extradark;
-                font-weight: 300;
-                opacity: 1; // XXX
-                transition: opacity 1.5s linear;
-                &.expanded {
-                    opacity: 1;
-                }
             }
+        }
+    }
+    button {  // for '.opener-button' and '.collapse-button' ('.collapse-button' has extra ruleset below)
+        display: block;
+        width: fit-content;
+        margin-top: 8px;
+        letter-spacing: calc(0.05 * 18px);
+        color: $c-extralight;
+        text-shadow: 0 1.5px 3px rgba(black, 0.25);
+        background: $c-extradark;
+        box-shadow: 0 1.5px 3px rgba(black, 0.25);
+        &:hover { cursor: pointer; }
+
+        &.opener-button {
+            margin: { left: auto; right: auto};  // centered
+            padding: 6px 12px;
+            font-size: 18px;
+            @include bold;
+        }
+        &.collapse-button {
+            padding: 4px;
+            margin-left: auto; // positioned right
+            font-size: 16px;
+            position: sticky;   // let's button stick at the bottom of the screen
+            bottom: 8px;        // 
+        }
+    }
+    
+
+    &.expanded {
+        .content-body {
+            min-height: 10.5vw; // to ensure smooth patch/replacement of the height of .wrapper-for-opener-button
         }
     }
 }

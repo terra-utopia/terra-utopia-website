@@ -47,7 +47,7 @@ html {
 html {
     font-family: Jost;
     font-size: 20px; // used for 'rem' units
-    font-weight: 400;
+    @include regular-normal;
     color: #303B5E;
     background: repeating-linear-gradient($c-medium, $c-extradark 1500px, $c-medium 3000px);
 }

@@ -16,7 +16,8 @@
                 <p><span class="highlighted">Every human being</span> should have the right and the possibility to pursue a self-determined life in the absence of physical and psychological violence. Furthermore it must be possible for everyone to claim their human rights.</p>
                 <p>This is the minimal consensus that surely all humans can agree upon. However in our modern world there are <span class="highlighted">numerous threats</span> to this common ground. Some of the most concerning ones are listed here:</p>
             </Card>
-            <Card :heading="'Global Crises'" :isSuperHeading="false">
+            <Card :heading="'Global Crises'" :isSuperHeading="false" class="crises-card">
+                <Bookshelf />
                 <InfoBox v-for="(infobox, i) in $options._staticData.infoboxes" :key="i"
                     :title="infobox.title"
                     :slogan="infobox.slogan"
@@ -58,12 +59,19 @@ export default {
             margin-bottom: 32px;
             box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4), 0 4px 50px rgba(0,0,0, 0.25);
 
-            p {
+            & > p {  // prevents that any children '<p>' elements are selected
                 margin: 10px 0;
 
                 .highlighted {
                     @include semi-bold-italic;
                 }
+            }
+        }
+
+        .Card.crises-card {
+
+            .Bookshelf, .InfoBox {
+                margin: 32px 0;
             }
         }
     }
