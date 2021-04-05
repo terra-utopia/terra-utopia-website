@@ -19,6 +19,7 @@
             <Card :heading="'Global Crises'" :isSuperHeading="false" class="crises-card">
                 <Bookshelf />
                 <InfoBox v-for="(infobox, i) in $options._staticData.infoboxes" :key="i"
+                    :id="infobox.htmlId"
                     :title="infobox.title"
                     :slogan="infobox.slogan"
                     :slides="infobox.slides"
