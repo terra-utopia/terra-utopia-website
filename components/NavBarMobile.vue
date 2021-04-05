@@ -28,8 +28,8 @@
                     :key="i"
                     class="nav-link"
                     :class="{ disabled: !entry.to }"
-                    @click.native="collapsed=true"
-                >  <!-- .native is required for '<NuxtLink>' elements in general -->
+                    @click.native="collapsed=!!entry.to"
+                >  <!-- `.native` is required for events on `<NuxtLink>` elements in general --><!-- `=!!entry.to` prevents collapse if `entry` is disabled -->
                     <span class="nav-link-text-wrapper">
                         <span v-html="entry.name" />
                         <img
@@ -53,19 +53,6 @@ export default {
             collapsed: true,
         };
     },
-    // methods: {
-    //     toggleNavCollapsed() {
-    //         this.collapsed = !this.collapsed;
-
-    //         if (!this.collapsed) {
-    //             // collapse/close navigation on ANY click
-    //             window.addEventListener('click', this.toggleNavCollapsed, {
-    //                 capture: true,  // needed to not instantly trigger on the opening click
-    //                 once: true,
-    //             });
-    //         }
-    //     },
-    // },
 };
 </script>
 
@@ -168,11 +155,9 @@ export default {
             right: 32px;
             width: 600px;
         }
-        
         background: linear-gradient(to bottom, $c-medium 0%, $c-dark 100%);
         padding: 28px 20px;
         @media (max-width: 400px) { padding: 28px 12px; }
-
         border-radius: 0 0 20px 20px;
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.50);
         overflow: hidden; // to hide bg logo overflow
@@ -197,7 +182,7 @@ export default {
         }
 
         .nav-link-container {
-            // aligned right because of parent's `align-items: flex-end`
+            // this element is aligned right because of parent's `align-items: flex-end`
             background: $nav-white-bg;
             border: $nav-white-border;
             border-radius: $nav-border-r;
@@ -210,16 +195,22 @@ export default {
                 padding: { top: 8px; bottom: 8px; left: 58px; right: 20px; };
                 @media (max-width: 400px) { padding: {left: 44px; right: 16px; } }
                 text-align: right;
-                color: $c-extralight;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
                 font-size: 16px;
                 line-height: 130%;
                 @include bold-italic;
-                position: relative; // for absolute '::after'
-
-                &:hover {
-                    background: $nav-white-bg;
+                position: relative; // for absolute '::after' separation lines
+                &:not(.disabled) {
+                    color: $c-extralight;
+                    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+                    &:hover {
+                        background: $nav-white-bg;  // on top of parent element's background (same color)
+                    }
                 }
+                &.disabled {
+                    color: rgba($c-extralight, 0.5);
+                    cursor: default;
+                }
+
                 &:not(:last-child)::after {  // separation lines
                     content: "";
                     position: absolute;
@@ -228,7 +219,7 @@ export default {
                     right: 8px;
                     border-top: $nav-white-border;
                 }
-                
+
                 span.nav-link-text-wrapper {
                     position: relative;  // for absolute positioned 'img' child
 

@@ -11,7 +11,7 @@
                 v-html="entry.name"
                 :key="i"
                 class="nav-link"
-                :class="{ disabled: /*!entry.to*/ false, active: entry.active }"
+                :class="{ disabled: !entry.to, active: entry.active }"
             />
         </div>
     </nav>
@@ -80,7 +80,6 @@ export default {
             &.disabled {
                 text-shadow: none;
                 color: rgba($c-extralight, 0.5);
-
                 cursor: default;
             }
 
