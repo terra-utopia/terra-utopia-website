@@ -76,3 +76,8 @@ export function moduloUniversal(dividend, divisor) {
         ... % divisor = 0
     */
 }
+
+
+export function forceReflow() {
+    window.getComputedStyle(window.document.body).getPropertyValue('height');  // the reflow is only triggered when you access a property ('width' in our case) on the 'CSSStyleDeclaration' object
+}

@@ -32,6 +32,7 @@ export default {
     padding: 40px 60px;
     @media (max-width: 650px) { padding: 30px 20px; }
     @media (max-width: 500px) { padding: 25px 20px; }
+    @media (max-width: 380px) { padding: 25px 14px; }
     @include d-large-text;  // can be overwritten for Card content
     
     h1 {

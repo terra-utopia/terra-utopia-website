@@ -1,52 +1,81 @@
-<!-- PLEASE OVERWRITE THE CSS TRANSITION if you want to -->
-
 <template>
-    <div class="TruncatedHeight" :style="{ height: elementHeight, transition }">
+    <div class="TruncatedHeight"
+        :style="{
+            height: cssTruncatedHeight,
+            transitionDuration: cssTransitionDurationMs+'ms',
+            transitionTimingFunction: cssTransitionEasing
+        }"
+    >
         <div class="TruncatedHeight-body" ref="TruncatedHeight-body">
-            <!-- just exists as a wrapper to measure height -->
             <slot></slot>
         </div>
     </div>
 </template>
 
 <script>
+import { forceReflow } from '~/assets/util';
+
+let lastActionTimestamp;  // used to invalidate old timeouts
+
 export default {
     props: {
         expanded: {
             type: Boolean,
-            default: true,
+            required: true,
         },
-        transition: {
-            // the value for the css transition property (hint: only 'height' ever changes)
+        cssTransitionDurationMs: {
+            type: Number,
+            default: 1500,
+        },
+        cssTransitionEasing: {
             type: String,
-            default: "height 1.5s ease-in-out",
-        },
-        collapsedHeight: {
-            type: String, // css height value
-            default: "0",
+            default: 'ease-in-out',
         },
     },
     data() {
         return {
-            bodyHeight: "auto", // the default value that is not animatable yet :)
+            cssTruncatedHeight: this.expanded ? "auto" : "0px",
         };
     },
-    computed: {
-        elementHeight() {
-            return this.expanded ? this.bodyHeight : this.collapsedHeight;
+    watch: {
+        expanded: async function() {  // called whenever the 'expanded' prop changes
+            if (this.expanded) {
+                const actionTimestamp = lastActionTimestamp = performance.now();
+                this.cssTruncatedHeight = `${this.getBodyHeight()}px`;  // starts css transition
+                setTimeout(() => {
+                    // switch to css auto height if no newer action has already started
+                    if (lastActionTimestamp === actionTimestamp) {
+                        this.cssTruncatedHeight = "auto";
+                    }
+                }, this.cssTransitionDurationMs);
+            }
+            else {  // collapse
+                lastActionTimestamp = performance.now();
+                this.cssTruncatedHeight = `${this.getBodyHeight()}px`; // switch from css auto height to absolute pixels
+                await new Promise(resolve => { this.$nextTick(resolve) });  // wait until DOM has been updated
+                forceReflow(); // force reflow to ensure the intermediary value processed properly and not dropped for performance reasons
+                this.cssTruncatedHeight = `0px`;  // starts css transition
+            }
         },
     },
     mounted() {
-        this.updateBodyHeight();
-        new ResizeObserver((entries) => {
-            this.updateBodyHeight();
+        // restart expansion transition (with updated target height) if body resizes during expansion
+        new ResizeObserver(() => {
+            if (this.expanded && this.cssTruncatedHeight !== "auto") {
+                const actionTimestamp = lastActionTimestamp = performance.now();
+                this.cssTruncatedHeight = `${this.getBodyHeight()}px`;  // starts css transition
+                setTimeout(() => {
+                    // switch to css auto height if no newer action has already started
+                    if (lastActionTimestamp === actionTimestamp) {
+                        this.cssTruncatedHeight = "auto";
+                    }
+                }, this.cssTransitionDurationMs);
+            }
         }).observe(this.$refs["TruncatedHeight-body"]);
     },
     methods: {
-        updateBodyHeight() {
-            this.bodyHeight =
-                this.$refs["TruncatedHeight-body"].offsetHeight.toString() +
-                "px";
+        getBodyHeight() {
+            return this.$refs["TruncatedHeight-body"].getBoundingClientRect().height;
         },
     },
 };
@@ -55,13 +84,9 @@ export default {
 
 <style lang="scss">
 .TruncatedHeight {
-    // width defaults to 100% (display block), may be overwritten by consumer
-    // height is set in-line with javascript
-    // transition is set in-line with javascript
     overflow: hidden;
-
-    .TruncatedHeight-body {
-        // just exists as a wrapper to measure height
-    }
+    transition-property: height;
+    // transition-duration; // set in-line via javascript (see above)
+    // transition-timing-function; // set in-line via javascript (see above)
 }
 </style>

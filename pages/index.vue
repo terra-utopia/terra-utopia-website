@@ -51,7 +51,7 @@ export default {
 
 .IndexPage {
     .centered-body-column {
-        width: 94%;
+        width: 95%;
         max-width: 960px;
         margin: 0 auto;
 

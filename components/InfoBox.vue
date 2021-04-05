@@ -2,16 +2,15 @@
     <div class="InfoBox" :class="{ expanded: expanded }">
         <h2><span v-html="title"></span></h2>
         <!-- <SlideShow :slides="slides" :slogan="slogan"> </SlideShow> -->
-        <div class="content-body">
-            <TruncatedHeight
-                :expanded="expanded"
-                :transition="'height 1.5s ease-out'"
-            >
-                <div v-html="htmlContent"></div>
-            </TruncatedHeight>
-        </div>
+        <TruncatedHeight
+            :expanded="expanded"
+            :cssTransitionDurationMs="1000"
+            :cssTransitionEasing="'ease-in-out'"
+        >
+            <div v-html="htmlContent"></div>
+        </TruncatedHeight>
         <button v-show="!expanded" class="opener-button" @click="expanded=true">Read Text</button>
-        <button v-show="expanded" class="collapse-button" @click="expanded=false">Collapse</button>
+        <button v-show="expanded" class="collapse-button" @click="expanded=false">Collapse <img src="~/assets/collapse-icon.svg" /></button>
     </div>
 </template>
 
@@ -51,7 +50,7 @@ export default {
     border: 1px solid $c-extradark;
     background: rgba($c-extradark, 0.05);
     padding: 16px;
-    // @media (min-height: 600px) { padding: 42px; };
+    @media (min-width: 600px) { padding: 24px; };
 
     &:hover {
         background: rgba($c-extradark, 0.08);  // little bit darker
@@ -66,23 +65,23 @@ export default {
         text-align: right;
         @include medium-italic;
         font-size: 24px;
-        // @media (min-height: px) { font-size: px; }; // XXX
+        @media (min-width: 500px) { font-size: 30px; };
+        @media (min-width: 740px) { font-size: 36px; };
         border-bottom: 1px solid rgba($c-extradark, 0.5);
         span {
             display: inline-block; // because 'transform' does not work on 'inline' elements
             transition: transform 0.3s ease-out;  // toggled on parent hover (see above)
         }
     }
-    .content-body {
-        @include d-small-text; // (font-size, text-shadow, letter-spacing)
-        color: $c-extradark;
-        opacity: 1;                         // XXX
-        transition: opacity 1.5s linear;    // XXX
-        &.expanded { opacity: 1; }          // XXX
+    .TruncatedHeight {
+        .TruncatedHeight-body {
+            @include d-small-text; // (font-size, text-shadow, letter-spacing)
+            color: $c-extradark;
+            opacity: 0;
+            transition: opacity 1s cubic-bezier(.14,.57,.86,.43);
 
-        .TruncatedHeight {
             p {
-                padding: 3vw 0;
+                padding-bottom: 32px;
                 text-indent: 20px;
                 text-align: justify;
             }
@@ -106,18 +105,23 @@ export default {
             @include bold;
         }
         &.collapse-button {
-            padding: 4px;
+            padding: 4px 8px;
             margin-left: auto; // positioned right
             font-size: 16px;
-            position: sticky;   // let's button stick at the bottom of the screen
-            bottom: 8px;        // 
+            position: sticky;   // lets the button stick at the bottom of the screen
+            bottom: 8px;        //
+
+            img {
+                vertical-align: bottom;
+            }
         }
     }
-    
 
     &.expanded {
-        .content-body {
-            min-height: 10.5vw; // to ensure smooth patch/replacement of the height of .wrapper-for-opener-button
+        .TruncatedHeight {
+            .TruncatedHeight-body {
+                opacity: 1;
+            }
         }
     }
 }
