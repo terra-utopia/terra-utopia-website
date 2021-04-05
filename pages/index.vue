@@ -1,6 +1,6 @@
 <template>
     <main class="IndexPage">
-        <div class="main-column">
+        <div class="centered-body-column">
             <Card :heading="'Terra Utopia'" :isSuperHeading="true">
                 <p>We are <span class="highlighted">Terra Utopia</span> - the movement for a <span class="highlighted">world state.</span></p>
                 <p>Humanity faces multiple existential crises!</p>
@@ -30,19 +30,13 @@
 
 
 <script>
-import {
-    infobox_ClimateChange,
-    infobox_SocialInequality,
-} from "~/assets/necessity-of-a-world-state.js";
+import infoboxes from "~/assets/necessity-of-a-world-state.js";
 
 export default {
     _staticData: {  // this custom property is not reactivley bound by Vue (in contrast to the 'data' property)
-        infoboxes: [
-            infobox_ClimateChange,
-            infobox_SocialInequality,
-        ],
+        infoboxes,
     },
-    head() {
+    head() {  // metadata for the html '<head></head>' element
         return {
             title: "Terra Utopia - Home - The Necessity For A New Economic System",
         };
@@ -55,7 +49,7 @@ export default {
 @import '~/assets/shared-styles.scss';
 
 .IndexPage {
-    .main-column {
+    .centered-body-column {
         width: 94%;
         max-width: 960px;
         margin: 0 auto;
