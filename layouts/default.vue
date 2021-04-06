@@ -1,6 +1,8 @@
 <template>
     <div>
         <NavBar />
+        <div class="background-pane"></div>
+        <img class="earth-stripes-background" src="~/assets/earth-stripes-background.svg" />
         <Nuxt /><!-- the 'page' component -->
         <Footer />
     </div>
@@ -17,10 +19,10 @@ export default {};
 @import "~/assets/shared-styles.scss";
 
 
+// === DEFAULTS ===
 *,
 *::before,
 *::after {
-    /* DEFAULTS */
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -39,16 +41,35 @@ a {
     color: inherit;
 }
 
-html {
-    min-height: 100%;  // 100% to ensure fully-rendered background
-    overflow-y: scroll;
-}
+
+// === LAYOUT STYLE ===
 
 html {
+    overflow-y: scroll; // to prevent flashing scrollbar on page navigations
+
     font-family: Jost;
     font-size: 20px; // used for 'rem' units
     @include regular-normal;
     color: #303B5E;
-    background: repeating-linear-gradient($c-medium, $c-extradark 1500px, $c-medium 3000px);
+}
+
+div.background-pane {
+    position: fixed;
+    z-index: -1;
+    background: linear-gradient($c-medium, $c-extradark);
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+    left: 0;
+}
+
+img.earth-stripes-background {
+    @media (max-width: 1200px) { display: none; }
+    width: 400px;
+    position: fixed;
+    z-index: -1;
+    left: calc(50% + 345px);
+    top: 70%;
+    transform: translateY(-50%);
 }
 </style>
