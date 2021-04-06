@@ -109,3 +109,24 @@ export default {
     }
 }
 </style>
+
+<style lang="scss" scoped>
+/* PREVENT THAT THE SERVER-SIDE-RENDERED DESKTOP NAVBAR IS SHOWN ON MOBILE DEVICES */
+@media not all and (min-width: 1060px) {
+    .NavBarDesktop {
+        justify-content: center;
+        margin-bottom: 20px;
+        
+        & > *:not(a.home-logo) {
+            display: none;
+        }
+        a.home-logo {
+            margin: 0;
+
+            img {
+                width: 100px;
+            }
+        }
+    }
+}
+</style>

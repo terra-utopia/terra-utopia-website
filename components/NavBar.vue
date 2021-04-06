@@ -18,7 +18,7 @@ const entriesRaw = [  // without 'active' property
 export default {
     data() {
         return {
-            isMobileNavigation: false,  // will be dynamically overwritten in `created()` (client-only)
+            isMobileNavigation: false,  // will be dynamically overwritten in `mounted()` (client-only)
         };
     },
     computed: {
@@ -36,10 +36,10 @@ export default {
     mounted() {
         if (process.client) {  // only react to screen size if we're on a physical device (instead of the render server)
             const updateMobileNavigation = () => {
-                this.isMobileNavigation = window.innerWidth < 1060;
+                this.isMobileNavigation = window.innerWidth < 1060;  // WATCH OUT: there are other occurances of this number '1060' in other files
             };
             updateMobileNavigation(); // initial evaluation of screen size
-            window.addEventListener('resize', updateMobileNavigation); // always reevaluate when screen size changes
+            window.addEventListener('resize', updateMobileNavigation); // always re-evaluate when screen size changes
         }
     },
 };
