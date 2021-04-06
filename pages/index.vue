@@ -71,7 +71,7 @@ export default {
 
         .Card.crises-card {
 
-            .Bookshelf, .InfoBox {
+            .InfoBox {
                 margin: 32px 0;
             }
         }
