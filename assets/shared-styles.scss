@@ -31,22 +31,28 @@ $nav-white-bg: rgba(#fff, 0.15);
 
 @mixin d-super-heading {
     font-size: 10vw;
+    text-shadow: 0 0.45vw 0.9vw rgba(black, 0.25);
 
     // max-font-size: 70px;
     @media (min-width: 700px) { font-size: 70px; }
+    @media (min-width: 700px) { text-shadow: 0 3px 6px rgba(black, 0.25); }
+
 }
 
 @mixin d-heading {
     font-size: 8vw;
+    text-shadow: 0 0.3vw 0.6vw rgba(black, 0.25);
     line-height: 110%;
 
     @media (max-width: 380px) {
         font-size: 10vw;  // same size as d-super-heading for really small screens
+        // text-shadow:;
     }
     
     // max-font-size: 50px;
     @media (min-width: calc(50px / 0.08)) {  // 0.08 stands for 8vw (font-size)
         font-size: 50px;
+        text-shadow: 0 2px 4px rgba(black, 0.25);
     }
 }
 

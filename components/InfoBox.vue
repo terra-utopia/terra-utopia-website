@@ -93,9 +93,9 @@ export default {
         margin-top: 8px;
         letter-spacing: calc(0.05 * 18px);
         color: $c-extralight;
-        text-shadow: 0 1.5px 3px rgba(black, 0.25);
+        text-shadow: 0 1px 2px rgba(black, 0.25);
         background: $c-extradark;
-        box-shadow: 0 1.5px 3px rgba(black, 0.25);
+        box-shadow: 0 2px 4px rgba(black, 0.25);
         &:hover { cursor: pointer; }
 
         &.opener-button {
