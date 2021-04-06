@@ -66,5 +66,5 @@ const infoboxes = [
 ];
 
 export default infoboxes.map((infobox, i) => {
-    return Object.assign(infobox, { htmlId: `threat-${i+1}` });
+    return Object.assign(infobox, { htmlId: `infobox-threat-${i+1}` });
 });
