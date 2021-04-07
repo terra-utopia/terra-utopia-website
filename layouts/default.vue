@@ -56,7 +56,7 @@ html {
 div.background-pane {
     position: fixed;
     z-index: -1;
-    background: linear-gradient($c-medium, $c-extradark);
+    background: linear-gradient($c-medium, $c-extradark 150%);
     width: 100vw;
     height: 100vh;
     bottom: 0;
