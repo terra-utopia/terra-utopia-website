@@ -7,7 +7,7 @@
                 @mouseenter="someEntryIsHovered=true"
                 @mouseleave="someEntryIsHovered=false"
             />
-            <img v-if="i < $options._staticData.infoboxes.length-1" :key="i" class="bookshelf-separator"
+            <img v-if="i < $options._staticData.infoboxes.length-1" :key="i+0.5" class="bookshelf-separator"
                 src="~assets/bookshelf-separator.svg"
             />
         </template>
