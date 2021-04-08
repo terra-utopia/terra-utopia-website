@@ -1,7 +1,7 @@
 <template>
     <div class="InfoBox" :class="{ expanded: expanded }">
         <h2><span v-html="title"></span></h2>
-        <!-- <SlideShow :slides="slides" :slogan="slogan"> </SlideShow> -->
+        <SlideShow :slides="slides" :slogan="slogan"> </SlideShow>
         <TruncatedHeight
             :expanded="expanded"
             :cssTransitionDurationMs="1000"

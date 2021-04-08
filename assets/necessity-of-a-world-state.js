@@ -32,7 +32,7 @@ const infoboxes = [
     },
     {
         title: "Social Inequality",
-        slogan: "Everyone maximizes the own capital",
+        slogan: "Everyone maximizes their own capital",
         slides: [
             {
                 imageSrc: '/img/social-inequality/lack-of-education.jpg',

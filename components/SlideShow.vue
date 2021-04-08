@@ -8,7 +8,7 @@
             :key="index"
         >
             <FixedAspectRatio :heightPercentage="100 / Math.sqrt(2)">
-                <img :src="slide.imageSrc" />
+                <img :style="{ 'background-image': `url('${slide.imageSrc}')` }" /><!-- uses style `background-image` instead of `src` attribute, to enable the usage of style `background-size` -->
             </FixedAspectRatio>
             <div class="bottom-shadow"></div>
             <div class="caption-wrapper">
@@ -17,23 +17,18 @@
         </div>
         <button
             class="previous"
-            @click="rotateIndex(-1)"
+            @click="activeIndex--"
             v-show="activeIndex !== 0"
         >
-            <svg width="14" height="32">
-                <path d="M 14 0 L 0 16 L 14 32" />
-            </svg>
+            <img src="~/assets/slide-show-button-icon.svg" />
         </button>
         <button
             class="next"
-            @click="rotateIndex(+1)"
+            @click="activeIndex++"
             v-show="activeIndex !== slides.length - 1"
         >
-            <svg width="14" height="32">
-                <path d="M 0 0 L 14 16 L 0 32" />
-            </svg>
+            <img src="~/assets/slide-show-button-icon.svg" />
         </button>
-        <p class="slogan">{{ slogan }}</p>
         <p class="counter">{{ activeIndex + 1 }} / {{ slides.length }}</p>
     </div>
 </template>
@@ -46,7 +41,7 @@ import { moduloUniversal } from '~/assets/util.js';
 export default {
     props: {
         slides: {
-            type: Array, // Array of {imageSrc: String, caption: String}
+            type: Array, // Array<{ imageSrc: String, caption: String }>
             required: true,
         },
         slogan: {
@@ -59,49 +54,27 @@ export default {
             activeIndex: 0,
         };
     },
-    methods: {
-        rotateIndex(delta) {
-            this.activeIndex += delta;
-            this.activeIndex = moduloUniversal(
-                // unneccessary in theory, because buttons are disabled on the boundaries or index interval
-                this.activeIndex,
-                this.slides.length
-            );
-        },
-    },
 };
 </script>
 
 <style lang="scss">
-/* mobile-first (<480px) */
-
 .SlideShow {
-    width: 100%; // ok because parent has padding
-    // height is bloated by child
-    margin-top: 25vw; // for p.slogan
-    margin-bottom: calc(3vw + 36px); // for p.counter
-    position: relative; // for absolute positioned children (button .slogan p.counter)
-    flex-flow: row;
-    flex-wrap: nowrap;
-    // overflow: hidden;
-    // width: 100%;
+    position: relative; // for absolute positioned 'button's
 
     .SlideShow-item {
-        width: 100%;
-        // height is bloated by child
-        flex-shrink: 0; // this flex shit is used so that when in the beginning (not hydrated page) all slides are visible they are aligned horizontal and only the first one is in viewport
-        position: relative; // for absolute positioned .caption .bottom-shadow
+        position: relative; // for absolute positioned '.caption' '.bottom-shadow'
 
         &.active {
             animation: fade 1s ease-out;
         }
         .FixedAspectRatio {
-            width: 100%;
-            // fixed height, by fixed aspect ratio
+            // width; // autom. 100%
+            // height bloated by fixed aspect ratio
 
             img {
                 width: 100%;
                 height: 100%;
+                background-size: contain;
             }
         }
         .bottom-shadow {
@@ -128,87 +101,46 @@ export default {
             p.caption {
                 display: inline-block; // shrink to fit content
                 max-width: 80%;
-                // text-align: center;
+                // text-align: center; // XXX
                 padding: 4px 8px;
                 background: rgba(255, 255, 255, 0.1);
                 color: white;
-                font-size: 0.8rem;
-                // white-space: pre;
+                font-size: 16px;
+                // white-space: pre; // XXX
             }
         }
     }
     button {
         position: absolute;
         top: 40%;
-        // top: 50%;
         width: calc(14px + 28px);
         height: calc(32px + 75px);
         transform-origin: 50% 50%;
         transform: translateY(-50%) scale(0.7);
         transition: transform 0.3s ease-out;
         background: rgba(0, 0, 0, 0.5);
-        // svg child centers itself (absolute)
+        // '<img'> child centers itself (with position absolute)
 
-        &.previous {
-            left: 4vw;
-            // left: 24px;
-        }
-        &.next {
-            right: 4vw;
-            // right: 24px;
-        }
-        &:hover {
-            cursor: pointer;
-            transform: translateY(-50%) scale(0.85);
-            // transform: translateY(-50%) scale(1.1);
-            background: rgba(0, 0, 0, 0.43);
-        }
-        svg {
+        img {
             position: absolute;
             top: 50%;
             left: 50%;
-            overflow: visible;
             transform: translate(-50%, -50%);
-            // width, height from svg inline
-
-            path {
-                fill: none;
-                stroke: white;
-                stroke-width: 1.8px;
-            }
+        } 
+        &.previous {
+            left: 24px;
+            img { transform: translate(-50%, -50%) rotate(180deg); }
+        }
+        &.next {
+            right: 24px;
+        }
+        &:hover {
+            cursor: pointer;
+            transform: translateY(-50%) scale(0.85);  // larger
+            background: rgba(0, 0, 0, 0.43);  // lighter
         }
     }
-    p.slogan {
-        position: absolute;
-        width: 100%;
-        bottom: calc(100% + 12.5vw);
-        left: 50%;
-        transform: translateX(-50%) translateY(50%);
-        padding: 0 4vw;
-        text-align: center;
-        font-size: 5vw;
-        letter-spacing: 1.3vw;
-        white-space: pre-wrap;
-        color: #d9e1ff;
-
-        // display: inline-block; // shrink to fit content
-        // padding: 4px 12px;
-        // border: 1px solid white;
-        // background: rgba(255, 255, 255, 0.18);
-        // &:hover {
-        //     background: rgba(255, 255, 255, 0.24);
-        // }
-        // bottom: 42px;
-        // left: 24px;
-        // max-width: 80%;
-        // text-align: left;
-        // font-size: 1.2rem;
-    }
     p.counter {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
         font-size: 12px;
         padding: 8px 0;
         text-align: center;
