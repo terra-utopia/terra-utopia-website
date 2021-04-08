@@ -61,7 +61,7 @@ export default {
         justify-content: space-around; // only important for really really wide monitors ??
 
         a {
-            position: relative;
+            position: relative;  // for absolute positioned child '::before'
             padding: 6px 16px;
             @media (max-width: 1140px) { padding: 6px 8px; }
             margin: 0 16px;
@@ -84,7 +84,7 @@ export default {
             }
 
             &:not(.disabled) {
-                &::after {
+                &::before {
                     content: "";
                     width: 100%;
                     height: 100%;
@@ -94,13 +94,12 @@ export default {
                     position: absolute;
                     bottom: 0px;
                     left: 0px;
-                    z-index: -1;
                     opacity: 0;
                     transform: scale(0.95);
                     transition: 0.3s;
                 }
 
-                &:hover::after {
+                &:hover::before {
                     opacity: 1;
                     transform: scale(1);
                 }

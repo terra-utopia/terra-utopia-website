@@ -1,8 +1,8 @@
 <template>
     <div>
-        <NavBar />
         <div class="background-pane"></div>
         <img class="earth-stripes-background" src="~/assets/earth-stripes-background.svg" />
+        <NavBar />
         <Nuxt /><!-- the 'page' component -->
         <Footer />
     </div>
