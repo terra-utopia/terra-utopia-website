@@ -60,7 +60,7 @@ export default {
                 position: absolute;
                 width: 18px;    // original dimensions of svg icon
                 height: 17px;   //
-                background: url('~/assets/bookshelf-jump-down-icon.svg');
+                background: url('~assets/bookshelf-jump-down-icon.svg');
                 bottom: 6px;
                 opacity: 0;
                 transition: opacity 0.15s linear;
