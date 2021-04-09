@@ -5,9 +5,9 @@
                 <div role="img" :style="{ 'background-image': `url('${slides[activeIndex].imageSrc}')` }" /><!-- `<div>` instead of `<img>`, to enable usage of `background-size: contain/cover` which is needed to adapt any image to the fixed aspect ratio -->
             </FixedAspectRatio>
             <div class="bottom-shadow"></div>
-            <div class="caption-wrapper">
-                <p class="caption">{{ slides[activeIndex].caption }}</p>
-            </div>
+            <p class="caption">
+                <span>{{ slides[activeIndex].caption }}</span>
+            </p>
         </div>
         <button
             class="previous"
@@ -78,6 +78,9 @@ export default {
 
 <style lang="scss">
 .SlideShow {
+    max-width: 600px;
+    margin: { left: auto; right: auto; bottom: 10px; };
+    @media (min-width: 700px) { margin-bottom: 28px; }
     position: relative; // for absolute positioned 'button's
 
     .SlideShow-item {
@@ -112,36 +115,35 @@ export default {
                 transparent 100%
             );
         }
-        div.caption-wrapper {
+        p.caption {
             position: absolute;
-            left: 50%;
-            width: 100%;
-            transform: translateX(-50%);
             bottom: 10px;
+            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
 
-            p.caption {
-                display: inline-block; // shrink to fit content
+            span {
+                display: inline-block; // for 'max-width' to work
                 max-width: 80%;
-                // text-align: center; // XXX
                 padding: 4px 8px;
                 background: rgba(255, 255, 255, 0.1);
                 color: white;
                 font-size: 16px;
-                // white-space: pre; // XXX
             }
         }
     }
     button {
         position: absolute;
-        top: 40%;
-        width: calc(14px + 28px);
-        height: calc(32px + 75px);
+        &.previous { left: 24px; }
+        &.next { right: 24px; }
+        width: 42px;    // adjusted to match svg <img> dimensions, further size is adjusted via scale
+        height: 107px;  //
+        top: 40%;  // slightly higher than 50% (exactly vertically centered)
         transform-origin: 50% 50%;
         transform: translateY(-50%) scale(0.7);
         transition: transform 0.3s ease-out;
         background: rgba(0, 0, 0, 0.5);
-        // '<img>' child centers itself (with position absolute)
 
         img {
             position: absolute;
@@ -150,16 +152,28 @@ export default {
             transform: translate(-50%, -50%);
         } 
         &.previous {
-            left: 24px;
             img { transform: translate(-50%, -50%) scaleX(-1); }
         }
-        &.next {
-            right: 24px;
+        @media (hover: hover) {  // only for devices whose primary pointer device supports hover (exludes most mobile devices)
+            &:hover {
+                cursor: pointer;
+                transform: translateY(-50%) scale(0.85);  // larger
+                background: rgba(0, 0, 0, 0.43);  // lighter
+            }
         }
-        &:hover {
-            cursor: pointer;
-            transform: translateY(-50%) scale(0.85);  // larger
-            background: rgba(0, 0, 0, 0.43);  // lighter
+
+        // for mobile devices...
+        @media (max-width: 480px) {
+            top: 32%; // higher
+            &.previous { left: 4px; }   // more outwards
+            &.next { right: 4px; }      //
+            transform: translateY(-50%) scale(0.6);
+
+            @media (hover: hover) {  // only for devices whose primary pointer device supports hover (exludes most mobile devices)
+                &:hover {
+                    transform: translateY(-50%) scale(0.72);
+                }
+            }
         }
     }
     p.counter {

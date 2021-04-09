@@ -43,7 +43,7 @@ export default {
         margin: { top: 14px; bottom: 8px; };
     }
 
-    @media (hover:hover) {  // only for devices whose primary pointer device supports hover (exludes most mobile devices)
+    @media (hover: hover) {  // only for devices whose primary pointer device supports hover (exludes most mobile devices)
         a {
             transition: opacity 0.15s linear;
         }
