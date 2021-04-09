@@ -1,18 +1,12 @@
 <template>
     <div class="SlideShow">
-        <div
-            v-for="(slide, index) in slides"
-            class="SlideShow-item"
-            v-show="index === activeIndex"
-            :class="{ active: index === activeIndex }"
-            :key="index"
-        >
+        <div class="SlideShow-item" :class="{ fadeInAnimation }">
             <FixedAspectRatio :heightPercentage="680 / 960 * 100">
-                <div role="img" :style="{ 'background-image': `url('${slide.imageSrc}')` }" /><!-- `<div>` instead of `<img>`, to enable usage of `background-size: contain/cover` which is needed to adapt any image to the fixed aspect ratio -->
+                <div role="img" :style="{ 'background-image': `url('${slides[activeIndex].imageSrc}')` }" /><!-- `<div>` instead of `<img>`, to enable usage of `background-size: contain/cover` which is needed to adapt any image to the fixed aspect ratio -->
             </FixedAspectRatio>
             <div class="bottom-shadow"></div>
             <div class="caption-wrapper">
-                <p class="caption">{{ slide.caption }}</p>
+                <p class="caption">{{ slides[activeIndex].caption }}</p>
             </div>
         </div>
         <button
@@ -35,6 +29,8 @@
 
 
 <script>
+import { forceReflow } from '~/assets/util.js';
+
 export default {
     props: {
         slides: {
@@ -49,7 +45,33 @@ export default {
     data() {
         return {
             activeIndex: 0,
+            fadeInAnimation: false,
         };
+    },
+    watch: {
+
+        activeIndex: {
+            immediate: true,
+            async handler(newValue, oldValue) {  // called every time `activeIndex` changes, and once initially (at the time of `created()` hook)
+
+                if (!process.client) return; // because not needed for SSR
+
+                // re-start fadeIn animation if `activeIndex` changes
+                if (oldValue !== undefined) {  // to skip initial invocation
+                    this.fadeInAnimation = false;
+                    await new Promise(resolve => { this.$nextTick(resolve) });  // wait for DOM update
+                    forceReflow();  // trigger browser reflow to ensure the toggle is recognized
+                    this.fadeInAnimation = true;
+                }
+
+                // always preload the next slide's image
+                const nextSlide = this.slides[this.activeIndex+1];
+                if (nextSlide) {
+                    new Image().src = nextSlide.imageSrc;
+                    // image should be automatically garbage-collected (cleared from memory) because Node that is not inserted in DOM and without variable reference
+                }
+            }
+        }
     },
 };
 </script>
@@ -61,8 +83,8 @@ export default {
     .SlideShow-item {
         position: relative; // for absolute positioned '.caption' '.bottom-shadow'
 
-        &.active {
-            animation: fade 1s ease-out;
+        &.fadeInAnimation {
+            animation: fade-in 1s ease-out;
         }
         .FixedAspectRatio {
             // width; // autom. 100%
@@ -119,7 +141,7 @@ export default {
         transform: translateY(-50%) scale(0.7);
         transition: transform 0.3s ease-out;
         background: rgba(0, 0, 0, 0.5);
-        // '<img'> child centers itself (with position absolute)
+        // '<img>' child centers itself (with position absolute)
 
         img {
             position: absolute;
@@ -147,7 +169,7 @@ export default {
     }
 }
 
-@keyframes fade {
+@keyframes fade-in {
     from {
         opacity: 0%;
         // filter: grayscale(100%) brightness(800%);
