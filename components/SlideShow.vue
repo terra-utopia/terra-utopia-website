@@ -7,8 +7,8 @@
             :class="{ active: index === activeIndex }"
             :key="index"
         >
-            <FixedAspectRatio :heightPercentage="100 / Math.sqrt(2)">
-                <img :style="{ 'background-image': `url('${slide.imageSrc}')` }" /><!-- uses style `background-image` instead of `src` attribute, to enable the usage of style `background-size` -->
+            <FixedAspectRatio :heightPercentage="680 / 960 * 100">
+                <div role="img" :style="{ 'background-image': `url('${slide.imageSrc}')` }" /><!-- `<div>` instead of `<img>`, to enable usage of `background-size: contain/cover` which is needed to adapt any image to the fixed aspect ratio -->
             </FixedAspectRatio>
             <div class="bottom-shadow"></div>
             <div class="caption-wrapper">
@@ -71,10 +71,13 @@ export default {
             // width; // autom. 100%
             // height bloated by fixed aspect ratio
 
-            img {
+            div[role="img"] {
+                // background-image;  // set in-line via vue template (see above)
                 width: 100%;
                 height: 100%;
                 background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
             }
         }
         .bottom-shadow {
