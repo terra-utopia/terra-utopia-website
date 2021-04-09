@@ -129,7 +129,7 @@ export default {
         } 
         &.previous {
             left: 24px;
-            img { transform: translate(-50%, -50%) rotate(180deg); }
+            img { transform: translate(-50%, -50%) scaleX(-1); }
         }
         &.next {
             right: 24px;
