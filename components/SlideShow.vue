@@ -35,9 +35,6 @@
 
 
 <script>
-import { moduloUniversal } from '~/assets/util.js';
-
-
 export default {
     props: {
         slides: {
