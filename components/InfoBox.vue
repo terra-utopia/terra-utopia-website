@@ -1,5 +1,5 @@
 <template>
-    <div class="InfoBox" :class="{ expanded: expanded }">
+    <div class="InfoBox">
         <h2><span v-html="title"></span></h2>
         <SlideShow :slides="slides" :slogan="slogan"> </SlideShow>
         <TruncatedHeight
@@ -77,8 +77,6 @@ export default {
         .TruncatedHeight-body {
             @include d-small-text; // (font-size, text-shadow, letter-spacing)
             color: $c-extradark;
-            opacity: 0;
-            transition: opacity 1s cubic-bezier(.14,.57,.86,.43);
 
             p {
                 padding-bottom: 32px;
@@ -113,14 +111,6 @@ export default {
 
             img {
                 vertical-align: bottom;
-            }
-        }
-    }
-
-    &.expanded {
-        .TruncatedHeight {
-            .TruncatedHeight-body {
-                opacity: 1;
             }
         }
     }

@@ -5,9 +5,12 @@
             'transition-duration': cssTransitionDurationMs+'ms',
             'transition-timing-function': cssTransitionEasing,
         }"
-        @transitionend="handleTransitionEnd()"
+        @transitionend.self="handleTransitionEnd()"
     >
-        <div class="TruncatedHeight-body" ref="TruncatedHeight-body">
+        <div class="TruncatedHeight-body"
+            ref="TruncatedHeight-body"
+            :style="{ 'transition-duration': cssTransitionDurationMs+'ms' }"
+        >
             <slot></slot>
         </div>
     </div>
@@ -111,5 +114,17 @@ export default {
     transition-property: height;
     // transition-duration; // set in-line via vue template/script (see above)
     // transition-timing-function; // set in-line via template/script (see above)
+
+    &.expanded {
+        .TruncatedHeight-body {
+            opacity: 1;
+        }
+    }
+    .TruncatedHeight-body {
+        opacity: 0;
+        // transition-duration; // set in-line via vue template/script (see above)
+        transition-property: opacity;
+        transition-timing-function: cubic-bezier(.14,.57,.86,.43);
+    }
 }
 </style>
