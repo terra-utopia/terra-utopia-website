@@ -79,15 +79,15 @@ export default {
         }
         .bottom-shadow {
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 25%;
             background: linear-gradient(
                 to top,
                 rgba(0, 0, 0, 0.6) 0%,
-                rgba(0, 0, 0, 0.6) 8%,
-                transparent 25%
+                rgba(0, 0, 0, 0.6) 32%,
+                transparent 100%
             );
         }
         div.caption-wrapper {
