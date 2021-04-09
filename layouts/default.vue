@@ -47,7 +47,7 @@ a {
 html {
     overflow-y: scroll; // to prevent flashing scrollbar on page navigations
 
-    font-family: Jost;
+    font-family: Jost, sans-serif;
     font-size: 20px; // used for 'rem' units
     @include regular-normal;
     color: #303B5E;
