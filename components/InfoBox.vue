@@ -83,6 +83,16 @@ export default {
                 text-indent: 20px;
                 text-align: justify;
             }
+            table tbody tr td{
+                vertical-align: top;
+                &:nth-child(1){
+                    text-align: right;
+                }
+                &:nth-child(2){
+                    line-break: anywhere;
+                    text-align: left;
+                }
+            }
         }
     }
     button {  // for '.opener-button' and '.collapse-button' ('.collapse-button' has extra ruleset below)
