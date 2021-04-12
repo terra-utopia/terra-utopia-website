@@ -185,11 +185,11 @@ export default {
 
 @keyframes fade-in {
     from {
-        opacity: 0%;
+        opacity: 0;
         // filter: grayscale(100%) brightness(800%);
     }
     to {
-        opacity: 100%;
+        opacity: 1;
         // filter: grayscale(0%) brightness(100%);
     }
 }
