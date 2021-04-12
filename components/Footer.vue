@@ -16,7 +16,7 @@ export default {
         return{
             entries: [
                 { name: 'Disclaimer', to: '/disclaimer/' },
-                { name: 'Data Policy', to: '/dataPolicy/' },
+                { name: 'Privacy Policy', to: '/privacy-policy/' },
             ]
         }
     }
@@ -28,17 +28,20 @@ export default {
 
 .Footer {
     width: fit-content;
-    margin: auto;
+    margin: { left: auto; right: auto; top: 60px; bottom: 20px };
     display: flex;
     flex-flow: row;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     border-top: $nav-white-border;
-    margin-bottom: 20px;
+    padding-top: 6px;
+    
 
     a {
         position: relative;  // for absolute positioned child '::before'
-        padding: 6px 16px;
-        @media (max-width: 1140px) { padding: 6px 8px; }
+        padding: 0px 16px;
+        @media (max-width: 1140px) { padding: 0px 8px; }
         margin: 0 16px;
         @media (max-width: 1300px) { margin: 0 5px; }
         text-align: center;

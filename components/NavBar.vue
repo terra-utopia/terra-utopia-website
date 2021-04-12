@@ -26,7 +26,7 @@ export default {
             return entriesRaw.map(entry => Object.assign({ ...entry }, { active: entry.to === this.$route.path }));
         },
         activeEntry() {
-            const activeEntry = this.entries.filter(entry => { return entry.active; })[0];
+            const activeEntry = this.entries.filter(entry => { return entry.active; })[0];  // can be `undefined` (ie. if user is on a route like `/disclaimer` `/privacy-policy`)
             return activeEntry;
         },
     },
