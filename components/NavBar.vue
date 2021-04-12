@@ -27,9 +27,6 @@ export default {
         },
         activeEntry() {
             const activeEntry = this.entries.filter(entry => { return entry.active; })[0];
-            if (!activeEntry) {
-                console.warn(`WARNING: Why is there no active navigation entry??`);
-            }
             return activeEntry;
         },
     },

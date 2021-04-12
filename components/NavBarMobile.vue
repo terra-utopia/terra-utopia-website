@@ -10,6 +10,7 @@
             <div class="nav-header" @click="collapsed=!collapsed">
                 <NuxtLink
                     class="nav-header-text"
+                    v-if="activeEntry"
                     :to="activeEntry.to"
                     v-html="activeEntry.name"
                 ></NuxtLink>
