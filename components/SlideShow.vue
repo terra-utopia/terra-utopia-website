@@ -37,10 +37,6 @@ export default {
             type: Array, // Array<{ imageSrc: String, caption: String }>
             required: true,
         },
-        slogan: {
-            type: String,
-            default: "",
-        },
     },
     data() {
         return {
