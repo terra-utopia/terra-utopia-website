@@ -79,7 +79,7 @@ export default {
             color: $c-extradark;
 
             p {
-                padding-bottom: 32px;
+                padding-bottom: 20px;
                 text-indent: 20px;
                 text-align: justify;
             }
