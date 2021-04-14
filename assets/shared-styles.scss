@@ -44,13 +44,14 @@ $nav-white-bg: rgba(#fff, 0.15);
     text-shadow: 0 0.3vw 0.6vw rgba(black, 0.25);
     line-height: 110%;
 
+    // same font-size as d-super-heading for really small screens
     @media (max-width: 380px) {
-        font-size: 10vw;  // same size as d-super-heading for really small screens
+        font-size: 10vw;
         // text-shadow:;
     }
     
     // max-font-size: 50px;
-    @media (min-width: calc(50px / 0.08)) {  // 0.08 stands for 8vw (font-size)
+    @media (min-width: calc(50px / 0.08/*vw font-size*/)) {
         font-size: 50px;
         text-shadow: 0 2px 4px rgba(black, 0.25);
     }
