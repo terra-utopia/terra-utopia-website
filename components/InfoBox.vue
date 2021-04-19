@@ -74,6 +74,10 @@ export default {
         }
     }
     .TruncatedHeight {
+        &:not(.expanded) {
+            pointer-events: none;
+        }
+
         .TruncatedHeight-body {
             @include d-small-text; // (font-size, text-shadow, letter-spacing)
             color: $c-extradark;

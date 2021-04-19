@@ -1,5 +1,6 @@
 <template>
     <div class="TruncatedHeight"
+        :class="{ 'expanded': expanded }"
         :style="{
             'height': cssHeight,
             'transition-duration': cssTransitionDurationMs+'ms',
