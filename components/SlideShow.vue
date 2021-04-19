@@ -58,13 +58,16 @@ export default {
     max-width: 600px;
     margin: { left: auto; right: auto; bottom: 10px; };
     @media (min-width: 700px) { margin-bottom: 28px; }
-    position: relative; // for absolute positioned 'button's
+    position: relative; // for absolute positioned 'button's and `.SlideShow-item:not(.active)`
 
     .SlideShow-item {
-        position: relative; // for absolute positioned '.caption' '.bottom-shadow'
+        position: relative; // for absolute positioned '.caption' and '.bottom-shadow'
 
         &:not(.active) {
-            display: none;
+            position: absolute; // pulls element out of page flow of parent, makes `width:0;height:0;`
+            z-index: -1; // hides behind the `.active.SlideShow-item`
+            opacity: 0;             // just in case some text bleeds over the edges under the `.active.SlideShow-item`
+            pointer-events: none;   //
         }
         &.active {
             animation: fade-in 1s ease-out;
