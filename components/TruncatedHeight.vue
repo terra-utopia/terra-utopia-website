@@ -1,20 +1,20 @@
 <template>
-    <div class="TruncatedHeight" :class="{ 'expanded': expanded }"
+    <div class="TruncatedHeight"
         :style="{
             'height': cssHeight,
             'transition-duration': cssTransitionDurationMs+'ms',
             'transition-timing-function': cssTransitionEasing,
+            'mask-image': `linear-gradient(to top, rgba(255, 0, 0, 0) 0, rgba(255, 0, 0, 0.16) ${this.collapsedHeight/6}px, rgba(255, 0, 0, 0.6) ${this.collapsedHeight*0.45}px, rgba(255, 0, 0, 1) ${this.collapsedHeight*0.8}px)`,
+            'mask-position': expanded ? `0 ${this.collapsedHeight}px` : `0 0`,
         }"
         @transitionend.self="handleTransitionEnd()"
     >
-        <div class="TruncatedHeight-body"
-            ref="TruncatedHeight-body"
-            :style="{ 'transition-duration': cssTransitionDurationMs+'ms' }"
-        >
+        <div class="TruncatedHeight-body" ref="TruncatedHeight-body">
             <slot></slot>
         </div>
     </div>
 </template>
+
 
 <script>
 import { forceReflow } from '~/assets/util';
@@ -35,10 +35,18 @@ export default {
             type: String,
             default: 'ease-in-out',
         },
+        collapsedHeight: {
+            type: Number, // number of pixels
+            default: 140,
+        },
+        fadeOut: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
-            cssHeight: this.expanded ? "auto" : "0px",
+            cssHeight: this.expanded ? "auto" : `${this.collapsedHeight}px`,
         };
     },
     methods: {
@@ -78,7 +86,7 @@ export default {
                 else {
                     // - the current `cssHeight` is a `px` value, so we can directly set `0px` without a jump
                 }
-                this.cssHeight = `0px`;
+                this.cssHeight = `${this.collapsedHeight}px`;
             }
         },
 
@@ -111,20 +119,10 @@ export default {
 .TruncatedHeight {
     overflow: hidden;
     // height; // set in-line via template/script (see above)
-    transition-property: height;
+    // mask-image; // set in-line via template/script (see above)
+    mask-repeat: no-repeat;
+    transition-property: height, mask-position;
     // transition-duration; // set in-line via vue template/script (see above)
     // transition-timing-function; // set in-line via template/script (see above)
-
-    &.expanded {
-        .TruncatedHeight-body {
-            opacity: 1;
-        }
-    }
-    .TruncatedHeight-body {
-        opacity: 0;
-        // transition-duration; // set in-line via vue template/script (see above)
-        transition-property: opacity;
-        transition-timing-function: cubic-bezier(.14,.57,.86,.43);
-    }
 }
 </style>
