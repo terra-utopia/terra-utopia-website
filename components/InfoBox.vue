@@ -83,14 +83,27 @@ export default {
                 text-indent: 20px;
                 text-align: justify;
             }
-            table tbody tr td{
-                vertical-align: top;
-                &:nth-child(1){
-                    text-align: right;
-                }
-                &:nth-child(2){
-                    line-break: anywhere;
-                    text-align: left;
+            table {
+                border-collapse: collapse; // better than default `separate`
+
+                tbody tr {
+                    &:target {
+                        // text-decoration: underline;
+                        // text-decoration-color: $c-extradark;
+                        // text-decoration-thickness: 1px;
+                        background: rgba($c-special1, 0.25);
+                    }
+
+                    td:nth-child(1) {
+                        vertical-align: baseline; // float at the top (default is `middle`)
+                        text-align: right;
+                        padding: { left: 6px; right: 6px; };
+                    }
+                    td:nth-child(2) {
+                        line-break: anywhere;
+                        text-align: left;
+                        padding-left: 2px;
+                    }
                 }
             }
         }
