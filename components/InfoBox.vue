@@ -6,6 +6,7 @@
             :expanded="expanded"
             :cssTransitionDurationMs="1000"
             :cssTransitionEasing="'ease-in-out'"
+            :fadeOut="true"
         >
             <div v-html="htmlContent"></div>
         </TruncatedHeight>
