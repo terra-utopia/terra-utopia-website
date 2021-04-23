@@ -1,14 +1,12 @@
 <template>
     <div class="Bookshelf" :class="{ someEntryIsHovered }">
         <template v-for="(infobox, i) in $options._staticData.infoboxes">
-            <div :key="i" class="link-wrapper">
-                <a
+            <a :key="i"
                 :href="`#${infobox.htmlId}`"
                 v-html="infobox.title"
                 @mouseenter="someEntryIsHovered=true"
                 @mouseleave="someEntryIsHovered=false"
-                />
-            </div>
+            />
             <img v-if="i < $options._staticData.infoboxes.length-1" :key="i+0.5" class="bookshelf-separator"
                 src="~assets/bookshelf-separator.svg"
             />
@@ -46,41 +44,37 @@ export default {
     }
 
     @media (hover: hover) {  // only for devices whose primary pointer device supports hover (exludes most mobile devices)
-        .link-wrapper a {
+        a {
+            position: relative; // for absolute positioned children '::before' '::after'
+            padding: 0 calc(2px + 18px + 8px);
             transition: opacity 0.15s linear;
+
+            &::before, &::after {
+                content: "";
+                position: absolute;
+                width: 18px;    // original dimensions of svg icon
+                height: 17px;   //
+                background: url('~assets/bookshelf-jump-down-icon.svg');
+                top: 11px;
+                opacity: 0;
+                transition: opacity 0.15s linear;
+            }
+            &::before {
+                left: 2px;
+            }
+            &::after {
+                right: 2px;
+            }
         }
         &.someEntryIsHovered {
-            a:not(:hover) { opacity: 0.6; }
-            a:hover { opacity: 1; }
+            a:not(:hover) {
+                opacity: 0.6;
+            }
         }
-        .link-wrapper{
-            margin: 0px 20px;
-
-            a {
-                position: relative; // for absolute positioned children '::before' '::after'
-
-                &::before, &::after {
-                    content: "";
-                    position: absolute;
-                    width: 18px;    // original dimensions of svg icon
-                    height: 17px;   //
-                    background: url('~assets/bookshelf-jump-down-icon.svg');
-                    bottom: 6px;
-                    opacity: 0;
-                    transition: opacity 0.15s linear;
-                }
-                &::before {
-                    right: calc(100% + 8px);
-                }
-                &::after {
-                    left: calc(100% + 8px);
-                }
-                    
-                &:hover {
-                    &::before, &::after {
-                        opacity: 1;
-                    }
-                }
+        a:hover {
+            opacity: 1;
+            &::before, &::after {
+                opacity: 1;
             }
         }
     }
