@@ -98,6 +98,9 @@ export default {
                         // text-decoration-thickness: 1px;
                         background: rgba($c-special1, 0.25);
                     }
+                    &:hover{
+                        background: rgba($c-dark, 0.2);
+                    }
 
                     td:nth-child(1) {
                         vertical-align: baseline; // float at the top (default is `middle`)

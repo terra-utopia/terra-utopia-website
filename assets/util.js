@@ -22,7 +22,7 @@ export function enhanceCitations(contentHtml) {
         { citationId: string, citationUrl: string, citationCounter: number(1-based-index) },
         ...
     */];
-    contentHtml = contentHtml.replace(/\\citep{([^}]+)}/g, (match, citationUrl) => {
+    contentHtml = contentHtml.replace(/ ?\\citep{([^}]+)}/g, (match, citationUrl) => {
         const existingCitation = citations.filter(c => c.citationUrl === citationUrl)[0];  // `undefined` most of the times
         if (existingCitation) {
             return `<a href="#${existingCitation.citationId}">[${existingCitation.citationCounter}]</a>`;
@@ -30,7 +30,7 @@ export function enhanceCitations(contentHtml) {
             // we have to make a new citation object
             let citationId = `citation-${ nanoid.customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 10)() }`;
             citations.push({ citationId, citationUrl, citationCounter });
-            return `<a href="#${citationId}">[${citationCounter++}]</a>`;
+            return `<sup><a href="#${citationId}">[${citationCounter++}]</a></sup>`;
         }
     });
     contentHtml += `
