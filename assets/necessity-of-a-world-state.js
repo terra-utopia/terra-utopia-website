@@ -8,19 +8,19 @@ const infoboxes = [
         slides: [
             {
                 imageSrc: '/img/climate-change/wildfire.jpg',
-                caption: 'Increased rate of natural disasters.',
+                caption: 'The climate crisis increases the frequency of natural disasters.',
             },
             {
                 imageSrc: '/img/climate-change/desertification.jpg',
-                caption: 'Desertification advances, and droughts kill agriculture.',
+                caption: 'Further warming will lead to massive food and warter shortages everywhere on earth.',
             },
             {
-                imageSrc: '/img/climate-change/glaciers-melting.jpg',
-                caption: 'Glaciers melt, sea-level rises, albedo decreases.',
+                imageSrc: '/img/climate-change/machine-gun.jpg',
+                caption: 'Ensuing wars for these resources will devastate the world.',
             },
             {
                 imageSrc: '/img/climate-change/coal-mining.jpg',
-                caption: 'Meanwhile we are still subsidizing fossil fuels.',
+                caption: 'Meanwhile nations are still trying to capitalize on this crisis.',
             },
         ],
         htmlContent: enhanceCitations(`
@@ -39,8 +39,20 @@ const infoboxes = [
         slogan: "",
         slides: [
             {
-                imageSrc: "",
-                caption: ""
+                imageSrc: '/img/weapons-of-mass-destruction/shooting.jpg',
+                caption: 'We humans waste precious resources killing each other.'
+            },
+            {
+                imageSrc: '/img/weapons-of-mass-destruction/bomb.jpg',
+                caption: 'Today\'s nukes are 1000 times more destructive than the Hiroshima bomb.'
+            },
+            {
+                imageSrc: '/img/weapons-of-mass-destruction/destruction2.jpg',
+                caption: 'A major nuclear war would probably end modern civilisation.'
+            },
+            {
+                imageSrc: '/img/weapons-of-mass-destruction/peace2.jpg',
+                caption: 'By creating a world state we will achieve world peace for the first time in human history.'
             }
         ],
         htmlContent: enhanceCitations(`
@@ -57,8 +69,16 @@ const infoboxes = [
         slogan: "",
         slides: [
             {
-                imageSrc: "",
-                caption: ""
+                imageSrc: "/img/mega-companies/skyscraper.jpg",
+                caption: "Some multinational mega corporations possess more power than many national states."
+            },
+            {
+                imageSrc: "/img/mega-companies/dollars.jpg",
+                caption: "In their pursuit of endless growth, they undermine democracies and markets worldwide."
+            },
+            {
+                imageSrc: "/img/mega-companies/cooperation.jpg",
+                caption: "We must establish a world state if we want to protect democracy and build an economy for the common good."
             }
         ],
         htmlContent: enhanceCitations(`
@@ -81,24 +101,16 @@ const infoboxes = [
         slides: [
             {
                 imageSrc: '/img/social-inequality/lack-of-education.jpg',
-                caption: 'Poor education. Is it fair? No.',
-            },
-            {
-                imageSrc: '/img/social-inequality/trading.jpg',
-                caption: 'High-frequency trading. Is it fair? Neither.',
+                caption: 'Global wealth is growing, but we fail to distribute it fairly.',
             },
             {
                 imageSrc: '/img/social-inequality/bananas.jpg',
-                caption: 'Child labor. Marginal pay. No future.',
+                caption: 'Nations of the global north systematically exploit those of the global south.',
             },
             {
-                imageSrc: '/img/social-inequality/distribution-of-wealth.jpg',
-                caption: 'Maybe life would be better for us all if we distributed wealth more equally.',
-            },
-            {
-                imageSrc: '/img/social-inequality/dignity-healthcare.jpg',
-                caption: 'Life can become horrible without social welfare',
-            },
+                imageSrc: '',
+                caption: '',
+            }
         ],
         htmlContent: enhanceCitations(`
         <p>For decades, the global society has experienced a continuous increase in the standard of living \\citep{http://hdr.undp.org/en/composite/trends} but failed to distribute its wealth across the world. This has caused severe inequality that becomes apparent when comparing income and health: the gross national income per capita in the most developed countries is 15 times higher than in the least developed countries, and the life expectancy at the higher end of the spectrum is 18 years longer than at the lower end. \\citep{http://hdr.undp.org/en/composite/HDI} Furthermore, global inequality has been increasing throughout the past years with a growing number of millionaires \\citep{https://mgmresearch.com/global-millionaire-population-analysis-2019/} on the one hand and rising poverty in Sub-Saharan Africa \\citep{https://ourworldindata.org/extreme-poverty} as well as increasing world hunger \\citep{http://www.fao.org/3/ca5162en/ca5162en.pdf} on the other hand.</p>
