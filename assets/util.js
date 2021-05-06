@@ -25,7 +25,7 @@ export function enhanceCitations(contentHtml) {
     contentHtml = contentHtml.replace(/ ?\\citep{([^}]+)}/g, (match, citationUrl) => {
         const existingCitation = citations.filter(c => c.citationUrl === citationUrl)[0];  // `undefined` most of the times
         if (existingCitation) {
-            return `<a href="#${existingCitation.citationId}">[${existingCitation.citationCounter}]</a>`;
+            return `<sup><a href="#${existingCitation.citationId}">[${existingCitation.citationCounter}]</a></sup>`;
         } else {
             // we have to make a new citation object
             let citationId = `citation-${ nanoid.customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 10)() }`;
