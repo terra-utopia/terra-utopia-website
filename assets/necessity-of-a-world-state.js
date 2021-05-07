@@ -35,7 +35,7 @@ const infoboxes = [
         `),
     },
     {
-        title: "War And Weapons Of Mass Destruction",
+        title: "Weapons Of Mass Destruction",
         slogan: "",
         slides: [
             {
@@ -65,7 +65,7 @@ const infoboxes = [
         `),
     },
     {
-        title: "Uncontrolled Growth Of Global Mega Corporations",
+        title: "Global Mega Corporations",
         slogan: "",
         slides: [
             {
@@ -131,7 +131,7 @@ const infoboxes = [
         `),
     },
     {
-        title: "Uncontrolled Development Of Potentially Dangerous Technology",
+        title: "Potentially Dangerous Technology",
         slogan: "",
         slides: [
             {
