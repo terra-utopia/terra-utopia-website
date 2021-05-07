@@ -40,7 +40,7 @@ const infoboxes = [
         slides: [
             {
                 imageSrc: '/img/weapons-of-mass-destruction/shooting.jpg',
-                caption: 'We humans waste precious resources killing each other.'
+                caption: 'We humans waste precious resources on killing each other.'
             },
             {
                 imageSrc: '/img/weapons-of-mass-destruction/bomb.jpg',
@@ -51,7 +51,7 @@ const infoboxes = [
                 caption: 'A major nuclear war would probably end modern civilisation.'
             },
             {
-                imageSrc: '/img/weapons-of-mass-destruction/peace2.jpg',
+                imageSrc: '/img/weapons-of-mass-destruction/knotted-gun.jpg',
                 caption: 'By creating a world state we will achieve world peace for the first time in human history.'
             }
         ],
@@ -69,7 +69,7 @@ const infoboxes = [
         slogan: "",
         slides: [
             {
-                imageSrc: "/img/mega-companies/skyscraper.jpg",
+                imageSrc: "/img/mega-companies/skyscraper2.jpg",
                 caption: "Some multinational mega corporations possess more power than many national states."
             },
             {
@@ -108,8 +108,12 @@ const infoboxes = [
                 caption: 'Nations of the global north systematically exploit those of the global south.',
             },
             {
-                imageSrc: '',
-                caption: '',
+                imageSrc: '/img/social-inequality/riots.jpg',
+                caption: 'Wealthy nations denying others their fair share will inevitably lead to conflicts of unprecedented scale.',
+            },
+            {
+                imageSrc: '/img/social-inequality/planet-earth.jpg',
+                caption: 'If we want to ensure global justice and social peace, we must begin to share the world as one united species.',
             }
         ],
         htmlContent: enhanceCitations(`
@@ -122,7 +126,7 @@ const infoboxes = [
         <p>The current system is unable to solve this problem due to nations pursuing their national interests. As long as the voice of the less wealthy nations is ignored, the exploitation will continue. Even if a single country was to take the problems of the global south seriously, it would still not have the power to prevent other countries from capitalizing on the suffering of less powerful nations.<br>
         Therefore, a world state is the most promising way of combating this neocolonial behaviour. It would usher in a new era of global cooperation in which every nation could sue for their rights and negotiate on an equal footing. The well-being of every human being would be the ultimate goal determining global policies. The nations of the global north must pay serious compensations to the nations of the global south, ensuring an equal distribution of wealth.</p>
         
-        <p>In the future, humankind will share planet earth as one species. Concepts such as nationalism and hard borders will be abandoned. We will share our wealth, ensuring that everyone has the same opportunities no matter where they were born. Nobody will claim dominion over a country and exclude others from living there or using its resources. Instead, every human being will have the right to call any place on earth their home.</p>
+        <p>In the future, humankind will share planet earth as one united species. Concepts such as nationalism and hard borders will be abandoned. We will share our wealth, ensuring that everyone has the same opportunities no matter where they were born. Nobody will claim dominion over a country and exclude others from living there or using its resources. Instead, every human being will have the right to call any place on earth their home.</p>
         
         `),
     },
@@ -131,8 +135,20 @@ const infoboxes = [
         slogan: "",
         slides: [
             {
-                imageSrc: "",
-                caption: ""
+                imageSrc: "/img/critical-technology/industrial-revolution.jpg",
+                caption: "Past technological advances have brought prosperity, but also caused global crises."
+            },
+            {
+                imageSrc: "/img/critical-technology/robot.jpg",
+                caption: "Artificial intelligence is likely to overtake human intelligence in the next few decades."
+            },
+            {
+                imageSrc: "/img/critical-technology/genetics.jpg",
+                caption: "Modern biotechnology gives us immense power over life itself."
+            },
+            {
+                imageSrc: "/img/critical-technology/circuit-board.jpg",
+                caption: "We cannot continue to blindly implement every new technology."
             }
         ],
         htmlContent: enhanceCitations(`
@@ -157,8 +173,16 @@ const infoboxes = [
         slogan: "",
         slides: [
             {
-                imageSrc: "",
-                caption: ""
+                imageSrc: "/img/human-rights/free-hong-kong.jpg",
+                caption: "Human rights violations occur every day all around the world."
+            },
+            {
+                imageSrc: "/img/human-rights/surveillance.jpg",
+                caption: "Without a global institution enforcing human rights, they are worthless."
+            },
+            {
+                imageSrc: "/img/human-rights/justice.jpg",
+                caption: "We must establish a global court where everyone can sue for them."
             }
         ],
         htmlContent: enhanceCitations(`
