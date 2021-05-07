@@ -13,8 +13,8 @@
                 Let us forge a <span class="highlighted">federal, democratic world state!</span></p>
             </Card>
             <Card :heading="'The Common Ground'" :isSuperHeading="false">
-                <p><span class="highlighted">Every human being</span> should have the right and the possibility to pursue a self-determined life far from physical and psychological violence. Furthermore it must be possible for everyone to claim their human rights.</p>
-                <p>This is the minimal consensus that surely all humans can agree upon. However in our modern world there are <span class="highlighted">numerous threats</span> to this common ground. Some of the most alarming ones are listed here:</p>
+                <p><span class="highlighted">Every human being</span> should have the right and the possibility to pursue a self-determined life far from physical and psychological violence. Furthermore, it must be possible for everyone to claim their human rights.</p>
+                <p>This is the minimal consensus that hopefully all humans can agree upon. However, in our modern world, there are <span class="highlighted">numerous threats</span> to this common ground. Some of the most alarming ones are discussed here.</p>
             </Card>
             <Card :heading="'Global Crises'" :isSuperHeading="false" class="crises-card">
                 <Bookshelf />

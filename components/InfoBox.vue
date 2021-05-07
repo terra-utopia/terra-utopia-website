@@ -84,11 +84,11 @@ export default {
             color: $c-extradark;
 
             p {
-                padding-bottom: 20px;
                 text-indent: 20px;
                 text-align: justify;
             }
             table {
+                margin-top: 20px;
                 border-collapse: collapse; // better than default `separate`
 
                 tbody tr {
