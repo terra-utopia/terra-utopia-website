@@ -113,6 +113,8 @@ export default {
                 background: rgba(255, 255, 255, 0.1);
                 color: white;
                 font-size: 16px;
+                @media(max-width: 600px){font-size:12px}
+                @media(max-width: 480px){font-size:8px}
             }
         }
     }
