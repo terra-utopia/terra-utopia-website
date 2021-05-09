@@ -65,7 +65,7 @@
                 <h4> Additional transparancy </h4>
 
                 <p>
-                    Our website is open source, meaning that you can find the its source code <a href="https://github.com/terra-utopia/terra-utopia-website" target="_blank" rel="noopener noreferrer">on Github</a>.
+                    Our website is open source, meaning that you can find its source code <a href="https://github.com/terra-utopia/terra-utopia-website" target="_blank" rel="noopener noreferrer">on Github</a>.
                 </p>
 
                 <h4>Contact</h4>
