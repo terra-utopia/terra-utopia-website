@@ -5,20 +5,21 @@
                 <h4>Introduction</h4>
                 
                 <p>
-                    This privacy policy page is intended to make it transparent to the user how we handle their personal data. It explains in detail which personal data we process and that we do not store any personal data after the user left our website.
+                    This privacy policy page is intended to make it transparent to the user how we handle their personal data. It explains in detail which personal data we process and store.
                 </p>
 
-                <!-- Introduction: Zero Data Collection Policy (No Tracking/Profiling/Whatever), -->
+                <h4>Informal Abstract</h4>
 
-                <!-- (evtl. dass wir gar keine persönlichen Daten speichern, nicht mal logs) -->
+                <p>
+                    We only collect the data necessary to ensure the primary functions of our website. We delete any user data as soon as our hoster allows it.
+                    <br>
+                    As a non-profit organisation our sole intent is to contribute to a save and pleasent user experience. Therefore we naturally refrain from using cookies, tracking and profiling.
+                </p>
 
-                <!-- meta information wird übermittelt, aber nicht gespeichert (von uns), nur vom Hoster verarbeitet -->
-
-                <!-- GDPR Data Processing Agreement -->
                 <h4>Processing of personal data</h4>
 
                 <p>
-                    Our website processes a series of general data and information when a user or automated system calls up the website. This information includes:
+                    The way the internet works necessitates that our website processes a series of data and information when a user or automated system calls up the website in order to be able to deliver the content. This information includes:
                 </p>
                 <ul>
                     <li>the browser type and version used,</li>
@@ -27,7 +28,7 @@
                     <li>the sub-websites,</li>
                     <li>the date and time of access to the Internet site,</li>
                     <li>an Internet protocol address (IP address),</li>
-                    <li>the Internet service provider of the accessing system, and</li>
+                    <li>the Internet service provider of the accessing system</li>
                     <li>any other similar data and information</li>
                 </ul>
 
@@ -37,12 +38,6 @@
                 These processing operations are based on Article 6(1) lit. f GDPR for the purposes of the legitimate interests pursued by our organisation, which is to ensure the technical functionality of our website.
                 </p>
 
-                <h4>Deletion of all personal data</h4>
-
-                <p>
-                As soon as the user stops using our services, that is to say our website, all informations about them are deleted. Neither do we use any cookies, tracking tools or profiling software, nor do we store any personal information about our users e.g. in log files.
-                </p>
-
                 <h4>External hosting service</h4>
 
                 <p>
@@ -50,7 +45,27 @@
                 </p>
 
                 <p>
-                We have concluded a GDPR Data Processing Agreement with our hoster in order to ensure data proctection compliant processing. This DPA legally requires the hoster to process personal data exclusively for the purpose of meeting their performance obligations and to not store any more data than we do.
+                We have concluded a GDPR Data Processing Agreement (DPA) with our hoster in order to ensure data proctection compliant processing. This DPA legally requires the hoster to process personal data exclusively for the purpose of meeting their performance obligations and to not store any more data than we do.
+                </p>
+
+                <p>
+                We use the following hoster:<br>
+                BIOHOST - Lars-Helge Wilbrandt<br>
+                Nahrungsberg 70<br>
+                35390 Gießen<br>
+                <a href="https://www.biohost.de/" target="_blank" rel="noopener noreferrer">https://www.biohost.de/</a>
+                </p>
+
+                <h4>Deletion of all personal data</h4>
+
+                <p>
+                Our hoster stores the data mentioned above in log files. These files are deleted on the eighth day after the user visited our website. We do not use any cookies, tracking tools or profiling software.
+                </p>
+
+                <h4> Additional transparancy </h4>
+
+                <p>
+                    Our website is open source, meaning that you can find the its source code <a href="https://github.com/terra-utopia/terra-utopia-website" target="_blank" rel="noopener noreferrer">on Github</a>.
                 </p>
 
                 <h4>Contact</h4>
