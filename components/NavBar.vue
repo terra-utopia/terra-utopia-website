@@ -9,9 +9,9 @@ const entriesRaw = [  // without 'active' property
     { name: 'Structure Of The World State', to: '/abc/' },
     { name: 'Roadmap', to: '' },
     { name: 'A New Economic System', to: '' },
-    { name: 'Join', to: '' },
+    { name: 'Join', to: '/join/' },
     { name: 'FAQ', to: '' },
-    { name: 'About', to: '' },
+    { name: 'About', to: '/about/' },
 ];
 
 
