@@ -66,7 +66,7 @@ const infoboxes = [
         `),
     },
     {
-        title: "Global Mega Corporations",
+        title: "Multinational Mega Corporations",
         slogan: "",
         slides: [
             {
