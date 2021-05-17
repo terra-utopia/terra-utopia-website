@@ -84,9 +84,14 @@ export default {
             color: $c-extradark;
 
             p {
-                text-indent: 20px;
                 text-align: justify;
+                text-indent: 10px;
             }
+            
+            sup{
+                line-height: 1; // fixes unwanted white-space above lines with a <sup> tag
+            }
+
             table {
                 margin-top: 20px;
                 border-collapse: collapse; // better than default `separate`
