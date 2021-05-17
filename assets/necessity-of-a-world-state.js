@@ -34,7 +34,7 @@ const infoboxes = [
         `),
     },
     {
-        title: "Weapons Of Mass Destruction",
+        title: "War And Weapons Of Mass Destruction",
         slogan: "",
         slides: [
             {
@@ -141,10 +141,6 @@ const infoboxes = [
         slogan: "",
         slides: [
             {
-                imageSrc: "/img/critical-technology/industrial-revolution.jpg",
-                caption: "Past technological advances have brought prosperity, but also caused global crises."
-            },
-            {
                 imageSrc: "/img/critical-technology/robot.jpg",
                 caption: "Artificial intelligence is likely to overtake human intelligence in the next few decades."
             },
@@ -153,8 +149,12 @@ const infoboxes = [
                 caption: "Modern biotechnology gives us immense power over life itself."
             },
             {
+                imageSrc: "/img/critical-technology/industrial-revolution.jpg",
+                caption: "Past technological advances have always brought prosperity, but also caused global crises."
+            },
+            {
                 imageSrc: "/img/critical-technology/circuit-board.jpg",
-                caption: "We cannot continue to blindly implement every new technology."
+                caption: "We cannot continue to blindly implement every new technology.",
             }
         ],
         htmlContent: enhanceCitations(`
@@ -187,7 +187,7 @@ const infoboxes = [
             },
             {
                 imageSrc: "/img/human-rights/justice.jpg",
-                caption: "We must establish a global court where everyone can sue for them."
+                caption: "We will establish a global court where everyone can sue for them."
             }
         ],
         htmlContent: enhanceCitations(`
