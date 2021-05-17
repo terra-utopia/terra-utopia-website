@@ -35,13 +35,13 @@
                 <h4>Legal basis for the processing</h4>
 
                 <p>
-                These processing operations are based on Article 6(1) lit. f GDPR for the purposes of the legitimate interests pursued by our organisation, which is to ensure the technical functionality of our website.
+                These processing operations are based on <a href="https://gdpr-info.eu/art-6-gdpr/" target="_blank" rel="noopener noreferrer">Article 6(1) lit. f GDPR</a> for the purposes of the legitimate interests pursued by our organisation, which is to ensure the technical functionality of our website.
                 </p>
 
                 <h4>External hosting service</h4>
 
                 <p>
-                Our website is hosted by an external service provider (hoster). Our hoster has access to the information listed above in the interest of a secure, fast and efficient provision of our online service by a professional provider (Article 6(1) lit. f GDPR).
+                Our website is hosted by an external service provider (hoster). Our hoster has access to the information listed above in the interest of a secure, fast and efficient provision of our online service by a professional provider (<a href="https://gdpr-info.eu/art-6-gdpr/" target="_blank" rel="noopener noreferrer">Article 6(1) lit. f GDPR</a>).
                 </p>
 
                 <p>
@@ -116,9 +116,13 @@
                 }
             }
 
-            & ul {
+            & > ul {
                 @include d-small-text;
-                margin-left: 30px;
+                margin: { left: 30px; bottom: 10px; };
+            }
+
+            & > h4 {
+                margin-top: 20px;
             }
 
             & a{
