@@ -10,20 +10,16 @@
                 <br>
                 <p>If you want to participate, we invite you:</p>
                 <br>
-                <a href="https://discord.gg/bejkCdQeKy" target="_blank"><button>Join Us On Discord!</button></a>
+                <ActionButton><a href="https://discord.gg/bejkCdQeKy" target="_blank">Join Us On Discord!</a></ActionButton>
             </Card>
         </div>
     </main>
 </template>
 
-<script>
-export default {
-    
-}
-</script>
 
 <style lang="scss" scoped>
 @import '~/assets/shared-styles.scss';
+
 .JoinPage{
     .centered-body-column {
         width: 95%;
@@ -34,21 +30,6 @@ export default {
             margin-bottom: 32px;
 
             span.highlighted { @include semi-bold-italic; }
-
-            button {
-                @include d-large-text;
-                font-weight: 500;
-                font-style: italic;
-                color: #fff;
-                background-color: $c-extradark;
-                padding: 6px 12px;
-                cursor: pointer;
-                box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4), 0 4px 50px rgba(0,0,0, 0.25);
-                
-                &:hover{
-                    opacity: .9;
-                }
-            }
         }
     }
 }
