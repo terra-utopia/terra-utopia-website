@@ -23,37 +23,31 @@ export default {
 
 button.ActionButton {
     @include d-large-text;
-
     @include bold;
     letter-spacing: 0.05em;
-    box-shadow: 0px 2px 4px rgba(black, 0.40);
+    padding: 6px 16px;
 
-    $padding-v: 6px;
-    $padding-h: 16px;
-
-    &:not(.inverted), &.inverted:hover {
+    &:not(.inverted):not(:hover), &.inverted:hover {
         color: $c-extralight;
         text-shadow: 0 2px 4px rgba(black, 0.40);  // overwrites `text-shadow` from mixin `d-large-text`
         background: $c-dark;
-        padding: {
-            top: $padding-v;
-            bottom: $padding-v;
-            left: $padding-h;
-            right: $padding-h;
-        };
+        box-shadow: 0px 2px 4px rgba(black, 0.40);
     }
-    &:not(.inverted):hover, &.inverted {
+    &:not(.inverted):hover, &.inverted:not(:hover) {
         color: $c-dark;
         text-shadow: 0 2px 4px rgba(black, 0.25);  // overwrites `text-shadow` from mixin `d-large-text`
-        background: transparent;
-        $border-width: 2px;
-        border: $border-width solid $c-dark;
-        padding: {
-            top: $padding-v - $border-width;
-            bottom: $padding-v - $border-width;
-            left: $padding-h - $border-width;
-            right: $padding-h - $border-width;
-        };
+        position: relative; // for `absolute` position child `::after`
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            border: 2px solid $c-dark;
+            filter: drop-shadow(0 1.2px 2px rgba(black, 0.30));
+        }
     }
     &:hover {
         cursor: pointer;
