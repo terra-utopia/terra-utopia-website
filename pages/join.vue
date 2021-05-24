@@ -32,18 +32,10 @@ export default {
 
         .Card {
             margin-bottom: 32px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4), 0 4px 50px rgba(0,0,0, 0.25);
-            text-align: center;
 
-            & > p {  // prevents that any children '<p>' elements are selected
-                @include d-large-text;
+            span.highlighted { @include semi-bold-italic; }
 
-                .highlighted {
-                    @include semi-bold-italic;
-                }
-            }
-
-            & button{
+            button {
                 @include d-large-text;
                 font-weight: 500;
                 font-style: italic;

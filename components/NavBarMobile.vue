@@ -68,7 +68,6 @@ export default {
         display: flex;
         flex-flow: row;
         align-items: center;
-        overflow: visible;  // necessary to make the containers height match the height of its content (?? XXX)
         margin: { top: 8px; bottom: 40px; left: 40px; right: 40px; };
         @media (max-width: 700px) { margin: { left: 12px; right: 12px; }; }
         @media (max-width: 650px) { margin-bottom: 30px; }
@@ -88,11 +87,8 @@ export default {
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
             }
 
-            transform: scale(1);
             transition: transform 0.3s;
-            &:hover {   
-                transform: scale(1.05);
-            }
+            &:hover { transform: scale(1.05); }
         }
         
         .nav-header {
@@ -113,7 +109,7 @@ export default {
             align-items: center;
 
             .nav-header-text{
-                margin: 5px 12px 5px 8px;
+                margin: 5px 12px 5px 12px;
             }
 
             img.nav-menu-icon {
@@ -122,10 +118,13 @@ export default {
 
             &:hover{
                 cursor: pointer;
+                background: $nav-white-bg-highlighted;
             }
 
         }
     }
+
+    $opening-transition-duration: 0.65s;  // variable, because identical value is used twice
 
     .blocking-pane {
         position: fixed;
@@ -136,7 +135,7 @@ export default {
         height: calc(100% + 100px);  // to fix mobile browser problems with collapsible navigation header (dynamic height)
         background: rgba(0, 0, 0, 0.65);
 
-        transition: opacity 0.5s linear;
+        transition: opacity $opening-transition-duration linear;
         &.collapsed {
             opacity: 0;
             pointer-events: none;  // make the object not only invisble but also permeable for pointer interactions
@@ -167,7 +166,7 @@ export default {
         flex-flow: column;
         align-items: flex-end;
 
-        transition: transform 1s ease-in-out;
+        transition: transform $opening-transition-duration ease-in-out;
         &.collapsed {
             transform: translateY(calc(-100% - 40px));
         }
@@ -204,7 +203,7 @@ export default {
                     color: $c-extralight;
                     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
                     &:hover {
-                        background: $nav-white-bg;  // on top of parent element's background (same color)
+                        background: $nav-white-bg;  // on top of parent element's background (same transparent color twice lets it look even more white/highlighted)
                     }
                 }
                 &.disabled {

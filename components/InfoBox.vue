@@ -50,8 +50,9 @@ export default {
 .InfoBox {
     border: 1px solid $c-extradark;
     background: rgba($c-extradark, 0.05);
-    padding: 16px;
-    @media (min-width: 600px) { padding: 24px; };
+    padding: 24px;
+    @media (max-width: 600px) { padding: 16px; };
+    @media (max-width: 400px) { padding: 12px; };
 
     &:hover {
         background: rgba($c-extradark, 0.08);  // little bit darker

@@ -103,35 +103,20 @@
 
         .Card {
             margin-bottom: 32px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4), 0 4px 50px rgba(0,0,0, 0.25);
             text-align: left;
-            
-
-            & > p {  // prevents that any children '<p>' elements are selected
+            & > p {
                 @include d-small-text;
                 margin: 10px 0;
-
-                .highlighted {
-                    @include semi-bold-italic;
-                }
             }
-
             & > ul {
                 @include d-small-text;
                 margin: { left: 30px; bottom: 10px; };
             }
-
             & > h4 {
                 margin-top: 20px;
             }
-
-            & a{
-                text-decoration: underline;
-                
-                &:hover{
-                    opacity: .8;
-                }
-            }
+            span.highlighted { @include semi-bold-italic; }
+            a { @include default-text-link; }
         }
     }
 }

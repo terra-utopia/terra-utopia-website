@@ -1,6 +1,6 @@
 <template>
     <article class="Card">
-        <h1 v-if="heading" :class="{ 'super-heading': isSuperHeading }">
+        <h1 v-if="heading" :class="{ 'card-super-heading': isSuperHeading }">
             <span v-for="(wordOrSpace, i) in heading.split(/(?= )|(?<= )/)" :key="i">{{ wordOrSpace }}</span>
         </h1>
         <slot></slot>
@@ -26,44 +26,36 @@ export default {
 @import '../assets/shared-styles.scss';
 
 .Card {
-    // width; determined by parent
+    // width: 100%; is default (adjusts to parent)
     text-align: center;
     background: #FAFBFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4), 0 4px 50px rgba(0,0,0, 0.25);
     padding: 40px 60px;
     @media (max-width: 650px) { padding: 30px 20px; }
     @media (max-width: 500px) { padding: 25px 20px; }
-    @media (max-width: 380px) { padding: 25px 14px; }
-    @include d-large-text;  // can be overwritten for Card content
+    @media (max-width: 380px) { padding: 25px 10px; }
+    @include d-large-text;  // can be overwritten from outside this component ;), it's just the default
     
     h1 {
-        margin-bottom: 24px;
-        @media (max-width: 650px) { margin-bottom: 16px; }
+        margin-bottom: 32px;
+        @media (max-width: 650px) { margin-bottom: 28px; }
         font-weight: 500; // medium
 
-        &:not(.super-heading) {
+        &:not(.card-super-heading) {
             @include d-heading;
         }
-        &.super-heading {
+        &.card-super-heading {
             @include d-super-heading;
-            width: fit-content;
-            margin: { left: auto; right: auto; };
             text-transform: uppercase;
-
-            span {
-                position: relative;  // for absolute positioned '::after'
-                
-                &::after {
-                    content: "";
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    top: 0;
-                    left: 0;
-                    border-bottom: 2px solid #303B5E;
-                    transform: translateY(-13%);
-                }
-            }
         }
+
+        // scale on hover
+        transition: transform 0.3s;
+        &:hover { transform: scale(1.03); }
     }
+
+    // intensify box-shadow on hover
+    transition: box-shadow 0.3s;
+    &:hover { box-shadow: 0px 4px 20px rgb(0 0 0 / 60%), 0 4px 50px rgb(0 0 0 / 60%); }
 }
 </style>

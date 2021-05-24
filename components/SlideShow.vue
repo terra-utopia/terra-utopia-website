@@ -9,7 +9,7 @@
             </FixedAspectRatio>
             <div class="bottom-shadow"></div>
             <p class="caption">
-                <span>{{ slide.caption }}</span>
+                <span>{{ slide.caption }}</span> <!-- exists to make dynamic fit-content width and `max-width` possible despite `position:absolute` possible -->
             </p>
         </div>
         <button
@@ -106,15 +106,15 @@ export default {
             transform: translateX(-50%);
             text-align: center;
 
-            span {
+            span {  // exists to make dynamic fit-content width and `max-width` possible despite `position:absolute` possible
                 display: inline-block; // for 'max-width' to work
                 max-width: 80%;
                 padding: 4px 8px;
                 background: rgba(255, 255, 255, 0.1);
                 color: white;
                 font-size: 16px;
-                @media(max-width: 600px){font-size:12px}
-                @media(max-width: 480px){font-size:8px}
+                @media(max-width: 600px){ font-size: 12px; }
+                @media(max-width: 480px){ font-size: 8px; }
             }
         }
     }

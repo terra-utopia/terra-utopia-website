@@ -30,15 +30,14 @@ export default {};
     border-radius: 0;  // for <button>
     outline: none;  // for <button>, <input>
     background: none;  // for <button>
-    text-decoration: none; // for <a>
+    text-decoration: none; // for things like <a> (and potentially more, i don't know)
+    color: inherit;  // instead of the browser's default color  // important for <a> tags
+    font: inherit;   // instead of the browser's default font (incl. font-size and font-family)  // important for <button> tags
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-h1 {
+h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
-}
-a {
-    color: inherit;
 }
 
 

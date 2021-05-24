@@ -33,7 +33,7 @@ export default {
 
 <style lang="scss" scoped>
 .Bookshelf {
-    padding: 32px 0;
+    padding: { top: 12px; bottom: 32px; };
 
     display: flex;
     flex-flow: column;

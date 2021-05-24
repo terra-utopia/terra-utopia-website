@@ -11,16 +11,16 @@ $c-special2: #3C8C9D;
 $nav-border-r: 4px;
 $nav-white-border: 1px solid rgba(#fff, 0.65);
 $nav-white-bg: rgba(#fff, 0.15);
+$nav-white-bg-highlighted: rgba(#fff, calc(0.20));
 
 
 // === FONT SIZE CLASSES ===
 
 @mixin d-large-text {  // eg. used for default card content
     font-size: 24px;
+    @media (max-width: 480px) { font-size: 22px; }
+    @media (max-width: 350px) { font-size: 20px; }
     text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
-    @media (max-width: 480px) {
-        font-size: 22px;
-    }
 }
 
 @mixin d-small-text {  // eg. used for infobox text content
@@ -29,31 +29,52 @@ $nav-white-bg: rgba(#fff, 0.15);
     text-shadow: 0 1px 2px rgba(black, 0.25);
 }
 
-@mixin d-super-heading {
+
+
+$heading-text-shadow: 0 0.3vw 0.6vw rgba(black, 0.30), 0 0.9vw 1.8vw rgba(black, 0.15);     // variables, because identical value is used multiple times in the css below
+$max-heading-text-shadow: 0 2px 4px rgba(black, 0.30), 0 6px 12px rgba(black, 0.15);        //
+
+@mixin d-super-heading {  // intended for <h1> elements with <span> children for every word and every space  // used in `Card` component
     font-size: 10vw;
-    text-shadow: 0 0.45vw 0.9vw rgba(black, 0.25);
+    text-shadow: $heading-text-shadow;
+
+    span {
+        position: relative;  // for absolute positioned '::after'
+        
+        &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 0;
+            top: 87%;
+            left: 0;
+            border-bottom: 2px solid #303B5E;
+            box-shadow: $heading-text-shadow;
+        }
+    }
 
     // max-font-size: 70px;
     @media (min-width: 700px) { font-size: 70px; }
-    @media (min-width: 700px) { text-shadow: 0 3px 6px rgba(black, 0.25); }
-
+    @media (min-width: 700px) {
+        text-shadow: $max-heading-text-shadow;
+        span::after { text-shadow: $max-heading-text-shadow; }
+    }
 }
 
-@mixin d-heading {
+@mixin d-heading {  // intended for <h1> elements  // used in `Card` component
     font-size: 8vw;
-    text-shadow: 0 0.3vw 0.6vw rgba(black, 0.25);
-    line-height: 110%;
+    text-shadow: $heading-text-shadow;
+    line-height: 110%;  // looks better for multiline headings
 
     // same font-size as d-super-heading for really small screens
     @media (max-width: 380px) {
         font-size: 10vw;
-        // text-shadow:;
     }
     
     // max-font-size: 50px;
     @media (min-width: calc(50px / 0.08/*vw font-size*/)) {
         font-size: 50px;
-        text-shadow: 0 2px 4px rgba(black, 0.25);
+        text-shadow: $max-heading-text-shadow;
     }
 }
 
@@ -86,4 +107,13 @@ $nav-white-bg: rgba(#fff, 0.15);
     font-style: normal;
 }
 
+
+
+
+// special css mixins
+
+@mixin default-text-link {
+    text-decoration: underline;
+    &:hover { opacity: 0.85; }
+}
 
