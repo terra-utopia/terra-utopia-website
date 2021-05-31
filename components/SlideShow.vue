@@ -91,6 +91,7 @@ export default {
             left: 0;
             width: 100%;
             height: 25%;
+            @media (max-width: 420px) { height: 42%; }
             background: linear-gradient(
                 to top,
                 rgba(0, 0, 0, 0.6) 0%,
@@ -114,7 +115,6 @@ export default {
                 color: white;
                 font-size: 16px;
                 @media(max-width: 600px){ font-size: 12px; }
-                @media(max-width: 480px){ font-size: 8px; }
             }
         }
     }
