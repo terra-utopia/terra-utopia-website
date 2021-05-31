@@ -40,7 +40,7 @@ export default {
     },
     head() {  // metadata for the html '<head></head>' element
         return {
-            title: "Terra Utopia - Home - The Necessity For A New Economic System",
+            // title: "Terra Utopia - Home - Necessity Of A World State",
         };
     },
 };
