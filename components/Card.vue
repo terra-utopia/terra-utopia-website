@@ -48,10 +48,6 @@ export default {
             @include d-super-heading;
             text-transform: uppercase;
         }
-
-        // scale on hover
-        transition: transform 0.3s;
-        &:hover { transform: scale(1.03); }
     }
 
     // intensify box-shadow on hover
