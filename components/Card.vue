@@ -56,6 +56,6 @@ export default {
 
     // intensify box-shadow on hover
     transition: box-shadow 0.3s;
-    &:hover { box-shadow: 0px 4px 20px rgb(0 0 0 / 60%), 0 4px 50px rgb(0 0 0 / 60%); }
+    &:hover { box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6), 0px 4px 50px rgba(0, 0, 0, 0.6); }
 }
 </style>
