@@ -6,7 +6,7 @@
             :isSuperHeading="false"
             class="roadmap-card"
             >
-            <img class="roadmap-svg" :src="'/assets/roadmap.js'"> <!--XXX-->
+            <img class="roadmap-svg"  :src="text.svg">
             <div v-html="text.htmlContent" />
             </Card>
         </CenteredBodyColumn>
@@ -30,8 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .roadmap-svg{
-    width: 100px;
-    height: 100px;
+    width: 70%;
 }
 
 </style>
