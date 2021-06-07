@@ -1,24 +1,57 @@
 <template>
-<div>
-<h2 id="m65">Haftungs- und Schutzrechtshinweise</h2><p><strong>Haftungsausschluss</strong>: Die Inhalte dieses Onlineangebotes wurden sorgfältig und nach unserem aktuellen Kenntnisstand erstellt, dienen jedoch nur der Information und entfalten keine rechtlich bindende Wirkung, sofern es sich nicht um gesetzlich verpflichtende Informationen (z.B. das Impressum, die Datenschutzerklärung, AGB oder verpflichtende Belehrungen von Verbrauchern) handelt. Wir behalten uns vor, die Inhalte vollständig oder teilweise zu ändern oder zu löschen, soweit vertragliche Verpflichtungen unberührt bleiben. Alle Angebote sind freibleibend und unverbindlich. </p>
+    <main class="DisclaimerPage">
+        <CenteredBodyColumn>
+            <Card :heading="'Disclaimer'" :isSuperHeading="false">
+                <!-- text losely based on the disclaimer generator at https://datenschutz-generator.de (German) -->
 
-<p><strong>Links auf fremde Webseiten</strong>: Inhalte fremder Webseiten, auf die wir direkt oder indirekt verweisen, liegen außerhalb unseres Verantwortungsbereiches und machen wir uns nicht zu Eigen. Für alle Inhalte und insbesondere für Schäden, die aus der Nutzung der in den verlinkten Webseiten aufrufbaren Informationen entstehen, haftet allein der Anbieter der verlinkten Webseiten.</p>
+                <h4>General exclusion of liability</h4>
+                <p>
+                    All content on this website has has been created in good faith, in according to our current state of knowledge, and is intended for general information purposes only. We do not make any warranties about the completeness, reliability or accuracy of this information, and any action you take upon it is strictly at your own risk. The information on this website comes without any legally binding effect, except for the legally mandatory information, like the <NuxtLink to="/privacy-policy/">privacy policy</NuxtLink><!-- renders to an <a> tag -->.
+                    We reserve the right to modify or delete the contents in whole or in part.
+                </p>
 
-<p><strong>Urheberrechte und Markenrechte</strong>: Alle auf dieser Website dargestellten Inhalte, wie Texte, Fotografien, Grafiken, Marken und Warenzeichen sind durch die jeweiligen Schutzrechte (Urheberrechte, Markenrechte) geschützt. Die Verwendung, Vervielfältigung usw. unterliegen unseren Rechten oder den Rechten der jeweiligen Urheber bzw. Rechteverwalter.</p>
+                <h4>Links to external websites</h4>
+                <p>
+                    Contents of third-party websites to which we refer through the hyperlinks present on our website are outside our scope of responsibility. The provider of the linked websites is solely liable for all contents and for damages arising from the use of the information available on the linked websites. The links on our website to other websites do not imply a recommendation for all the content present on these sites. Site owners and content can change without notice at any time, which may occur before we have the opportunity to remove a link.
+                </p>
 
-<p><strong>Hinweise auf Rechtsverstöße</strong>: Sollten Sie innerhalb unseres Internetauftritts Rechtsverstöße bemerken, bitten wir Sie uns auf diese hinzuweisen. Wir werden rechtswidrige Inhalte und Links nach Kenntnisnahme unverzüglich entfernen.</p>
+                <h4>Copyrights and trademark rights</h4>
+                <p>
+                    All contents presented on this website, such as texts, photographs, graphics and trademarks, are protected by the respective intellectual property rights (copyright, trademark rights). The use, reproduction, etc. are subject to our rights or to the rights of the respective right holder.
+                </p>
 
-<p class="seal"><a href="https://datenschutz-generator.de/?l=de" title="Rechtstext von Dr. Schwenke - für weitere Informationen bitte anklicken." target="_blank" rel="noopener noreferrer nofollow">Erstellt mit kostenlosem Datenschutz-Generator.de von Dr. Thomas Schwenke</a></p>
+                <h4>Indications of infringements</h4>
+                <p>
+                    If you notice any violations of the law within our website, we ask you to notify us. We will remove illegal content and links immediately after notice.
+                </p>
 
-</div>
+            </Card>
+        </CenteredBodyColumn>
+    </main>
 </template>
 
-<script>
-export default {
-    
-}
-</script>
+
 
 <style lang="scss" scoped>
+@import '~/assets/shared-styles.scss';
 
+.DisclaimerPage {
+    .CenteredBodyColumn {
+        .Card {
+            text-align: left;
+
+            & > p {
+                @include d-small-text;
+            }
+            & > p {
+                margin: 10px 0;
+            }
+            & > h4 {
+                margin-top: 20px;
+            }
+            // span.highlighted { @include semi-bold-italic; }
+            a { @include default-text-link; }
+        }
+    }
+}
 </style>

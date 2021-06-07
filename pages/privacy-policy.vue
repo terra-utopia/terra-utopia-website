@@ -2,14 +2,13 @@
     <main class="PrivacyPolicyPage">
         <CenteredBodyColumn>
             <Card :heading="'Privacy Policy'" :isSuperHeading="false">
-                <h4>Introduction</h4>
                 
+                <h4>Introduction</h4>
                 <p>
                     This privacy policy page is intended to make it transparent to the user how we handle their personal data. It explains in detail which personal data we process and store.
                 </p>
 
-                <h4>Informal Abstract</h4>
-
+                <h4>Informal abstract</h4>
                 <p>
                     We only collect the data necessary to ensure the primary functions of our website. We delete any user data as soon as our hoster allows it.
                     <br>
@@ -17,7 +16,6 @@
                 </p>
 
                 <h4>Processing of personal data</h4>
-
                 <p>
                     The way the internet works necessitates that our website processes a series of data and information when a user or automated system calls up the website in order to be able to deliver the content. This information includes:
                 </p>
@@ -95,24 +93,25 @@
 
 <style lang="scss" scoped>
 @import '~/assets/shared-styles.scss';
-.PrivacyPolicyPage{
-    .CenteredBodyColumn {
 
+.PrivacyPolicyPage {
+    .CenteredBodyColumn {
         .Card {
-            margin-bottom: 32px;
             text-align: left;
-            & > p {
+
+            & > p, & > ul {
                 @include d-small-text;
+            }
+            & > p {
                 margin: 10px 0;
             }
             & > ul {
-                @include d-small-text;
                 margin: { left: 30px; bottom: 10px; };
             }
             & > h4 {
                 margin-top: 20px;
             }
-            span.highlighted { @include semi-bold-italic; }
+            // span.highlighted { @include semi-bold-italic; }
             a { @include default-text-link; }
         }
     }
