@@ -1,6 +1,6 @@
 <template>
     <main class="JoinPage">
-        <div class="centered-body-column">
+        <CenteredBodyColumn>
             <Card :heading="'Join The Movement'" :isSuperHeading="false">
                 <p>Terra Utopia is aiming to become a global movement!</p>
                 <br>
@@ -12,7 +12,7 @@
                 <br>
                 <a href="https://discord.gg/bejkCdQeKy" target="_blank"><ActionButton>Join Us On Discord!</ActionButton></a>
             </Card>
-        </div>
+        </CenteredBodyColumn>
     </main>
 </template>
 
@@ -21,11 +21,7 @@
 @import '~/assets/shared-styles.scss';
 
 .JoinPage{
-    .centered-body-column {
-        width: 95%;
-        max-width: 960px;
-        margin: 0 auto;
-
+    .CenteredBodyColumn {
         .Card {
             margin-bottom: 32px;
 

@@ -1,6 +1,6 @@
 <template>
     <main class="StructureOfTerra">
-        <div class="centered-body-column">
+        <CenteredBodyColumn>
             <Card v-for="(text, i) in $options._staticData.texts" :key="i"
             :heading="text.title"
             :isSuperHeading="false"
@@ -9,7 +9,7 @@
             <img class="roadmap-svg" :src="'/assets/roadmap.js'"> <!--XXX-->
             <div v-html="text.htmlContent" />
             </Card>
-        </div>
+        </CenteredBodyColumn>
     </main>
 </template>
 
@@ -28,7 +28,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .roadmap-svg{
     width: 100px;
     height: 100px;

@@ -1,6 +1,6 @@
 <template>
     <main class="AboutPage">
-        <div class="centered-body-column">
+        <CenteredBodyColumn>
             <Card :heading="'About Terra Utopia'" :isSuperHeading="false">
                 <p>Terra Utopia is the movement for a federal, democratic world state.</p>
                 <br>
@@ -17,24 +17,20 @@
                 <p>Feel free to contact us via e-mail:</p>
                 <p><a href="mailto:contact@terra-utopia.world">contact@terra-utopia.world</a></p>
             </Card>
-        </div>
+        </CenteredBodyColumn>
     </main>
 </template>
 
 <script>
 export default {
-    
+
 }
 </script>
 
 <style lang="scss" scoped>
 @import '~/assets/shared-styles.scss';
 .AboutPage{
-    .centered-body-column {
-        width: 95%;
-        max-width: 960px;
-        margin: 0 auto;
-
+    .CenteredBodyColumn {
         .Card {
             margin-bottom: 32px;
 

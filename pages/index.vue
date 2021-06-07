@@ -1,6 +1,6 @@
 <template>
     <main class="IndexPage">
-        <div class="centered-body-column">
+        <CenteredBodyColumn>
             <Card :heading="'Terra Utopia'" :isSuperHeading="true">
                 <p>We are <span class="highlighted">Terra Utopia</span> - the movement for a <span class="highlighted">world state.</span></p>
                 <p>Humanity faces multiple existential crises!</p>
@@ -26,7 +26,7 @@
                     :htmlContent="infobox.htmlContent"
                 />
             </Card>
-        </div>
+        </CenteredBodyColumn>
     </main>
 </template>
 
@@ -51,11 +51,7 @@ export default {
 @import '~/assets/shared-styles.scss';
 
 .IndexPage {
-    .centered-body-column {
-        width: 95%;
-        max-width: 960px;
-        margin: 0 auto;
-
+    .CenteredBodyColumn {
         .Card {
             margin-bottom: 32px;
 

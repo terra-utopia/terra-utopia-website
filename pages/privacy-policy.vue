@@ -1,6 +1,6 @@
 <template>
     <main class="PrivacyPolicyPage">
-        <div class="centered-body-column">
+        <CenteredBodyColumn>
             <Card :heading="'Privacy Policy'" :isSuperHeading="false">
                 <h4>Introduction</h4>
                 
@@ -87,7 +87,7 @@
                     When using these general data and information, the Terra Utopia does not draw any conclusions about the data subject. Rather, this information is needed to (1) deliver the content of our website correctly, (2) optimize the content of our website as well as its advertisement, (3) ensure the long-term viability of our information technology systems and website technology, and (4) provide law enforcement authorities with the information necessary for criminal prosecution in case of a cyber-attack. Therefore, the Terra Utopia analyzes anonymously collected data and information statistically, with the aim of increasing the data protection and data security of our enterprise, and to ensure an optimal level of protection for the personal data we process. The anonymous data of the server log files are stored separately from all personal data provided by a data subject.
                 -->
             </Card>
-        </div>
+        </CenteredBodyColumn>
     </main>
 </template>
 
@@ -96,10 +96,7 @@
 <style lang="scss" scoped>
 @import '~/assets/shared-styles.scss';
 .PrivacyPolicyPage{
-    .centered-body-column {
-        width: 95%;
-        max-width: 960px;
-        margin: 0 auto;
+    .CenteredBodyColumn {
 
         .Card {
             margin-bottom: 32px;
