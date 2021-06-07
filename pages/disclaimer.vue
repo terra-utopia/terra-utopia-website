@@ -6,13 +6,13 @@
 
                 <h4>General exclusion of liability</h4>
                 <p>
-                    All content on this website has has been created in good faith, in according to our current state of knowledge, and is intended for general information purposes only. We do not make any warranties about the completeness, reliability or accuracy of this information, and any action you take upon it is strictly at your own risk. The information on this website comes without any legally binding effect, except for the legally mandatory information, like the <NuxtLink to="/privacy-policy/">privacy policy</NuxtLink><!-- renders to an <a> tag -->.
+                    All content on this website has been created in good faith, in according to our current state of knowledge, and is intended for general information purposes only. We do not make any warranties about the completeness, reliability or accuracy of this information, and any action you take upon it is strictly at your own risk. The information on this website comes without any legally binding effect, except for the legally mandatory information, like the <NuxtLink to="/privacy-policy/">privacy policy</NuxtLink><!-- renders to an <a> tag -->.
                     We reserve the right to modify or delete the contents in whole or in part.
                 </p>
 
                 <h4>Links to external websites</h4>
                 <p>
-                    Contents of third-party websites to which we refer through the hyperlinks present on our website are outside our scope of responsibility. The provider of the linked websites is solely liable for all contents and for damages arising from the use of the information available on the linked websites. The links on our website to other websites do not imply a recommendation for all the content present on these sites. Site owners and content can change without notice at any time, which may occur before we have the opportunity to remove a link.
+                    Contents of third-party websites to which we refer through the hyperlinks present on our website are outside of our scope of responsibility. The provider of the linked websites is solely liable for all contents and for damages arising from the use of the information available on the linked websites. The links on our website to other websites do not imply a recommendation for all the content present on these sites. Site owners and content can change without notice at any time, which may occur before we have the opportunity to remove a link.
                 </p>
 
                 <h4>Copyrights and trademark rights</h4>
