@@ -1,13 +1,17 @@
 <template>
     <main class="StructureOfTerra">
         <CenteredBodyColumn>
-            <Card v-for="(text, i) in $options._staticData.texts" :key="i"
-            :heading="text.title"
+            <Card
+            :heading="'Roadmap For The Creation Of Terra'"
             :isSuperHeading="false"
-            class="roadmap-card"
+            class="main-card"
             >
-            <img class="roadmap-svg"  :src="text.svg">
-            <div v-html="text.htmlContent" />
+                <div class="flex-wrapper">
+                    <RoadmapSideBar class="roadmap-sidebar" />
+                    <div class="roadmap-texts">
+                        Keks
+                    </div>
+                </div>
             </Card>
         </CenteredBodyColumn>
     </main>
@@ -20,15 +24,26 @@ export default {
     _staticData: {  // this custom property is not reactivley bound by Vue (in contrast to the 'data' property)
         texts,
     },
-    head() {  // metadata for the html '<head></head>' element
-        return {
-            // title: "Terra Utopia - Home - Necessity Of A World State",
-        };
-    },
 };
 </script>
 
 <style lang="scss" scoped>
+.StructureOfTerra{
+
+    .CenteredBodyColumn{
+
+        .main-card{
+            
+            .flex-wrapper{
+                display: flex;
+
+                .roadmap-sidebar{
+
+                }
+            }
+        }
+    }
+}
 .roadmap-svg{
     width: 70%;
 }
