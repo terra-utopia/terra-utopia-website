@@ -14,7 +14,7 @@ const texts = [
     {
         title: "Networking",
         svg: "/_nuxt/assets/roadmapSVG/networking.svg",
-        htmlContent: ``
+        htmlContent: `<p>The goal of this phase is forging a global network of activists that actively support the goal of creating a global, federal democracy. This makes it possible to consider a multitude of different opinions on the strategy of the movement and to incorporate different ideas and visions from all around the planet. We will also try to gain support from related projects, activist networks and experts worldwide.</p>`
     },
     {
         title: "Campaign",

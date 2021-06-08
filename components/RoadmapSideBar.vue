@@ -46,7 +46,6 @@ export default {
         margin: 5px;
         max-width: 80px;
         width: auto;
-        transition: transform .2s ease-in-out;
     }
 
     .roadmap-separator{
