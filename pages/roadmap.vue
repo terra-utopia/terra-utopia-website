@@ -13,8 +13,12 @@
                         <div
                         v-for="(text,i) in $options._staticData.texts"
                         :key="i"
-                        class="roadmap-text"
+                        :class="'roadmap-text '+(text.title.replace(/ /g,''))"
+                        data-aos="fade-up"
+                        data-aos-offset="200"
+                        data-aos-duration="1000"
                         >
+                            <h2>{{text.title}}</h2>
                             <section v-html="text.htmlContent" />
                         </div>
                     </div>
@@ -35,11 +39,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~/assets/shared-styles.scss";
+
 .StructureOfTerra{
 
     .CenteredBodyColumn{
 
         .main-card{
+
+            .introduction{
+                margin-bottom:20px;
+            }
             
             .flex-wrapper{
                 display: flex;
@@ -48,6 +58,21 @@ export default {
                     position: -webkit-sticky; /* Safari */
                     position: sticky;
                     top: 10vh;
+                }
+
+                .roadmap-main {
+
+                    .roadmap-text{
+                        padding: 10px { left: 30px; bottom: 30px };
+
+                        h2{
+                            font-size: 30px;
+                        }
+
+                        section{
+                            text-align: justify;
+                        }
+                    }
                 }
             }
         }
