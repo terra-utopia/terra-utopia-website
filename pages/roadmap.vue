@@ -71,6 +71,7 @@ export default {
 
                         section{
                             text-align: justify;
+                            font-size: 20px;
                         }
                     }
                 }
