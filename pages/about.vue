@@ -2,7 +2,7 @@
     <main class="AboutPage">
         <CenteredBodyColumn>
             <Card :heading="'About Terra Utopia'" :isSuperHeading="false">
-                <p>Terra Utopia is the movement for a federal, democratic world state.</p>
+                <p>Terra Utopia is the movement for a global, federal democracy - "Terra".</p>
                 <br>
                 <p>Our objective is to create a global society that will rise to the challenges of the 21st century.</p>
                 <br>
