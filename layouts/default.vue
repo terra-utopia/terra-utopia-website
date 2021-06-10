@@ -45,6 +45,7 @@ h1, h2, h3, h4, h5, h6 {
 
 html {
     overflow-y: scroll; // to prevent flashing scrollbar on page navigations
+    scroll-behavior: smooth;
 
     font-family: Jost, sans-serif;
     font-size: 20px; // used for 'rem' units
