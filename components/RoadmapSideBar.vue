@@ -1,12 +1,18 @@
 <template>
     <div class="roadmap-sidebar">
         <template v-for="(text, i) in $options._staticData.texts">
-            <img
-                class="roadmap-svg"
-                :class="{active : (activeElement-1==i)}"
+            <a 
+                :href="'#'+text.title.replace(/ /g,'')"
+                class="roadmap-link"
                 :key="i"
-                :src="text.svg"
             >
+                <img
+                    class="roadmap-svg"
+                    :class="{active : (activeElement-1==i)}"
+                    :src="text.svg"
+                >
+            </a>
+            
             <img
                 v-if="i < $options._staticData.texts.length-1" :key="i+0.5"
                 class="roadmap-separator"
@@ -36,11 +42,10 @@ export default {
     },
     methods: {
         updateActiveElement() {
-            console.log("Hello World");
             let elements = document.getElementsByClassName("roadmap-text");
             let counter = 0;
             for(const element of elements){
-                if (element.getBoundingClientRect().top<window.innerHeight*(0.75)) {
+                if (element.getBoundingClientRect().top<window.innerHeight*(0.5)) {
                     counter++;
                 }
             }

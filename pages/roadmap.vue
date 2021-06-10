@@ -13,13 +13,16 @@
                         <div
                         v-for="(text,i) in $options._staticData.texts"
                         :key="i"
-                        :class="'roadmap-text '+(text.title.replace(/ /g,''))"
+                        class="roadmap-text"
+                        
+                        comment='
                         data-aos="fade-up"
                         data-aos-offset="200"
-                        data-aos-duration="1000"
+                        data-aos-duration="1000"'
                         >
                             <h2>{{text.title}}</h2>
                             <section v-html="text.htmlContent" />
+                            <div class="scroll-anchor" :id="(text.title.replace(/ /g,''))"></div>
                         </div>
                     </div>
                 </div>
@@ -64,6 +67,7 @@ export default {
 
                     .roadmap-text{
                         padding: 10px { left: 30px; bottom: 30px };
+                        position: relative;
 
                         h2{
                             font-size: 30px;
@@ -72,6 +76,11 @@ export default {
                         section{
                             text-align: justify;
                             font-size: 20px;
+                        }
+
+                        .scroll-anchor{
+                            position: absolute;
+                            top: -30vh;
                         }
                     }
                 }
