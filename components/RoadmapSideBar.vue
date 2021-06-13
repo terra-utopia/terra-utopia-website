@@ -16,7 +16,7 @@
             <img
                 v-if="i < $options._staticData.texts.length-1" :key="i+0.5"
                 class="roadmap-separator"
-                src="~assets/roadmapSVG/separator-vertical.svg"
+                src="~assets/roadmap-separator-vertical.svg"
             >
         </template>
     </div>
@@ -24,12 +24,6 @@
 
 <script>
 import texts from "~/assets/roadmap.js";
-import research from "~/assets/roadmapSVG/research.svg";
-import concept from "~/assets/roadmapSVG/concept.svg";
-import networking from "~/assets/roadmapSVG/networking.svg";
-import campaign from "~/assets/roadmapSVG/campaign.svg";
-import globalAssembly from "~/assets/roadmapSVG/global-assembly.svg";
-import referendum from "~/assets/roadmapSVG/referendum.svg";
 
 export default {
     _staticData: {  // this custom property is not reactivley bound by Vue (in contrast to the 'data' property)
