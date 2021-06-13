@@ -11,8 +11,16 @@
                 Let us unite in the struggle for a better world!
                 <br>
                 Let us forge a <span class="highlighted">global democracy!</span></p>
+                <div class="flex-wrapper">
+                    <div>
+                        <img src="~assets/bookshelf-jump-down-icon.svg">
+                        <a href="#common-ground"><ActionButton>Read More!</ActionButton></a>
+                        <img src="~assets/bookshelf-jump-down-icon.svg">
+                    </div>
+                    <a href="/join/"><ActionButton>Join!</ActionButton></a>
+                </div>
             </Card>
-            <Card :heading="'The Common Ground'" :isSuperHeading="false">
+            <Card :heading="'The Common Ground'" :isSuperHeading="false" id="common-ground">
                 <p><span class="highlighted">Every human being</span> should have the right and the possibility to pursue a self-determined life far from physical and psychological violence. Furthermore, it must be possible for everyone to claim their human rights.</p>
                 <p>This is the minimal consensus that hopefully all humans can agree upon. However, in our modern world, there are <span class="highlighted">numerous threats</span> to this common ground. Some of the most alarming ones are discussed here.</p>
             </Card>
@@ -54,6 +62,19 @@ export default {
     .CenteredBodyColumn {
         .Card {
             margin-bottom: 32px;
+
+            .flex-wrapper{
+                margin-top: 20px;
+
+                @media (min-width: 480px){
+                    display: flex;
+                    justify-content: space-around;
+                }
+
+                & > * {
+                    margin: 20px;
+                }
+            }
 
             & > p {
                 margin: 10px 0;
