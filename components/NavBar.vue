@@ -6,7 +6,7 @@
 <script>
 const entriesRaw = [  // without 'active' property
     { name: 'Home • Necessity Of A Global Democracy', to: '/' },
-    { name: 'Structure Of Terra', to: '' },
+    { name: 'Structure Of Terra', to: '/structure-of-terra/' },
     { name: 'Roadmap', to: '/roadmap/' },
     { name: 'A New Economic System', to: '' },
     { name: 'Join', to: '/join/' },
