@@ -2,7 +2,7 @@
     <main class="IndexPage">
         <CenteredBodyColumn>
             <Card :heading="'Terra Utopia'" :isSuperHeading="true">
-                <p>We are <span class="highlighted">Terra Utopia</span> - the movement for a <span class="highlighted">global, federal democracy: "TERRA".</span></p>
+                <p>We are <span class="highlighted">Terra Utopia</span> - the movement for a <span class="highlighted">global, federal democracy</span>: <br> <span class="highlighted">TERRA</span>.</p>
                 <p>Humanity faces multiple existential crises!</p>
                 <p>Yet today’s global politics are primarily driven by national interests, neglecting that we will only have the power to solve these global problems if we tackle them together on a global scale.</p>
                 <p>Therefore this is a rally cry to all humans:</p>
@@ -84,7 +84,7 @@ export default {
             }
 
             & > p {
-                margin: 10px 0;
+                margin: 15px 0;
                 span.highlighted { @include semi-bold-italic; }
             }
 
