@@ -33,7 +33,7 @@ export default {
     display: flex;
     flex-flow: row;
     flex-wrap: nowrap;
-    align-items: flex-start;
+    align-items: center;
 
     a.home-logo {
         margin-top: 4px;
@@ -55,6 +55,8 @@ export default {
 
     .nav-link-container {
         flex-grow: 1;
+        margin: { left: auto; right: auto; }; // kinda "center" the links
+        max-width: 1630px; // to prevent that nav-links become one-liners (would make them stick to the top of the screen)
         display: flex;
         flex-flow: row;
         align-items: center;
