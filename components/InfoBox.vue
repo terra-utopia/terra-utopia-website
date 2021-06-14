@@ -97,15 +97,30 @@ export default {
                 margin-top: 20px;
                 border-collapse: collapse; // better than default `separate`
 
+                &:hover tbody tr {
+                    opacity: 0.6;
+                }
+
                 tbody tr {
-                    &:target {
-                        // text-decoration: underline;
-                        // text-decoration-color: $c-extradark;
-                        // text-decoration-thickness: 1px;
-                        background: rgba($c-special1, 0.25);
-                    }
+                    position: relative;
+
+                    
                     &:hover{
-                        background: rgba($c-dark, 0.2);
+                        opacity: 1;
+                    }
+
+                    .citation-anchor{
+                        position: absolute;
+                        top: -40vh;
+
+                        &:target ~ a {
+                            text-decoration: underline;
+                            text-decoration-color: $c-extradark;
+                            text-decoration-thickness: 1px;
+                            @include medium-italic;
+                            font-weight: 600;
+                            // background: rgba($c-dark, 0.3);
+                        }
                     }
 
                     td:nth-child(1) {

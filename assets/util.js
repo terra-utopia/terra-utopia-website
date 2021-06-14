@@ -39,9 +39,12 @@ export function enhanceCitations(contentHtml) {
                 ${(() => {
                     let tableHtml = "";
                     citations.forEach(({ citationId, citationUrl, citationCounter }) => {
-                        tableHtml += `<tr id="${citationId}">
+                        tableHtml += `<tr>
                             <td>[${citationCounter}]</td>
-                            <td><a href="${citationUrl}" target="_blank">${citationUrl}</a></td>
+                            <td>
+                                <div class="citation-anchor" id="${citationId}"></div>
+                                <a href="${citationUrl}" target="_blank">${citationUrl}</a>
+                            </td>
                         </tr>`;
                     });
                     return tableHtml;
