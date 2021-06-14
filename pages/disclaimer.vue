@@ -6,7 +6,7 @@
 
                 <h4>General exclusion of liability</h4>
                 <p>
-                    All content on this website has been created in good faith, in according to our current state of knowledge, and is intended for general information purposes only. We do not make any warranties about the completeness, reliability or accuracy of this information, and any action you take upon it is strictly at your own risk. The information on this website comes without any legally binding effect, except for the legally mandatory information, like the <NuxtLink to="/privacy-policy/">privacy policy</NuxtLink><!-- renders to an <a> tag -->.
+                    All content on this website has been created in good faith, in according to our current state of knowledge, and is intended for general information purposes only. We do not make any warranties about the completeness, reliability or accuracy of this information, and any action you take upon it is strictly at your own risk. The information on this website comes without any legally binding effect, except for the legally mandatory information, like the <a href="/privacy-policy/">privacy policy</a>.
                     We reserve the right to modify or delete the contents in whole or in part.
                 </p>
 

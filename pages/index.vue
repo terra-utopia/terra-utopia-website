@@ -17,7 +17,7 @@
                         <a href="#common-ground"><ActionButton>Read More!</ActionButton></a>
                         <img src="~assets/bookshelf-jump-down-icon.svg">
                     </div>
-                    <NuxtLink to="/join/"><ActionButton>Join!</ActionButton></NuxtLink>
+                    <a href="/join/"><ActionButton>Join!</ActionButton></a>
                 </div>
             </Card>
             <Card :heading="'The Common Ground'" :isSuperHeading="false" id="common-ground">
@@ -36,8 +36,8 @@
                 <section class="further-reading">
                     Read more on the following topics:
                     <div class="flex-wrapper">
-                        <NuxtLink to="/structure-of-terra/"><ActionButton>Structure!</ActionButton></NuxtLink>
-                        <NuxtLink to="/roadmap/" ><ActionButton>Roadmap!</ActionButton></NuxtLink>
+                        <a href="/structure-of-terra/"><ActionButton>Structure!</ActionButton></a>
+                        <a href="/roadmap/" ><ActionButton>Roadmap!</ActionButton></a>
                     </div>
                 </section>
             </Card>

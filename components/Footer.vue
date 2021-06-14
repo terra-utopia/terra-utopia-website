@@ -1,8 +1,8 @@
 <template>
     <footer class="Footer">
-        <NuxtLink
+        <a
                 v-for="(entry, i) in entries"
-                :to="entry.to"
+                :href="entry.to"
                 v-html="entry.name"
                 :key="i"
                 class="nav-link"
