@@ -10,60 +10,52 @@
 
                 <h4>Informal abstract</h4>
                 <p>
-                    We only collect the data necessary to ensure the primary functions of our website. We delete any user data as soon as our hoster allows it.
+                    We only process data that is necessarily transmitted to us when accessing our website. We delete any user data as soon as our hoster allows it.
                     <br>
-                    As a non-profit organisation our sole intent is to contribute to a save and pleasent user experience. Therefore we naturally refrain from using cookies, tracking and profiling.
+                    As a non-profit organisation our sole intent is to contribute to a save and pleasant user experience. Therefore we naturally refrain from using cookies, tracking or profiling of any kind.
                 </p>
 
                 <h4>Processing of personal data</h4>
                 <p>
-                    The way the internet works necessitates that our website processes a series of data and information when a user or automated system calls up the website in order to be able to deliver the content. This information includes:
+                    The way the internet works necessitates that when a user or automated system calls up the website from our hoster's server system a series of information is transmitted to and temporarily processed by the server in order to be able to deliver the content. This information includes:
                 </p>
                 <ul>
+                    <li>the sub-website accessed,</li>
+                    <li>the date and time of access,</li>
+                    <li>the Internet protocol address (IP address) of the accessing system,</li>
+                    <li>the Internet service provider of the accessing system</li>
                     <li>the browser type and version used,</li>
                     <li>the operating system used by the accessing system,</li>
-                    <li>the website from which an accessing system reaches our website (so-called referrers),</li>
-                    <li>the sub-websites,</li>
-                    <li>the date and time of access to the Internet site,</li>
-                    <li>an Internet protocol address (IP address),</li>
-                    <li>the Internet service provider of the accessing system</li>
+                    <li>the website from which the accessing system has been referred (if applicable)</li>
                     <li>any other similar data and information</li>
                 </ul>
+                <p>
+                    For each access to our website, our hoster's server system automatically stores the data listed above in log files, which we, unfortunately, can not prevent. Both we as the website operators and the hoster technically have access to the log files. However, we do not subsequently access, process or analyze the log files in any way for reasons that lie beyond cyber security, and our hoster is not allowed to as well (see below). We explicitly refrain from using any cookies, tracking tools or profiling software. The log files are treated confidential and are deleted on the eighth day after the user visited our website.
+                </p>
 
                 <h4>Legal basis for the processing</h4>
-
                 <p>
-                These processing operations are based on <a href="https://gdpr-info.eu/art-6-gdpr/" target="_blank" rel="noopener noreferrer">Article 6(1) lit. f GDPR</a> for the purposes of the legitimate interests pursued by our organisation, which is to ensure the technical functionality of our website.
+                    These processing operations are based on <a href="https://gdpr-info.eu/art-6-gdpr/" target="_blank" rel="noopener noreferrer">Article 6(1) lit. f GDPR</a> for the purposes of the legitimate interests pursued by our organisation, which is to ensure the technical functionality of our website.
                 </p>
 
                 <h4>External hosting service</h4>
-
                 <p>
-                Our website is hosted by an external service provider (hoster). Our hoster has access to the information listed above in the interest of a secure, fast and efficient provision of our online service by a professional provider (<a href="https://gdpr-info.eu/art-6-gdpr/" target="_blank" rel="noopener noreferrer">Article 6(1) lit. f GDPR</a>).
+                    Our website is hosted by an external service provider (hoster). Our hoster has access to the information listed above in the interest of a secure, fast and efficient provision of our online service by a professional provider (<a href="https://gdpr-info.eu/art-6-gdpr/" target="_blank" rel="noopener noreferrer">Article 6(1) lit. f GDPR</a>).
+                </p>
+                <p>
+                    We have concluded a GDPR Data Processing Agreement (DPA) with our hoster in order to ensure data proctection compliant processing. This DPA legally requires the hoster to process personal data exclusively for the purpose of meeting their performance obligations and to not store any more data than we do.
+                </p>
+                <p>
+                    We use the following hoster:<br>
+                    BIOHOST - Lars-Helge Wilbrandt<br>
+                    Nahrungsberg 70<br>
+                    35390 Gießen<br>
+                    <a href="https://www.biohost.de/" target="_blank" rel="noopener noreferrer">https://www.biohost.de/</a>
                 </p>
 
+                <h4>Additional transparency</h4>
                 <p>
-                We have concluded a GDPR Data Processing Agreement (DPA) with our hoster in order to ensure data proctection compliant processing. This DPA legally requires the hoster to process personal data exclusively for the purpose of meeting their performance obligations and to not store any more data than we do.
-                </p>
-
-                <p>
-                We use the following hoster:<br>
-                BIOHOST - Lars-Helge Wilbrandt<br>
-                Nahrungsberg 70<br>
-                35390 Gießen<br>
-                <a href="https://www.biohost.de/" target="_blank" rel="noopener noreferrer">https://www.biohost.de/</a>
-                </p>
-
-                <h4>Deletion of all personal data</h4>
-
-                <p>
-                Our hoster stores the data mentioned above in log files. These files are deleted on the eighth day after the user visited our website. We do not use any cookies, tracking tools or profiling software.
-                </p>
-
-                <h4> Additional transparancy </h4>
-
-                <p>
-                    Our website is open source, meaning that you can find its source code <a href="https://github.com/terra-utopia/terra-utopia-website" target="_blank" rel="noopener noreferrer">on Github</a>.
+                    Our website is 100% open source, meaning that you can read the complete <a href="https://github.com/terra-utopia/terra-utopia-website" target="_blank" rel="noopener noreferrer">source code on Github</a>.
                 </p>
 
                 <h4>Contact</h4>
@@ -71,19 +63,6 @@
                     For any questions related to the privacy policy, you may at any time contact us at <a href="mailto:contact@terra-utopia.world" target="_blank">contact@terra-utopia.world</a>.
                 </p>
                 <br>
-
-                <p>This Privacy Policy has partially been generated by the Privacy Policy Generator of the <a href="https://dg-datenschutz.de/services/external-data-protection-officer/?lang=en">External Data Protection Officers</a> that was developed in cooperation with the <a href="https://www.wbs-law.de/eng/practice-areas/media-law/">Media Law Lawyers</a> from WBS-LAW.
-                </p>
-                
-
-                <!-- IF WE CHOOSE TO USE LOG FILES (WITH PERSONAL DATA LIKE IP ADDRESSES!) IN THE FUTURE ...
-
-                    The website of the Terra Utopia collects a series of general data and information when a data subject or automated system calls up the website. This general data and information are stored in the server log files.
-
-                    ...
-
-                    When using these general data and information, the Terra Utopia does not draw any conclusions about the data subject. Rather, this information is needed to (1) deliver the content of our website correctly, (2) optimize the content of our website as well as its advertisement, (3) ensure the long-term viability of our information technology systems and website technology, and (4) provide law enforcement authorities with the information necessary for criminal prosecution in case of a cyber-attack. Therefore, the Terra Utopia analyzes anonymously collected data and information statistically, with the aim of increasing the data protection and data security of our enterprise, and to ensure an optimal level of protection for the personal data we process. The anonymous data of the server log files are stored separately from all personal data provided by a data subject.
-                -->
             </Card>
         </CenteredBodyColumn>
     </main>
