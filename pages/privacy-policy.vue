@@ -5,7 +5,7 @@
                 
                 <h4>Introduction</h4>
                 <p>
-                    ddThis privacy policy page is intended to make it transparent to the user how we handle their personal data. It explains in detail which personal data we process and store.
+                    This privacy policy page is intended to make it transparent to the user how we handle their personal data. It explains in detail which personal data we process and store.
                 </p>
 
                 <h4>Informal abstract</h4>
