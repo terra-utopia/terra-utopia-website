@@ -7,7 +7,28 @@ const institutions = [
                 htmlContent: `
                 <p>In this phase we analyze similar projects, movements and aspirations. The goal is to understand developments of the past and why their success was only limited. The rough goals of our movement are being defined internally as well as a general strategy.</p>
                 <p>Finding technical solutions for collaborating and working on this project is also part of this step. This includes digital platforms where participating activists can discuss their ideas or edit documents but also means of spreading our ideas and getting new, interested people involved.</p>
-                `
+                `,
+                children: [
+                    {
+                        title: "Parliament",
+                        htmlContent: `
+                        <p>In this phase we analyze similar projects, movements and aspirations. The goal is to understand developments of the past and why their success was only limited. The rough goals of our movement are being defined internally as well as a general strategy.</p>
+                        <p>Finding technical solutions for collaborating and working on this project is also part of this step. This includes digital platforms where participating activists can discuss their ideas or edit documents but also means of spreading our ideas and getting new, interested people involved.</p>
+                        `
+                    },
+                    {
+                        title: "Council",
+                        htmlContent: `
+                        <p>In order to motivate other people to support and join this movement, it is necessary to have a rough but compelling concept of the structure of Terra, as well as a plan for achieving our goals. This should make it easier for people to get an idea of what we aim for, what they can expect from this movement and how they can contribute. The further process involves the differentiation, modification and improvement of this concept as well as the incorporation of feedback and criticism.</p>
+                        `
+                    },
+                    {
+                        title: "Executive Branch",
+                        htmlContent: `
+                        <p>The goal of this phase is forging a global network of activists that actively support the goal of creating a global, federal democracy. This makes it possible to consider a multitude of different opinions on the strategy of the movement and to incorporate different ideas and visions from all around the planet. We will also try to gain support from related projects, activist networks and experts worldwide.</p>
+                        `
+                    },
+                ],
             },
             {
                 title: "Council",
