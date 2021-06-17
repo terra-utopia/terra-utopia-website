@@ -52,12 +52,12 @@ export default {
 
             return html;
         },
-        buildSection(array, depth, parentClass, maxDepth){
+        buildSection(array, depth, parentID, maxDepth){
             if (!depth) {
                 depth = 0;
             }
-            if (!parentClass) {
-                parentClass = '';
+            if (!parentID) {
+                parentID = '';
             }
             if (!maxDepth) {
                 maxDepth = this.getMaxDepth(array);
@@ -81,12 +81,12 @@ export default {
             {
                 const startingAngle = -1*(offsetAngle+2*Math.PI/array.length*elCounter);
                 const endingAngle = -1*(offsetAngle+2*Math.PI/array.length*(elCounter+1));
-                const elClass = ((parentClass) ? parentClass+' '+parentClass+'-':'')+element.title.replace(/ /g,'');
+                const elID = ((parentID) ? parentID+'-':'')+element.title.replace(/ /g,'');
                 let elhtml = '<path ';
 
                 elhtml += 'fill="'+this.calculateColor(depth, array.length, elCounter)+'" ';
 
-                elhtml += 'class="'+elClass+'" ';
+                elhtml += 'id="'+elID+'" ';
 
                 elhtml += (depth!=0)?'style="opacity: 0; pointer-events: none;"':'';
                 
@@ -123,7 +123,7 @@ export default {
                 html += elhtml;
 
                 if (element.children) {
-                    childhtml += this.buildSection(element.children, depth+1, elClass, maxDepth);
+                    childhtml += this.buildSection(element.children, depth+1, elID, maxDepth);
                 }
 
                 elCounter++;
@@ -183,56 +183,49 @@ export default {
             return color;
         },
         addEventListeners(){
-            for (const path of document.getElementsByTagName("path")) {
+            for (const path of document.getElementById("diagram").getElementsByTagName("path")) {
+                path.addEventListener("click", this.click);
                 if (path.id != "inner-circle"){
-                    path.addEventListener("click", this.click);
                     path.addEventListener("mouseover", this.hover);
                     path.addEventListener("mouseleave", this.updateInnerText);
                 }
             }
         },
         click(e){
-            const pathElements = document.getElementById("diagram").getElementsByTagName("path");
-            const children = document.getElementsByClassName(e.target.classList[e.target.classList.length-1]);
-            if (this.currentDepth+1 == e.target.classList.length) {
-                if (children.length>1) {
-                    this.currentDepth++;
+            console.log("Hello World");
+            let query;
+            if (e.target.id=="inner-circle") {
+                let target = this.$route.query.target;
+                if (target) {
+                    query = target.replace(/-*(?!.*-).*/g,"");
                 }
-                for (const child of children) {
-                    if (child.classList.length == this.currentDepth+1) {
-                        child.style.opacity = 1;
-                        child.style.pointerEvents = "initial";
-                    }
-                }
-                this.$router.push({ path: "" , query: { target: e.target.classList[e.target.classList.length-1] } });
-            } else {
-                this.currentDepth=e.target.classList.length-1;
-                for (const path of pathElements) {
-                    if (path.classList.length > this.currentDepth+1) {
-                        path.style.opacity = 0;
-                        path.style.pointerEvents = "none";
-                    }
-                }
-                if (e.target.classList.length > 1) {
-                    this.$router.push({ path: "" , query: { target: e.target.classList[e.target.classList.length-2] } });
+            } else{
+                const targetDepth = e.target.id.split("-").length-1;
+                if (this.currentDepth == targetDepth) {
+                    query = e.target.id;
                 } else {
-                    this.$router.push({ path: "" , query: { }});
+                    query = e.target.id.replace(/-*(?!.*-).*/g,"");
                 }
+            }
+            if (query) {
+                this.$router.push({ path: "" , query: { target: query } });
+            } else {
+                this.$router.push({ path: "" });
             }
         },
         hover(e){
-            let targetSelection = e.target.classList[e.target.classList.length-1].split("-");
+            let targetSelection = e.target.id.split("-");
             let targetText = this.getTargetText(this.content, targetSelection);
             document.getElementById("diagram-inner").innerHTML=targetText.title;
         },
         getTargetText(texts, targetSelection){
-            let targetClasses = [...targetSelection];
+            let targetSubIDs = [...targetSelection];
             let targetText = "";
-            let targetClass = targetClasses.shift();
+            let subID = targetSubIDs.shift();
             for (const text of texts) {
-                if (text.title.replace(/ /g,"")===targetClass) {
-                    if (text.children && targetClasses.length>0) {
-                        let childText = this.getTargetText(text.children, targetClasses)
+                if (text.title.replace(/ /g,"")===subID) {
+                    if (text.children && targetSubIDs.length>0) {
+                        let childText = this.getTargetText(text.children, targetSubIDs)
                         targetText = (childText)?childText:text;
                     } else {
                         targetText = text;
@@ -264,59 +257,41 @@ export default {
             document.getElementById("institutions-text").innerHTML=institutionsText;
         },
         displayCurrentChildren(){
-            if (this.$route.query.target) {
-                let targetSelection = this.$route.query.target.split("-");
-
-                let newTargetSelection = [];
-                let counter = 0;
-                for (let targetClass of targetSelection) {
-                    let newTargetClass = "";
-                    for (let i = 0; i < counter; i++) {
-                        newTargetClass += targetSelection[i]+'-';
+            const target = this.$route.query.target;
+            const pathElements = document.getElementById("diagram").getElementsByTagName("path");
+            let targetID = (target)?target:"";
+            this.currentDepth =0;
+            for (const path of pathElements) {
+                if (targetID.startsWith(path.id.replace(/-*(?!.*-).*/g,""))) {
+                    path.style.opacity = 1;
+                    path.style.pointerEvents = "initial";
+                    const pathDepth = path.id.split("-").length-1;
+                    if (pathDepth>this.currentDepth) {
+                        this.currentDepth = pathDepth;
                     }
-                    newTargetClass += targetClass;
-                    newTargetSelection[counter] = newTargetClass;
-                    counter++;
-                };
-                const pathElements = document.getElementById("diagram").getElementsByTagName("path");
-                
-                this.currentDepth=newTargetSelection.length;
-
-                while (newTargetSelection.length>0) {
-                    let target;
-                    for (const path of pathElements) {
-                        if (newTargetSelection.length===path.classList.length&&newTargetSelection.every((value,index)=>value===path.classList[index])) {
-                            target = path;
-                        }
-                    }
-                    
-                    if (target) {
-                        const children = document.getElementsByClassName(target.classList[target.classList.length-1]);
-                        if (this.currentDepth+1 > target.classList.length) {
-                            for (const child of children) {
-                                if (child.classList.length <= this.currentDepth+1) {
-                                    child.style.opacity = 1;
-                                    child.style.pointerEvents = "initial";
-                                }
-                            }
-                        } else {
-                            for (const path of pathElements) {
-                                if (path.classList.length > this.currentDepth+1) {
-                                    path.style.opacity = 0;
-                                    path.style.pointerEvents = "none";
-                                }
-                            }
-                        }
-                        if (children.length===1) {
-                            this.currentDepth--;
-                        }
+                    if (targetID.startsWith(path.id)) {
+                        path.classList=["selected"];
+                    } else if (path.id.startsWith(targetID)) {
+                        path.classList=["active"];
                     } else {
-                        this.currentDepth--;
+                        path.classList=["inactive"];
                     }
-
-                    newTargetSelection.pop();
+                } else if(path.id!="inner-circle") {
+                    path.style.opacity = 0;
+                    path.style.pointerEvents = "none";
                 }
             }
+
+        },
+        getChildElements(id){
+            const pathElements = document.getElementById("diagram").getElementsByTagName("path");
+            let children = [];
+            for (const path of pathElements) {
+                if (path.id.startsWith(id)) {
+                    children.push(path);
+                }
+            }
+            return children;
         }
     },
     mounted(){
@@ -328,6 +303,7 @@ export default {
     watch:{
         $route(){
             this.updateInstitutionsText();
+            this.displayCurrentChildren();
         }
     }
 }
@@ -351,13 +327,18 @@ export default {
             stroke: #fff;
 
             path{
-                transition: transform 0.2s ease-in-out, opacity,filter .5s ease-in-out;
+                transition: transform 0.2s ease-in-out, opacity .5s ease-in-out, fill .2s ease-in-out;
                 transform-origin: center;
 
-                &:not(#inner-circle):hover, &.active-section{
-                    
-                    transform: scale(1.03);
+                &:hover, &.selected{
                     cursor: pointer;
+                    
+                    &:not(#inner-circle){
+                        transform: scale(1.03);
+                    }
+                }
+                &.inactive:not(:hover){
+                    fill: #777;
                 }
             }
         }
