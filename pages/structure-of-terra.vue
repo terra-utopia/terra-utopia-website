@@ -2,6 +2,7 @@
     <main class="JoinPage">
         <CenteredBodyColumn>
             <Card :heading="'Structure Of Terra'" :isSuperHeading="false">
+                
                 <InstitutionsDiagram :content="$options._staticData.institutions" />
             </Card>
         </CenteredBodyColumn>

@@ -1,5 +1,10 @@
 <template>
-    <div id="institutions-diagram" v-html="buildDiagram()"></div>
+    <div class="institutions-diagram">
+        <div id="diagram" v-html="buildDiagram()"></div>
+        <div class="institutions-text-wrapper">
+            <div id="institutions-text"></div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -180,12 +185,12 @@ export default {
                 if (path.id != "inner-circle"){
                     path.addEventListener("click", this.click);
                     path.addEventListener("mouseover", this.hover);
-                    path.addEventListener("mouseleave", this.mouseleave);
+                    path.addEventListener("mouseleave", this.updateInnerText);
                 }
             }
         },
         click(e){
-            const pathElements = document.getElementById("institutions-diagram").getElementsByTagName("path");
+            const pathElements = document.getElementById("diagram").getElementsByTagName("path");
             const children = document.getElementsByClassName(e.target.classList[e.target.classList.length-1]);
             if (this.currentDepth+1 == e.target.classList.length) {
                 if (children.length>1) {
@@ -206,6 +211,11 @@ export default {
                         path.style.pointerEvents = "none";
                     }
                 }
+                if (e.target.classList.length > 1) {
+                    this.$router.push({ path: "" , query: { target: e.target.classList[e.target.classList.length-2] } });
+                } else {
+                    this.$router.push({ path: "" , query: { }});
+                }
             }
         },
         hover(e){
@@ -220,7 +230,8 @@ export default {
             for (const text of texts) {
                 if (text.title.replace(/ /g,"")===targetClass) {
                     if (text.children && targetClasses.length>0) {
-                        targetText = this.getTargetText(text.children, targetClasses);
+                        let childText = this.getTargetText(text.children, targetClasses)
+                        targetText = (childText)?childText:text;
                     } else {
                         targetText = text;
                     }
@@ -228,14 +239,27 @@ export default {
             }
             return targetText;
         },
-        mouseleave(){
+        updateInnerText(){
+            let innerText = "Institutions";
             if (this.$route.query.target) {
                 let targetSelection = this.$route.query.target.split("-");
                 let targetText = this.getTargetText(this.content, targetSelection);
-                document.getElementById("diagram-inner").innerHTML=targetText.title;
-            } else {
-                document.getElementById("diagram-inner").innerHTML="Institutions";
+                if (targetText) {
+                    innerText = targetText.title;
+                }
             }
+            document.getElementById("diagram-inner").innerHTML=innerText;
+        },
+        updateInstitutionsText(){
+            let institutionsText = "<h2>Select An Institution!</h2>";
+            if (this.$route.query.target) {
+                let targetSelection = this.$route.query.target.split("-");
+                let targetText = this.getTargetText(this.content, targetSelection);
+                if (targetText) {
+                    institutionsText = '<h2>'+targetText.title+'</h2>'+targetText.htmlContent;
+                }
+            }
+            document.getElementById("institutions-text").innerHTML=institutionsText;
         },
         displayCurrentChildren(){
             if (this.$route.query.target) {
@@ -252,7 +276,7 @@ export default {
                     newTargetSelection[counter] = newTargetClass;
                     counter++;
                 };
-                const pathElements = document.getElementById("institutions-diagram").getElementsByTagName("path");
+                const pathElements = document.getElementById("diagram").getElementsByTagName("path");
                 
                 this.currentDepth=newTargetSelection.length;
 
@@ -281,6 +305,11 @@ export default {
                                 }
                             }
                         }
+                        if (children.length===1) {
+                            this.currentDepth--;
+                        }
+                    } else {
+                        this.currentDepth--;
                     }
 
                     newTargetSelection.pop();
@@ -290,35 +319,69 @@ export default {
     },
     mounted(){
         this.displayCurrentChildren();
+        this.updateInnerText();
+        this.updateInstitutionsText();
         this.addEventListeners();
+    },
+    watch:{
+        $route(){
+            this.updateInstitutionsText();
+        }
     }
 }
 </script>
 
 <style lang="scss"> //not scoped, because otherwise the svg will not be affected
 @import "~/assets/shared-styles.scss";
-#institutions-diagram{
-    position: relative;
+.institutions-diagram{
+    #diagram{
+        position: relative;
 
-    #diagram-inner{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate3d(-50%,-50%,0);
+        #diagram-inner{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%,-50%,0);
+        }
+
+        .diagram-svg{
+            stroke-width: 2px;
+            stroke: #fff;
+
+            path{
+                transition: transform 0.2s ease-in-out, opacity .5s ease-in-out;
+                transform-origin: center;
+
+                &:not(#inner-circle):hover, &.active-section{
+                    
+                    transform: scale(1.03);
+                    cursor: pointer;
+                }
+            }
+        }
     }
 
-    .diagram-svg{
-        stroke-width: 2px;
-        stroke: #fff;
+    .institutions-text-wrapper{
+        display: flex;
+        justify-content: center;
+        align-content: center;
 
-        path{
-            transition: transform 0.2s ease-in-out, opacity .5s ease-in-out;
-            transform-origin: center;
+        width: 100%;
+        min-height: 30vh;
+        background: rgba($c-extradark, .05);
+        border: 1px solid $c-extradark;
+        border-radius: 5px;
+        padding: 24px;
 
-            &:not(#inner-circle):hover, &.active-section{
-                
-                transform: scale(1.03);
-                cursor: pointer;
+        #institutions-text{
+            align-self: center;
+
+            h2{
+                font-size: 30px;
+            }
+
+            p{
+                font-size: 20px;
             }
         }
     }
