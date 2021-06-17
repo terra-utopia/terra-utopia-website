@@ -12,7 +12,7 @@ const institutions = [
                 htmlContent: `
                 <p>The global parliament is formed by elected deputies from global parties. The elections take place every 4 or 5 years and they are direct, free, equal, secret and common. The people vote for the parties in a global popular vote that determines how many seats each party receives in the global parliament. We consider an electoral threshold from 2 to 5 percent for single parties to be useful.</p>
                 <br>
-                <p>A referendum will take place in parallel to the election. For more details read <a href="">Direct Democracy"</a>.</p>
+                <p>A referendum will take place in parallel to the election. For more details read <a href="">"Direct Democracy"</a>.</p>
                 `
             },
             {

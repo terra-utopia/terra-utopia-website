@@ -15,7 +15,7 @@ const settings = {
     growthRatio: 0.4,
 
     startingAngle: Math.PI*3/4,
-    divAngle: -Math.PI/4,
+    divAngle: Math.PI/5,
 
     hueStart: 227,
     hueDivPiece: 10,
@@ -79,6 +79,8 @@ export default {
 
             for(let element of array)
             {
+                const startingAngle = -1*(offsetAngle+2*Math.PI/array.length*elCounter);
+                const endingAngle = -1*(offsetAngle+2*Math.PI/array.length*(elCounter+1));
                 const elClass = ((parentClass) ? parentClass+' '+parentClass+'-':'')+element.title.replace(/ /g,'');
                 let elhtml = '<path ';
 
@@ -91,30 +93,30 @@ export default {
                 elhtml += 'd=" ';
 
                 elhtml += 'M '
-                +(maxRadius+(outerRadius-margin)*Math.sin(offsetAngle+2*Math.PI/array.length*elCounter))+' '
-                +(maxRadius+(outerRadius-margin)*Math.cos(offsetAngle+2*Math.PI/array.length*elCounter))+' ';
+                +(maxRadius+(outerRadius-margin)*Math.sin(startingAngle))+' '
+                +(maxRadius+(outerRadius-margin)*Math.cos(startingAngle))+' ';
 
                 elhtml += 'A '
                 +(outerRadius-margin)+' '
                 +(outerRadius-margin)+' '
-                +0+' '
-                +0+' '
-                +0+' '
-                +(maxRadius+(outerRadius-margin)*Math.sin(offsetAngle+2*Math.PI/array.length*(elCounter+1)))+' '
-                +(maxRadius+(outerRadius-margin)*Math.cos(offsetAngle+2*Math.PI/array.length*(elCounter+1)))+' ';
-
-                elhtml += 'L '
-                +(maxRadius+(innerRadius+margin)*Math.sin(offsetAngle+2*Math.PI/array.length*(elCounter+1)))+' '
-                +(maxRadius+(innerRadius+margin)*Math.cos(offsetAngle+2*Math.PI/array.length*(elCounter+1)))+' ';
-
-                elhtml += 'A '
-                +(innerRadius+margin)+' '
-                +(innerRadius+margin)+' '
                 +0+' '
                 +0+' '
                 +1+' '
-                +(maxRadius+(innerRadius+margin)*Math.sin(offsetAngle+2*Math.PI/array.length*elCounter))+' '
-                +(maxRadius+(innerRadius+margin)*Math.cos(offsetAngle+2*Math.PI/array.length*elCounter))+' ';
+                +(maxRadius+(outerRadius-margin)*Math.sin(endingAngle))+' '
+                +(maxRadius+(outerRadius-margin)*Math.cos(endingAngle))+' ';
+
+                elhtml += 'L '
+                +(maxRadius+(innerRadius+margin)*Math.sin(endingAngle))+' '
+                +(maxRadius+(innerRadius+margin)*Math.cos(endingAngle))+' ';
+
+                elhtml += 'A '
+                +(innerRadius+margin)+' '
+                +(innerRadius+margin)+' '
+                +0+' '
+                +0+' '
+                +0+' '
+                +(maxRadius+(innerRadius+margin)*Math.sin(startingAngle))+' '
+                +(maxRadius+(innerRadius+margin)*Math.cos(startingAngle))+' ';
 
                 elhtml += 'Z" />';
 
@@ -349,7 +351,7 @@ export default {
             stroke: #fff;
 
             path{
-                transition: transform 0.2s ease-in-out, opacity .5s ease-in-out;
+                transition: transform 0.2s ease-in-out, opacity,filter .5s ease-in-out;
                 transform-origin: center;
 
                 &:not(#inner-circle):hover, &.active-section{
@@ -378,10 +380,12 @@ export default {
 
             h2{
                 font-size: 30px;
+                margin-bottom: 20px;
             }
 
             p{
                 font-size: 20px;
+                text-align: justify;
             }
         }
     }
