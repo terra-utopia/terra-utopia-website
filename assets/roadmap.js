@@ -27,7 +27,7 @@ const texts = [
         htmlContent: `
         <p>The core of the strategy will be the global campaign. At the moment, the public debate on a global democracy is either non-existent or in its infancy. Therefore this movement has the chance of confronting a relatively unbiased public with ideas that are new to many people. This is a great opportunity to have a decisive impact on the public debate and convince the majority of people who do not yet have an opinion on this topic with compelling concepts and arguments.</p>
         <p>For the campaign, we envision a global network of people of the public interest, like artists, influencers, film-makers, musicians and celebrities, who each present the public with their ideas concerning Terra. These people will publish their work, thoughts, art, music and statements on the possibility of a global, federal democracy collectively at a specific date with a common hashtag and a call to action. In this way, we want to reach the public where they already are.</p>
-        <p>The aim of the campaign is to spark worldwide protests that put pressure on national governments to hold free and democratic referendums on the draft of the global constitution - which has been developed by the global assembly - and accept their results.</p>
+        <p>The aim of the campaign is to spark worldwide protests that put pressure on national governments to hold free and democratic referendums on the draft of the global constitution - which has been developed by the global assembly - and accept its result.</p>
         `
     },
     {
