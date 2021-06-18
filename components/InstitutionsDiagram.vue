@@ -304,6 +304,7 @@ export default {
         $route(){
             this.updateInstitutionsText();
             this.displayCurrentChildren();
+            this.updateInnerText();
         }
     }
 }
