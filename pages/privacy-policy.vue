@@ -17,7 +17,7 @@
 
                 <h4>Processing of personal data</h4>
                 <p>
-                    The way the internet works necessitates that when a user or automated system calls up the website from our hoster's server system a series of information is transmitted to and temporarily processed by the server in order to be able to deliver the content. This information includes:
+                    The functioning of the internet necessitates that when a user or automated system calls up the website from our hoster's server system, a series of information is transmitted to and temporarily processed by the server in order to be able to deliver the content. This information includes:
                 </p>
                 <ul>
                     <li>the sub-website accessed,</li>
