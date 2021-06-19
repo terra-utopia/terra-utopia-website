@@ -42,9 +42,11 @@ export default {
 
             let html = "";
 
-            html += '<svg class="diagram-svg" viewBox="'+(-size/2)+' '+(-size/2)+' '+size+' '+size+'" width="100%" style="max-width:'+size+'px">';
+            html += '<svg id="diagram-svg" viewBox="'+(-size/2)+' '+(-size/2)+' '+size+' '+size+'" width="100%" style="max-width:'+size+'px">';
 
             html += this.buildSection(this.content, 0, '', maxDepth);
+
+            html += this.buildInnerCircle();
 
             html += '</svg>';
 
@@ -69,7 +71,7 @@ export default {
             const growthRatio = settings.growthRatio;
 
             const outerRadius = width*(1+ratioInnerCircle+(maxDepth-depth)*growthRatio);
-            const innerRadius = Math.pow(1.05,maxDepth-1-depth)*width*(ratioInnerCircle);
+            const innerRadius = width*ratioInnerCircle;
 
             let html="";
             let childhtml = "";
@@ -129,31 +131,14 @@ export default {
 
             html += childhtml;
 
-            html += '<path id="inner-circle" fill="#fff" d=" ';
+            return html;
+        },
+        buildInnerCircle(){
+            const width = settings.width;
+            const ratioInnerCircle = settings.ratioInnerCircle;
+            const radius = width*ratioInnerCircle*1.05;
 
-            html += 'M '
-            +0+' '
-            +1.05*innerRadius+' ';
-
-            html += 'A '
-            +1.05*innerRadius+' '
-            +1.05*innerRadius+' '
-            +0+' '
-            +0+' '
-            +1+' '
-            +0+' '
-            +(-1.05*innerRadius)+' ';
-
-            html += 'A '
-            +1.05*innerRadius+' '
-            +1.05*innerRadius+' '
-            +0+' '
-            +0+' '
-            +1+' '
-            +0+' '
-            +1.05*innerRadius+' ';
-
-            html += '"Z />';
+            let html = '<circle id="inner-circle" fill="#fff" cx="0" cy="0" r="'+radius+'" />';
 
             return html;
         },
@@ -181,7 +166,7 @@ export default {
             return color;
         },
         addEventListeners(){
-            for (const path of document.getElementById("diagram").getElementsByTagName("path")) {
+            for (const path of document.getElementById("diagram-svg").childNodes) {
                 path.addEventListener("click", this.click);
                 if (path.id != "inner-circle"){
                     path.addEventListener("mouseover", this.hover);
@@ -255,7 +240,7 @@ export default {
         },
         displayCurrentChildren(){
             const target = this.$route.query.target;
-            const pathElements = document.getElementById("diagram").getElementsByTagName("path");
+            const pathElements = document.getElementById("diagram-svg").childNodes;
             let targetID = (target)?target:"";
             this.currentDepth =0;
             for (const path of pathElements) {
@@ -281,7 +266,7 @@ export default {
 
         },
         getChildElements(id){
-            const pathElements = document.getElementById("diagram").getElementsByTagName("path");
+            const pathElements = document.getElementById("diagram-svg").childNodes;
             let children = [];
             for (const path of pathElements) {
                 if (path.id.startsWith(id)) {
@@ -321,11 +306,11 @@ export default {
             pointer-events: none;
         }
 
-        .diagram-svg{
+        #diagram-svg{
             stroke-width: 2px;
             stroke: #fff;
 
-            path{
+            path, circle{
                 transition: transform 0.2s ease-in-out, opacity .5s ease-in-out, fill .2s ease-in-out;
 
                 &:hover, &.selected{
