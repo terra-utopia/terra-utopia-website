@@ -30,31 +30,57 @@ export default {
     },
     data(){
         return {
-            currentDepth: 0,
+            currentDepth: 0, //keeps track of which layer of the diagram is active
+        }
+    },
+        mounted(){ //called when website is loaded
+        this.displayCurrentChildren();
+        this.updateInnerText();
+        this.updateInstitutionsText();
+        this.addEventListeners();
+    },
+    watch:{
+        $route(){ // called when the URL or query changes
+            this.displayCurrentChildren();
+            this.updateInnerText();
+            this.updateInstitutionsText();
         }
     },
     methods: {
+        /**
+         * Creates the html for the diagram svg
+         * @returns html for #diagram-svg
+         */
         buildDiagram(){
-            const width = settings.width;
-            const ratioInnerCircle = settings.ratioInnerCircle;
-            const maxDepth = this.getMaxDepth(this.content);
-            const size = ((maxDepth+1+ratioInnerCircle)*2*width);
+            const width = settings.width; //width of the narrowest/deepest ring of the diagram
+            const ratioInnerCircle = settings.ratioInnerCircle; //defines how large the radius of the inner circle should be in relation to the width
+            const maxDepth = this.getMaxDepth(this.content); //the amount of layers that the diagram will have
+            const size = ((maxDepth+1+ratioInnerCircle)*2*width); //width and height of the diagram
 
             let html = "";
 
-            html += '<svg id="diagram-svg" viewBox="'+(-size/2)+' '+(-size/2)+' '+size+' '+size+'" width="100%" style="max-width:'+size+'px">';
+            html += '<svg id="diagram-svg" viewBox="'+(-size/2)+' '+(-size/2)+' '+size+' '+size+'" width="100%" style="max-width:'+size+'px">'; //create svg with id 'diagram-svg', define viewbox size and origin, make svg scale if screen is smaller than max-width
 
-            html += this.buildSection(this.content, 0, '', maxDepth);
+            html += this.buildSection(this.content, 0, '', maxDepth); //create the sections of the diagram
 
-            html += this.buildInnerCircle();
+            html += this.buildInnerCircle(); //create the white inner circle
 
             html += '</svg>';
 
-            html += '<div style="max-width:'+1.8*width*ratioInnerCircle+'px" id="diagram-inner">Institutions</div>';
+            html += '<div style="max-width:'+1.8*width*ratioInnerCircle+'px" id="diagram-inner">Institutions</div>'; //create inner text
 
             return html;
         },
+        /**
+         * Recursive function creating the sections and layers of the diagram svg
+         * @param array an array of the sections and their children
+         * @param depth the depth of the layer that is supposed to be built
+         * @param parentID the ID of the section above
+         * @param maxDepth the maximum depth of the diagram
+         * @returns path and circle elements as html
+         */
         buildSection(array, depth, parentID, maxDepth){
+            //if depth, parentID and maxDepth are not given, they are calculated here
             if (!depth) {
                 depth = 0;
             }
@@ -65,40 +91,43 @@ export default {
                 maxDepth = this.getMaxDepth(array);
             }
 
-            const width = settings.width;
-            const offsetAngle = settings.startingAngle+settings.divAngle*depth;
-            const ratioInnerCircle = settings.ratioInnerCircle;
-            const growthRatio = settings.growthRatio;
+            const width = settings.width; //width of the narrowest/deepest ring of the diagram
+            const offsetAngle = settings.startingAngle+settings.divAngle*depth; //the angle where the first section should start, clockwise relative to the bottom
+            const ratioInnerCircle = settings.ratioInnerCircle;  //defines how large the radius of the inner circle should be in relation to the width
+            const growthRatio = settings.growthRatio; //defines how much larger outer/shallower rings should be in comparison to the ones further in
 
-            const outerRadius = width*(1+ratioInnerCircle+(maxDepth-depth)*growthRatio);
+            const outerRadius = width*(1+ratioInnerCircle+(maxDepth-depth)*growthRatio); //the outer radius of the sections
 
             let html="";
             let childhtml = "";
-            let elCounter = 0;
+            let elCounter = 0; //keeps track of which section is currently being added
 
             for(let element of array)
             {
-                const startingAngle = -1*(offsetAngle+2*Math.PI/array.length*elCounter);
-                const endingAngle = -1*(offsetAngle+2*Math.PI/array.length*(elCounter+1));
-                const elID = ((parentID) ? parentID+'-':'')+element.title.replace(/ /g,'');
+                const startingAngle = -1*(offsetAngle+2*Math.PI/array.length*elCounter); //the starting angle of the section
+                const endingAngle = -1*(offsetAngle+2*Math.PI/array.length*(elCounter+1)); //the ending angle of the section
+                const elID = ((parentID) ? parentID+'-':'')+element.title.replace(/ /g,''); //the ID of the section
 
-                let elhtml = (array.length==1)?'<circle ':'<path ';
+                let elhtml = (array.length==1)?'<circle ':'<path '; //if there is only one section in the layer, it is a full circle, otherwise a path element is used to create a circular sector
 
-                elhtml += 'fill="'+this.calculateColor(depth, array.length, elCounter)+'" ';
+                elhtml += 'fill="'+this.calculateColor(depth, array.length, elCounter)+'" '; //the color of the section is being calculated
 
-                elhtml += 'id="'+elID+'" ';
+                elhtml += 'id="'+elID+'" '; //the ID is added
 
-                elhtml += (depth!=0)?'style="opacity: 0; pointer-events: none;"':'';
+                elhtml += (depth!=0)?'style="opacity: 0; pointer-events: none;"':''; //if the layer is not the first one, its sections are hidden and pointer events are being prevented
                 
                 if (array.length==1) {
-                    elhtml += 'cx="0" cy="0" r="'+outerRadius+'" />';
+                    elhtml += 'cx="0" cy="0" r="'+outerRadius+'" />'; //the circle tag receives its defining properties
                 } else {
+                    //the path tag receives its d attribute
                     elhtml += 'd=" ';
 
+                    //the pen is moved to the starting point
                     elhtml += 'M '
                     +outerRadius*Math.sin(startingAngle)+' '
                     +outerRadius*Math.cos(startingAngle)+' ';
 
+                    //an arch is drawn to the ending point
                     elhtml += 'A '
                     +outerRadius+' '
                     +outerRadius+' '
@@ -108,58 +137,80 @@ export default {
                     +outerRadius*Math.sin(endingAngle)+' '
                     +outerRadius*Math.cos(endingAngle)+' ';
 
+                    //a line is drawn to the middle of the diagram
                     elhtml += 'L '
                     +0+' '
                     +0+' ';
 
+                    //the path is being finished
                     elhtml += 'Z" />';
                 }
 
-                html += elhtml;
+                html += elhtml; //the newly created section is added to the html
 
+                //if the section has children, they are being created
                 if (element.children) {
                     childhtml += this.buildSection(element.children, depth+1, elID, maxDepth);
                 }
 
-                elCounter++;
+                elCounter++; //element counter incremented
             }
 
-            html += childhtml;
+            html += childhtml; //the child elements are added to the html
 
             return html;
         },
+        /**
+         * Creates the html for the inner circle
+         * @returns circle element as html
+         */
         buildInnerCircle(){
             const width = settings.width;
             const ratioInnerCircle = settings.ratioInnerCircle;
             const radius = width*ratioInnerCircle;
 
-            let html = '<circle id="inner-circle" fill="#fff" cx="0" cy="0" r="'+radius+'" />';
+            let html = '<circle id="inner-circle" fill="#fff" cx="0" cy="0" r="'+radius+'" />'; //create white circle with the ID inner-circle
 
             return html;
         },
+        /**
+         * Recursive function calculating the maximum depth of a given array
+         * @param array an array of the sections an their children
+         * @returns the depth of the array as a number
+         */
         getMaxDepth(array){
             let maxDepth = 0;
             for (let element of array){
-                if (element.children) {
-                    let newDepth = 1+this.getMaxDepth(element.children);
-                    maxDepth = (newDepth > maxDepth) ? newDepth : maxDepth;
+                if (element.children) { //if an element of an array has children...
+                    let newDepth = 1+this.getMaxDepth(element.children); // ... its maximum is calculated and incremented by one ...
+                    maxDepth = (newDepth > maxDepth) ? newDepth : maxDepth; // ... and overrides the current current value, if its higher
                 }
             }
             return maxDepth;
         },
+        /**
+         * Calculates the color for a section of the diagram
+         * @param depth the depth of the layer that contains the section
+         * @param numberOfElements the number of elements within that layer
+         * @param elCounter the number of the section
+         * @returns an hsla value for the color of the section
+         */
         calculateColor(depth, numberOfElements, elCounter){
-            const hueStart = settings.hueStart;
-            const hueDivPiece = settings.hueDivPiece;
-            const hueDivDepth = settings.hueDivDepth;
+            const hueStart = settings.hueStart; //the hue of the first section of the first layer
+            const hueDivPiece = settings.hueDivPiece; //the amount the hue should increase from section to section
+            const hueDivDepth = settings.hueDivDepth; //the amount the hue should increase from layer to layer
 
-            let hue = hueStart+Math.pow(-1,depth+1)*hueDivPiece*elCounter+Math.pow(-1,depth+1)*hueDivDepth*depth;
-            let saturation = 43+40/numberOfElements*elCounter+"%";
-            let lightness = 43+40/numberOfElements*elCounter+"%";
-            let alpha = 1;
+            let hue = hueStart+Math.pow(-1,depth+1)*hueDivPiece*elCounter+Math.pow(-1,depth+1)*hueDivDepth*depth; //the hue of the section's color
+            let saturation = 43+40/numberOfElements*elCounter+"%"; //the saturation of the section's color
+            let lightness = 43+40/numberOfElements*elCounter+"%"; //the lightess of the section's color
+            let alpha = 1; //the alpha of the section's color
 
-            let color = 'hsla('+hue+','+saturation+','+lightness+','+alpha+')';
+            let color = 'hsla('+hue+','+saturation+','+lightness+','+alpha+')'; //the color of the section
             return color;
         },
+        /**
+         * Adds all the event listeners to the path and circle elements in the svg
+         */
         addEventListeners(){
             for (const path of document.getElementById("diagram-svg").childNodes) {
                 path.addEventListener("click", this.click);
@@ -271,19 +322,6 @@ export default {
             return children;
         }
     },
-    mounted(){
-        this.displayCurrentChildren();
-        this.updateInnerText();
-        this.updateInstitutionsText();
-        this.addEventListeners();
-    },
-    watch:{
-        $route(){
-            this.updateInstitutionsText();
-            this.displayCurrentChildren();
-            this.updateInnerText();
-        }
-    }
 }
 </script>
 
