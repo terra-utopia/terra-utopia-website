@@ -10,7 +10,6 @@
 <script>
 const settings = {
     width: 55,
-    marginRatio: 0,
     ratioInnerCircle: 2,
     growthRatio: 0.4,
 
@@ -65,7 +64,6 @@ export default {
             }
 
             const width = settings.width;
-            const margin = settings.marginRatio*width/2;
             const offsetAngle = settings.startingAngle+settings.divAngle*depth;
             const ratioInnerCircle = settings.ratioInnerCircle;
             const growthRatio = settings.growthRatio;
@@ -93,30 +91,30 @@ export default {
                 elhtml += 'd=" ';
 
                 elhtml += 'M '
-                +(outerRadius-margin)*Math.sin(startingAngle)+' '
-                +(outerRadius-margin)*Math.cos(startingAngle)+' ';
+                +outerRadius*Math.sin(startingAngle)+' '
+                +outerRadius*Math.cos(startingAngle)+' ';
 
                 elhtml += 'A '
-                +(outerRadius-margin)+' '
-                +(outerRadius-margin)+' '
+                +outerRadius+' '
+                +outerRadius+' '
                 +0+' '
                 +0+' '
                 +1+' '
-                +(outerRadius-margin)*Math.sin(endingAngle)+' '
-                +(outerRadius-margin)*Math.cos(endingAngle)+' ';
+                +outerRadius*Math.sin(endingAngle)+' '
+                +outerRadius*Math.cos(endingAngle)+' ';
 
                 elhtml += 'L '
-                +(innerRadius+margin)*Math.sin(endingAngle)+' '
-                +(innerRadius+margin)*Math.cos(endingAngle)+' ';
+                +innerRadius*Math.sin(endingAngle)+' '
+                +innerRadius*Math.cos(endingAngle)+' ';
 
                 elhtml += 'A '
-                +(innerRadius+margin)+' '
-                +(innerRadius+margin)+' '
+                +innerRadius+' '
+                +innerRadius+' '
                 +0+' '
                 +0+' '
                 +0+' '
-                +(innerRadius+margin)*Math.sin(startingAngle)+' '
-                +(innerRadius+margin)*Math.cos(startingAngle)+' ';
+                +innerRadius*Math.sin(startingAngle)+' '
+                +innerRadius*Math.cos(startingAngle)+' ';
 
                 elhtml += 'Z" />';
 
@@ -135,25 +133,25 @@ export default {
 
             html += 'M '
             +0+' '
-            +1.05*(innerRadius+margin)+' ';
+            +1.05*innerRadius+' ';
 
             html += 'A '
-            +1.05*(innerRadius+margin)+' '
-            +1.05*(innerRadius+margin)+' '
+            +1.05*innerRadius+' '
+            +1.05*innerRadius+' '
             +0+' '
             +0+' '
             +1+' '
             +0+' '
-            +(-1.05*(innerRadius+margin))+' ';
+            +(-1.05*innerRadius)+' ';
 
             html += 'A '
-            +1.05*(innerRadius+margin)+' '
-            +1.05*(innerRadius+margin)+' '
+            +1.05*innerRadius+' '
+            +1.05*innerRadius+' '
             +0+' '
             +0+' '
             +1+' '
             +0+' '
-            +1.05*(innerRadius+margin)+' ';
+            +1.05*innerRadius+' ';
 
             html += '"Z />';
 
