@@ -43,7 +43,7 @@ export default {
 
             let html = "";
 
-            html += '<svg class="diagram-svg" viewBox="0 0 '+size+' '+size+'" width="100%" style="max-width:'+size+'px">';
+            html += '<svg class="diagram-svg" viewBox="'+(-size/2)+' '+(-size/2)+' '+size+' '+size+'" width="100%" style="max-width:'+size+'px">';
 
             html += this.buildSection(this.content, 0, '', maxDepth);
 
@@ -70,7 +70,6 @@ export default {
             const ratioInnerCircle = settings.ratioInnerCircle;
             const growthRatio = settings.growthRatio;
 
-            const maxRadius = width*(1+ratioInnerCircle+maxDepth);
             const outerRadius = width*(1+ratioInnerCircle+(maxDepth-depth)*growthRatio);
             const innerRadius = Math.pow(1.05,maxDepth-1-depth)*width*(ratioInnerCircle);
 
@@ -94,8 +93,8 @@ export default {
                 elhtml += 'd=" ';
 
                 elhtml += 'M '
-                +(maxRadius+(outerRadius-margin)*Math.sin(startingAngle))+' '
-                +(maxRadius+(outerRadius-margin)*Math.cos(startingAngle))+' ';
+                +(outerRadius-margin)*Math.sin(startingAngle)+' '
+                +(outerRadius-margin)*Math.cos(startingAngle)+' ';
 
                 elhtml += 'A '
                 +(outerRadius-margin)+' '
@@ -103,12 +102,12 @@ export default {
                 +0+' '
                 +0+' '
                 +1+' '
-                +(maxRadius+(outerRadius-margin)*Math.sin(endingAngle))+' '
-                +(maxRadius+(outerRadius-margin)*Math.cos(endingAngle))+' ';
+                +(outerRadius-margin)*Math.sin(endingAngle)+' '
+                +(outerRadius-margin)*Math.cos(endingAngle)+' ';
 
                 elhtml += 'L '
-                +(maxRadius+(innerRadius+margin)*Math.sin(endingAngle))+' '
-                +(maxRadius+(innerRadius+margin)*Math.cos(endingAngle))+' ';
+                +(innerRadius+margin)*Math.sin(endingAngle)+' '
+                +(innerRadius+margin)*Math.cos(endingAngle)+' ';
 
                 elhtml += 'A '
                 +(innerRadius+margin)+' '
@@ -116,8 +115,8 @@ export default {
                 +0+' '
                 +0+' '
                 +0+' '
-                +(maxRadius+(innerRadius+margin)*Math.sin(startingAngle))+' '
-                +(maxRadius+(innerRadius+margin)*Math.cos(startingAngle))+' ';
+                +(innerRadius+margin)*Math.sin(startingAngle)+' '
+                +(innerRadius+margin)*Math.cos(startingAngle)+' ';
 
                 elhtml += 'Z" />';
 
@@ -135,8 +134,8 @@ export default {
             html += '<path id="inner-circle" fill="#fff" d=" ';
 
             html += 'M '
-            +maxRadius+' '
-            +(maxRadius+1.05*(innerRadius+margin))+' ';
+            +0+' '
+            +1.05*(innerRadius+margin)+' ';
 
             html += 'A '
             +1.05*(innerRadius+margin)+' '
@@ -144,8 +143,8 @@ export default {
             +0+' '
             +0+' '
             +1+' '
-            +maxRadius+' '
-            +(maxRadius-1.05*(innerRadius+margin))+' ';
+            +0+' '
+            +(-1.05*(innerRadius+margin))+' ';
 
             html += 'A '
             +1.05*(innerRadius+margin)+' '
@@ -153,8 +152,8 @@ export default {
             +0+' '
             +0+' '
             +1+' '
-            +maxRadius+' '
-            +(maxRadius+1.05*(innerRadius+margin))+' ';
+            +0+' '
+            +1.05*(innerRadius+margin)+' ';
 
             html += '"Z />';
 
@@ -330,13 +329,12 @@ export default {
 
             path{
                 transition: transform 0.2s ease-in-out, opacity .5s ease-in-out, fill .2s ease-in-out;
-                transform-origin: center;
 
                 &:hover, &.selected{
                     cursor: pointer;
                     
                     &:not(#inner-circle){
-                        transform: scale(1.03);
+                        transform: scale(1.03); //transform origin equals origin of user coordinate system specified by the "viewBox" attribute of the svg
                     }
                 }
                 &.inactive:not(:hover){
