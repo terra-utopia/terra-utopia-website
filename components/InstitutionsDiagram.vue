@@ -18,7 +18,7 @@ const settings = {
 
     hueStart: 227,
     hueDivPiece: 10,
-    hueDivDepth: 50,
+    hueDivDepth: 60,
 }
 
 export default {
@@ -71,7 +71,6 @@ export default {
             const growthRatio = settings.growthRatio;
 
             const outerRadius = width*(1+ratioInnerCircle+(maxDepth-depth)*growthRatio);
-            const innerRadius = width*ratioInnerCircle;
 
             let html="";
             let childhtml = "";
@@ -82,7 +81,8 @@ export default {
                 const startingAngle = -1*(offsetAngle+2*Math.PI/array.length*elCounter);
                 const endingAngle = -1*(offsetAngle+2*Math.PI/array.length*(elCounter+1));
                 const elID = ((parentID) ? parentID+'-':'')+element.title.replace(/ /g,'');
-                let elhtml = '<path ';
+
+                let elhtml = (array.length==1)?'<circle ':'<path ';
 
                 elhtml += 'fill="'+this.calculateColor(depth, array.length, elCounter)+'" ';
 
@@ -90,35 +90,30 @@ export default {
 
                 elhtml += (depth!=0)?'style="opacity: 0; pointer-events: none;"':'';
                 
-                elhtml += 'd=" ';
+                if (array.length==1) {
+                    elhtml += 'cx="0" cy="0" r="'+outerRadius+'" />';
+                } else {
+                    elhtml += 'd=" ';
 
-                elhtml += 'M '
-                +outerRadius*Math.sin(startingAngle)+' '
-                +outerRadius*Math.cos(startingAngle)+' ';
+                    elhtml += 'M '
+                    +outerRadius*Math.sin(startingAngle)+' '
+                    +outerRadius*Math.cos(startingAngle)+' ';
 
-                elhtml += 'A '
-                +outerRadius+' '
-                +outerRadius+' '
-                +0+' '
-                +0+' '
-                +1+' '
-                +outerRadius*Math.sin(endingAngle)+' '
-                +outerRadius*Math.cos(endingAngle)+' ';
+                    elhtml += 'A '
+                    +outerRadius+' '
+                    +outerRadius+' '
+                    +0+' '
+                    +0+' '
+                    +1+' '
+                    +outerRadius*Math.sin(endingAngle)+' '
+                    +outerRadius*Math.cos(endingAngle)+' ';
 
-                elhtml += 'L '
-                +innerRadius*Math.sin(endingAngle)+' '
-                +innerRadius*Math.cos(endingAngle)+' ';
+                    elhtml += 'L '
+                    +0+' '
+                    +0+' ';
 
-                elhtml += 'A '
-                +innerRadius+' '
-                +innerRadius+' '
-                +0+' '
-                +0+' '
-                +0+' '
-                +innerRadius*Math.sin(startingAngle)+' '
-                +innerRadius*Math.cos(startingAngle)+' ';
-
-                elhtml += 'Z" />';
+                    elhtml += 'Z" />';
+                }
 
                 html += elhtml;
 
@@ -136,7 +131,7 @@ export default {
         buildInnerCircle(){
             const width = settings.width;
             const ratioInnerCircle = settings.ratioInnerCircle;
-            const radius = width*ratioInnerCircle*1.05;
+            const radius = width*ratioInnerCircle;
 
             let html = '<circle id="inner-circle" fill="#fff" cx="0" cy="0" r="'+radius+'" />';
 
@@ -158,8 +153,8 @@ export default {
             const hueDivDepth = settings.hueDivDepth;
 
             let hue = hueStart+Math.pow(-1,depth+1)*hueDivPiece*elCounter+Math.pow(-1,depth+1)*hueDivDepth*depth;
-            let saturation = 43+30/(numberOfElements-1)*elCounter+"%";
-            let lightness = 43+30/(numberOfElements-1)*elCounter+"%";
+            let saturation = 43+40/numberOfElements*elCounter+"%";
+            let lightness = 43+40/numberOfElements*elCounter+"%";
             let alpha = 1;
 
             let color = 'hsla('+hue+','+saturation+','+lightness+','+alpha+')';

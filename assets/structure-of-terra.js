@@ -70,7 +70,15 @@ const institutions = [
         htmlContent: `
         <p>The judiciary includes all institutions that interpret laws by carrying out court cases. Whoever controls them possesses vast power over Terra because they can bend and distort the meaning of legal texts in such a way that it benefits their interests and profits them. Therefore these institutions must have the status of a branch of government meaning that they are completely independent and only subordinate to the people.</p>
         <p>A global constitutional court dealing with issues concerning the global constitution as well as several global supreme courts dealing with issues concerning the individual fields of law have to be established.</p>
-        `
+        `,
+        children:[
+            {
+                title: "The World Government",
+                htmlContent:`
+                <p>The heart of the executive branch is the world government. It consists of several ministries, their respective ministers and a head of government. It guides and supervises global politics and has a right of initiative in the legislative process. It is elected by the global parliament.</p>
+                `
+            },
+        ],
     },
     {
         title: "Executive Branch",
