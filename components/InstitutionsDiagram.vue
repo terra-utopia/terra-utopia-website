@@ -9,7 +9,7 @@
 
 <script>
 const settings = {
-    width: 50,
+    width: 55,
     marginRatio: 0,
     ratioInnerCircle: 2,
     growthRatio: 0.4,
@@ -39,10 +39,11 @@ export default {
             const width = settings.width;
             const ratioInnerCircle = settings.ratioInnerCircle;
             const maxDepth = this.getMaxDepth(this.content);
+            const size = ((maxDepth+1+ratioInnerCircle)*2*width);
 
             let html = "";
 
-            html += '<svg class="diagram-svg" height="'+((maxDepth+1+ratioInnerCircle)*2*width)+'" width="'+((maxDepth+1+ratioInnerCircle)*2*width)+'">';
+            html += '<svg class="diagram-svg" viewBox="0 0 '+size+' '+size+'" width="100%" style="max-width:'+size+'px">';
 
             html += this.buildSection(this.content, 0, '', maxDepth);
 
@@ -192,7 +193,6 @@ export default {
             }
         },
         click(e){
-            console.log("Hello World");
             let query;
             if (e.target.id=="inner-circle") {
                 let target = this.$route.query.target;
@@ -321,6 +321,7 @@ export default {
             top: 50%;
             left: 50%;
             transform: translate3d(-50%,-50%,0);
+            pointer-events: none;
         }
 
         .diagram-svg{
