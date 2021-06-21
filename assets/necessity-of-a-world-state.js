@@ -99,7 +99,7 @@ const infoboxes = [
         <p>If we are to prevent a future where private corporations possess the monopoly of power, this is the bare minimum of measures we must take.</p>
         <br>
         <p>In  the long-term, Terra will enable us to reform our economic system even further. We will shift the focus of our economy from increasing profit margins and generating shareholder value to actually advancing the common good of our society. Large companies will be democratized and instead of the gross domestic product we will use the gross domestic happiness as a means of measuring the well-being of our society. In doing so, we will move from national competition to global cooperation and forge an economy that serves not only a few wealthy individuals but all human beings.</p>
-        <p>If you wish to read more on this topic, find our detailed vision of fundamental economic reforms under <a href=">‘A New Economic System’</a>.</p>
+        <p>If you wish to read more on this topic, find our detailed vision of fundamental economic reforms under <a href="">"A New Economic System"</a>.</p>
         `)
     },
     {
