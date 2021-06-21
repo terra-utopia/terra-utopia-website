@@ -116,11 +116,12 @@ export default {
                 filter: drop-shadow(0 2px 2px rgba(0,0,0,0.25));
             }
 
-            &:hover{
-                cursor: pointer;
-                background: $nav-white-bg-highlighted;
+            @media (hover: hover) {  // only for devices whose primary pointer device supports hover (exludes most mobile devices)
+                &:hover{
+                    cursor: pointer;
+                    background: $nav-white-bg-highlighted;
+                }
             }
-
         }
     }
 
