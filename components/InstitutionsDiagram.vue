@@ -54,8 +54,9 @@ export default {
         buildDiagram(){
             const width = settings.width; //width of the narrowest/deepest ring of the diagram
             const ratioInnerCircle = settings.ratioInnerCircle; //defines how large the radius of the inner circle should be in relation to the width
+            const growthRatio = settings.growthRatio; //defines how much larger outer/shallower rings should be in comparison to the ones further in
             const maxDepth = this.getMaxDepth(this.content); //the amount of layers that the diagram will have
-            const size = ((maxDepth+1+ratioInnerCircle)*2*width); //width and height of the diagram
+            const size = 1.05*((maxDepth*growthRatio+1+ratioInnerCircle)*2*width); //width and height of the diagram
 
             let html = "";
 
