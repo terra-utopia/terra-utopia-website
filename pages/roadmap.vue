@@ -14,11 +14,6 @@
                         v-for="(text,i) in $options._staticData.texts"
                         :key="i"
                         class="roadmap-text"
-                        
-                        comment='
-                        data-aos="fade-up"
-                        data-aos-offset="200"
-                        data-aos-duration="1000"'
                         >
                             <h2>{{text.title}}</h2>
                             <section v-html="text.htmlContent" />

@@ -1,6 +1,7 @@
 <template>
     <div class="institutions-diagram">
         <div id="diagram" v-html="buildDiagram()"></div>
+        <ActionButton id="institutions-button"> Next <img src="~/assets/collapse-icon.svg"> </ActionButton> <!-- XXX -->
         <div class="institutions-text-wrapper">
             <div id="institutions-text"></div>
         </div>
@@ -33,7 +34,7 @@ export default {
             currentDepth: 0, //keeps track of which layer of the diagram is active
         }
     },
-        mounted(){ //called when website is loaded
+    mounted(){ //called when website is loaded
         this.displayCurrentChildren();
         this.updateInnerText();
         this.updateInstitutionsText();
@@ -68,7 +69,7 @@ export default {
 
             html += '</svg>';
 
-            html += '<div style="max-width:'+1.8*width*ratioInnerCircle+'px" id="diagram-inner">Institutions</div>'; //create inner text
+            html += '<div style="max-width:'+1.8*width*ratioInnerCircle+'px" id="diagram-inner">Branches Of Government</div>'; //create inner text
 
             return html;
         },
@@ -264,7 +265,7 @@ export default {
             return targetText;
         },
         updateInnerText(){
-            let innerText = "Institutions";
+            let innerText = "Branches Of Government";
             if (this.$route.query.target) {
                 let targetSelection = this.$route.query.target.split("-");
                 let targetText = this.getTargetText(this.content, targetSelection);
@@ -275,7 +276,7 @@ export default {
             document.getElementById("diagram-inner").innerHTML=innerText;
         },
         updateInstitutionsText(){
-            let institutionsText = "<h2>Select An Institution!</h2>";
+            let institutionsText = "<h2>Select A Branch Of Government Or Press The Button Below The Diagram!</h2>";
             if (this.$route.query.target) {
                 let targetSelection = this.$route.query.target.split("-");
                 let targetText = this.getTargetText(this.content, targetSelection);
@@ -358,6 +359,17 @@ export default {
                     fill: #777;
                 }
             }
+        }
+    }
+
+    #institutions-button{
+
+        img{
+            transform: rotate(90deg);
+        }
+
+        &:hover img{
+            fill: rgba($c-dark,1);
         }
     }
 
