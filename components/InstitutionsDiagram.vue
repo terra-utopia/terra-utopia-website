@@ -282,7 +282,7 @@ export default {
             document.getElementById("diagram-inner").innerHTML=innerText;
         },
         updateInstitutionsText(){
-            let institutionsText = "<h2>Select A Branch Of Government Or Press The Button Below The Diagram!</h2>";
+            let institutionsText = "<h2>Explore the diagram or use the button below it!</h2>";
             if (this.$route.query.target) {
                 let targetSelection = this.$route.query.target.split("-");
                 let targetText = this.getTargetText(this.content, targetSelection);
@@ -365,6 +365,7 @@ export default {
 .institutions-diagram{
     #diagram{
         position: relative;
+        margin: 10px 0;
 
         #diagram-inner{
             position: absolute;
@@ -410,6 +411,8 @@ export default {
         border: 1px solid $c-extradark;
         border-radius: 5px;
         padding: 24px;
+
+        margin: 20px 0;
 
         #institutions-text{
             align-self: center;

@@ -78,8 +78,8 @@ export default {
                     justify-content: space-around;
                 }
 
-                & > * {
-                    margin: 20px;
+                & .ActionButton{
+                    margin:10px;
                 }
             }
 
