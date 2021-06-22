@@ -13,9 +13,9 @@
                 Let us forge a <span class="highlighted">global democracy!</span></p>
                 <div class="flex-wrapper">
                     <div>
-                        <img src="~assets/bookshelf-jump-down-icon.svg">
+                        <img src="~assets/jump-down-icon.svg">
                         <a href="#common-ground"><ActionButton>Read More!</ActionButton></a>
-                        <img src="~assets/bookshelf-jump-down-icon.svg">
+                        <img src="~assets/jump-down-icon.svg">
                     </div>
                     <a href="/join/"><ActionButton>Join!</ActionButton></a>
                 </div>

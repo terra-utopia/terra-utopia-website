@@ -1,7 +1,9 @@
 <template>
     <div class="institutions-diagram">
         <div id="diagram" v-html="buildDiagram()"></div>
-        <ActionButton id="institutions-button"> Next <img src="~/assets/collapse-icon.svg"> </ActionButton> <!-- XXX -->
+        <img class="next-button-icon" src="~/assets/jump-down-icon.svg">
+        <ActionButton id="next-button"> Next! </ActionButton>
+        <img class="next-button-icon" src="~/assets/jump-down-icon.svg">
         <div class="institutions-text-wrapper">
             <div id="institutions-text"></div>
         </div>
@@ -362,15 +364,8 @@ export default {
         }
     }
 
-    #institutions-button{
-
-        img{
-            transform: rotate(90deg);
-        }
-
-        &:hover img{
-            fill: rgba($c-dark,1);
-        }
+    .next-button-icon{
+        transform: rotate(-90deg);
     }
 
     .institutions-text-wrapper{
