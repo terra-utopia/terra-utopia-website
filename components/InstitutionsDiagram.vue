@@ -34,6 +34,7 @@ export default {
     data(){
         return {
             currentDepth: 0, //keeps track of which layer of the diagram is active
+            elementIDs: [],
         }
     },
     mounted(){ //called when website is loaded
@@ -41,6 +42,7 @@ export default {
         this.updateInnerText();
         this.updateInstitutionsText();
         this.addEventListeners();
+        this.saveIDs();
     },
     watch:{
         $route(){ // called when the URL or query changes
@@ -223,6 +225,8 @@ export default {
                     path.addEventListener("mouseleave", this.updateInnerText);
                 }
             }
+            let nextButton = document.getElementById("next-button");
+            nextButton.addEventListener("click", this.nextSection);
         },
         click(e){
             let query;
@@ -313,7 +317,34 @@ export default {
                     path.style.pointerEvents = "none";
                 }
             }
+        },
+        saveIDs(array, parentID){
+            if (!array) {
+                array = this.content;
+            }
 
+            for (const text of array) {
+                const elID = ((parentID) ? parentID+'-':'')+text.title.replace(/ /g,''); //the ID of the section
+                this.elementIDs.push(elID);
+                if (text.children) {
+                    this.saveIDs(text.children, elID);
+                }
+            }
+        },
+        nextSection(){
+            const target = this.$route.query.target;
+            const elementIDs = this.elementIDs;
+            let query = elementIDs[0];
+            for (const elID of elementIDs) {
+                if (elID == target) {
+                    const index = elementIDs.indexOf(elID);
+                    if(index<elementIDs.length) {
+                        const newTarget = elementIDs[index+1];
+                        query = newTarget;
+                    }
+                }
+            }
+            this.$router.push({ path: "" , query: { target: query } });
         },
         getChildElements(id){
             const pathElements = document.getElementById("diagram-svg").childNodes;
