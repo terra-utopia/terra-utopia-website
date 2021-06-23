@@ -6,7 +6,7 @@
             :isSuperHeading="false"
             class="main-card"
             >
-                <p class="introduction">Here we want to describe the preliminary plan for the creation of a global, federal democracy.</p>
+                <p class="introduction">Here we want to describe the preliminary plan for the creation of a global, federal democracy:</p>
                 <div class="flex-wrapper">
                     <RoadmapSideBar class="roadmap-sidebar" />
                     <div class="roadmap-main">
@@ -50,22 +50,16 @@ export default {
             }
             
             .flex-wrapper{
-                display: flex;
-
-                .roadmap-sidebar{
-                    position: -webkit-sticky; /* Safari */
-                    position: sticky;
-                    top: 10vh;
-                }
 
                 .roadmap-main {
 
                     .roadmap-text{
-                        padding: 10px { left: 30px; bottom: 30px };
+                        padding: 10px { bottom: 30px };
                         position: relative;
 
                         h2{
                             font-size: 30px;
+                            text-decoration: underline;
                         }
 
                         section{
@@ -76,6 +70,23 @@ export default {
                         .scroll-anchor{
                             position: absolute;
                             top: -30vh;
+                        }
+                    }
+                }
+
+                @media(min-width:760px){
+                    display: flex;
+                    .roadmap-sidebar{
+                        position: -webkit-sticky; /* Safari */
+                        position: sticky;
+                        top: 10vh;
+                    }
+
+                    .roadmap-main{
+
+                        .roadmap-text{
+
+                            padding-left: 30px;
                         }
                     }
                 }
