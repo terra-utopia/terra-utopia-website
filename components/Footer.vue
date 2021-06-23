@@ -7,6 +7,13 @@
                 :key="i"
                 class="nav-link"
             />
+        <!-- <NuxtLink
+            v-for="(entry, i) in entries"
+            :to="entry.to"
+            v-html="entry.name"
+            :key="i"
+            class="nav-link"
+        /> -->
     </footer>
 </template>
 

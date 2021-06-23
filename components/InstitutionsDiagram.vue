@@ -1,9 +1,18 @@
 <template>
     <div class="institutions-diagram">
         <div id="diagram" v-html="buildDiagram()"></div>
-        <img class="next-button-icon" src="~/assets/jump-down-icon.svg">
-        <ActionButton id="next-button"> Next! </ActionButton>
-        <img class="next-button-icon" src="~/assets/jump-down-icon.svg">
+        <div class="button-flex-wrapper">
+            <div class="button">
+                <img class="previous-button-icon" src="~/assets/jump-down-icon.svg">
+                <ActionButton id="previous-button"> Previous! </ActionButton>
+                <img class="previous-button-icon" src="~/assets/jump-down-icon.svg">
+            </div>
+            <div class="button">
+                <img class="next-button-icon" src="~/assets/jump-down-icon.svg">
+                <ActionButton id="next-button"> Next! </ActionButton>
+                <img class="next-button-icon" src="~/assets/jump-down-icon.svg">
+            </div>
+        </div>
         <div class="institutions-text-wrapper">
             <div id="institutions-text"></div>
         </div>
@@ -226,7 +235,9 @@ export default {
                 }
             }
             let nextButton = document.getElementById("next-button");
-            nextButton.addEventListener("click", this.nextSection);
+            nextButton.addEventListener("click", () => { this.switchSection(1) });
+            let previousButton = document.getElementById("previous-button");
+            previousButton.addEventListener("click", () => { this.switchSection(-1) });
         },
         click(e){
             let query;
@@ -331,20 +342,25 @@ export default {
                 }
             }
         },
-        nextSection(){
+        switchSection(offset){
             const target = this.$route.query.target;
             const elementIDs = this.elementIDs;
-            let query = elementIDs[0];
+            let query = "";
+            let index = elementIDs.length;
             for (const elID of elementIDs) {
                 if (elID == target) {
-                    const index = elementIDs.indexOf(elID);
-                    if(index<elementIDs.length) {
-                        const newTarget = elementIDs[index+1];
-                        query = newTarget;
-                    }
+                    index = elementIDs.indexOf(elID);
                 }
             }
-            this.$router.push({ path: "" , query: { target: query } });
+            const newIndex = (index+offset)%(elementIDs.length+1);
+            console.log(index);
+            console.log(newIndex);
+            if (newIndex == elementIDs.length) {
+                this.$router.push({ path: "" });
+            } else {
+                query = elementIDs[newIndex];
+                this.$router.push({ path: "" , query: { target: query } });
+            }
         },
         getChildElements(id){
             const pathElements = document.getElementById("diagram-svg").childNodes;
@@ -378,6 +394,7 @@ export default {
         #diagram-svg{
             stroke-width: 2px;
             stroke: #fff;
+            overflow: visible;
 
             path, circle{
                 transition: transform 0.2s ease-in-out, opacity .5s ease-in-out, fill .2s ease-in-out;
@@ -396,8 +413,22 @@ export default {
         }
     }
 
-    .next-button-icon{
-        transform: rotate(-90deg);
+    .button-flex-wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-around;
+
+        .button{
+            margin: 10px 0;
+
+            .previous-button-icon{
+                transform: rotate(90deg);
+            }
+            .next-button-icon{
+                transform: rotate(-90deg);
+            }
+        }
     }
 
     .institutions-text-wrapper{
