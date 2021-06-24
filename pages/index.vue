@@ -33,8 +33,18 @@
                     :slides="infobox.slides"
                     :htmlContent="infobox.htmlContent"
                 />
+            </Card>
+            <Card :heading="'At this point...'" :isSuperHeading="false">
+                <section class="conclusion">
+                    <p>... you may be thinking: "This whole idea sounds convincing, but it will remain a utopia. We will never achieve global democracy, will we?"</p>
+                    <br>
+                    <p>Firstly, yes, global democracy is a utopian idea.</p>
+                    <p>Secondly, no, that does not mean that it will be impossible to achieve. In the past many ideas such as democracy, a strong welfare state or a world without aristocratic rule have been deemed unthinkable, but are now a reality in many nations.</p>
+                    <p>Thirdly, the greatest utopia of our time is that humanity will survive much longer without overcoming the status quo of international anarchy. Sooner rather than later the national states will fail to combat the global, existential threats and humanity will become extinct. If we do not strive for a utopia in the face of this dystopian future, we have lost all sense of reality.</p>
+                    <p>Fourthly, the question of wether this utopia will become a reality is a self-fulfilling prophecy. If everyone just agreed with these ideas, we could be this society of tomorrow today. If this movement fails, it is not because the goals where unattainable, the ideas unthinkable or the concepts unworkable, but simply because not enough people believed in them.</p>
+                </section>
                 <section class="further-reading">
-                    Read more on the following topics:
+                    If you want to know more, we invite you to read more on the following topics:
                     <div class="flex-wrapper">
                         <a href="/structure-of-terra/"><ActionButton>Structure!</ActionButton></a>
                         <a href="/roadmap/" ><ActionButton>Roadmap!</ActionButton></a>
@@ -91,6 +101,16 @@ export default {
             &.crises-card {
                 .InfoBox {
                     margin: 32px 0;
+                }
+            }
+
+            .conclusion{
+                text-align: justify;
+                font-size: 20px;
+
+                p{
+                    margin-bottom: 10px;
+                    text-indent: 10px;
                 }
             }
         }
