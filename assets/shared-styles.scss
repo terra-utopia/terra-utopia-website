@@ -114,6 +114,6 @@ $max-heading-text-shadow: 0 2px 4px rgba(black, 0.30), 0 6px 12px rgba(black, 0.
 
 @mixin default-text-link {
     text-decoration: underline;
-    &:hover { opacity: 0.85; }
+    &:hover { opacity: 0.85; cursor: pointer; }
 }
 

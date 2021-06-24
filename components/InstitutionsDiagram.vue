@@ -52,12 +52,14 @@ export default {
         this.updateInstitutionsText();
         this.addEventListeners();
         this.saveIDs();
+        this.buildInstitutionsLinks();
     },
     watch:{
         $route(){ // called when the URL or query changes
             this.displayCurrentChildren();
             this.updateInnerText();
             this.updateInstitutionsText();
+            this.buildInstitutionsLinks();
         }
     },
     methods: {
@@ -293,7 +295,7 @@ export default {
             document.getElementById("diagram-inner").innerHTML=innerText;
         },
         updateInstitutionsText(){
-            let institutionsText = "<h2>Explore the diagram or use the button below it!</h2>";
+            let institutionsText = "<h2>Explore the diagram or use the buttons below it!</h2>";
             if (this.$route.query.target) {
                 let targetSelection = this.$route.query.target.split("-");
                 let targetText = this.getTargetText(this.content, targetSelection);
@@ -371,6 +373,16 @@ export default {
                 }
             }
             return children;
+        },
+        buildInstitutionsLinks(){
+            let institutionsLinks = document.getElementsByClassName("institutions-link");
+            for (const link of institutionsLinks) {
+                link.addEventListener("click", this.reroute);
+            }
+        },
+        reroute(e){
+            console.log(e.target.attributes.to);
+            this.$router.push({ path: "" , query: { target: e.target.attributes.to.value } });
         }
     },
 }
@@ -456,6 +468,7 @@ export default {
             p{
                 font-size: 20px;
                 text-align: justify;
+                a { @include default-text-link; }
             }
         }
     }

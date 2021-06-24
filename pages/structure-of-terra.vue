@@ -13,7 +13,7 @@
                     <li>an executive and</li>
                     <li>an informative branch.</li>
                 </ul>
-                <p class="diagram-header">Learn more about them by exploring the diagram or using the button below:</p>
+                <p class="diagram-header">Learn more about them by exploring the diagram or using the buttons below:</p>
                 <InstitutionsDiagram :content="$options._staticData.institutions" />
             </Card>
         </CenteredBodyColumn>

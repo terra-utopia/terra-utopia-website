@@ -12,7 +12,7 @@ const institutions = [
                 htmlContent: `
                 <p>The global parliament is formed by elected deputies from global parties. The elections take place every 4 or 5 years and they are direct, free, equal, secret and common. The people vote for the parties in a global popular vote that determines how many seats each party receives in the global parliament. We consider an electoral threshold from 2 to 5 percent for single parties to be useful.</p>
                 <br>
-                <p>A referendum will take place in parallel to the election. For more details read <a href="">"Direct Democracy"</a>.</p>
+                <p>A referendum will take place in parallel to the election. For more details read <a class="institutions-link" to="LegislativeBranch-DirectDemocracy">Direct Democracy</a>.</p>
                 `
             },
             {
@@ -48,10 +48,10 @@ const institutions = [
                 htmlContent: `
                 <p>We propose to allow referendums in the following two ways:</p>
                 <br>
-                <p>First, every party that passed the electoral threshold in the last election may submit one legislative proposal six months before the next election. If the global constitutional court finds that the proposal does not violate the constitution<!-- and the global court of auditors approves the funding concept-->, it will be put to vote during the election. On election day, the people then vote on the parties, as well as on their respective legislative proposals.
+                <p>Firstly, every party that passed the electoral threshold in the last election may submit one legislative proposal six months before the next election. If the global constitutional court finds that the proposal does not violate the constitution<!-- and the global court of auditors approves the funding concept-->, it will be put to vote during the election. On election day, the people then vote on the parties, as well as on their respective legislative proposals.
                 This measure is meant to increase voter turnout and combat political apathy: if someone votes for a party that does not become part of government or that does not even cross the electoral threshold, they will be less likely to find their vote pointless if they are part of the majority in some of the referendums.</p>
                 <br>
-                <p>Second, people may start a petition for a legislative proposal. If the petition passes a first quorum, a global citizens’ assembly is initiated that discusses the proposal with the global parliament and the global council as described in “The Legislative Process”. If the legislative institutions reach an agreement that also satisfies the initiators of the petition, the proposal becomes legally binding without the need for a referendum. If however the proposal is rejected, a referendum may be initiated but only if the initial petition passes a second, significantly higher quorum. The referendum will then either be held on election day or on a day halfway through the legislative period.</p>
+                <p>Secondly, people may start a petition for a legislative proposal. If the petition passes a first quorum, a global citizens’ assembly is initiated that discusses the proposal with the global parliament and the global council as described in <a class="institutions-link" to="LegislativeBranch-TheLegislativeProcess">The Legislative Process</a>. If the legislative institutions reach an agreement that also satisfies the initiators of the petition, the proposal becomes legally binding without the need for a referendum. If however the proposal is rejected, a referendum may be initiated but only if the initial petition passes a second, significantly higher quorum. The referendum will then either be held on election day or on a day halfway through the legislative period.</p>
                 <p>On request of the world government, the global parliament or the global council, the global constitutional court may examine the legislative proposal at any time.</p>
                 <p>The global parliament as well as the global citizens’ assembly that initially discussed the proposed law may each submit an alternative proposal that will also be put to vote.</p>
                 `
