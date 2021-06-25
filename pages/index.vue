@@ -43,8 +43,18 @@
                     <p>Thirdly, the greatest utopia of our time is that humanity will survive much longer without overcoming the status quo of international anarchy. Sooner rather than later the national states will fail to combat the global, existential threats and humanity will become extinct. If we do not strive for a utopia in the face of this dystopian future, we have lost all sense of reality.</p>
                     <p>Fourthly, the question of wether this utopia will become a reality is a self-fulfilling prophecy. If everyone just agreed with these ideas, we could be this society of tomorrow today. If this movement fails, it is not because the goals where unattainable, the ideas unthinkable or the concepts unworkable, but simply because not enough people believed in them.</p>
                 </section>
+                <section class="einstein-quote">
+                    <div class="quote">
+                        <p>"As long as the present condition of international anarchy prevails, all of us will continue to live under the constant threat of sudden annihilation. This is a state of affairs that cannot endure; before long, it must come to an end, either by way of brute force or by peaceful agreement, which inevitably implies a world government.</p>
+                        <p>The use of brute force would result in unimaginable destruction and suffering. To spare mankind such a catastrophe is the main purpose of [...] a world government."</p>
+                        <p>~ Albert Einstein 1947 (<a href="https://archive.org/details/einsteinonpeace00eins/page/415/mode/2up" target="_blank">Einstein On Peace p. 415</a>)</p>
+                    </div>
+                    <div class="img-container">
+                        <img class="einstein-image" src="/img/Albert_Einstein.jpg" alt="Albert Einstein">
+                    </div>
+                </section>
                 <section class="further-reading">
-                    If you want to know more, we invite you to read more on the following topics:
+                    If you want to know more, we invite you to read on the following topics:
                     <div class="flex-wrapper">
                         <a href="/structure-of-terra/"><ActionButton>Structure!</ActionButton></a>
                         <a href="/roadmap/" ><ActionButton>Roadmap!</ActionButton></a>
@@ -111,6 +121,35 @@ export default {
                 p{
                     margin-bottom: 10px;
                     text-indent: 10px;
+                }
+            }
+
+            .einstein-quote{
+                margin: 30px 0;
+                display:flex;
+                align-items: center;
+                justify-content: space-around;
+                border: 1px solid $c-extradark;
+                background: rgba($c-extradark, 0.2);
+
+                @media (max-width: 730px) {
+                    flex-wrap: wrap;
+                }
+
+                .quote{
+                    margin: 10px;
+                    font-size: 20px;
+                    text-align: justify;
+
+                    a{@include default-text-link}
+                }
+
+                .img-container{
+                    margin: 10px;
+                    .einstein-image{
+                        width: 200px;
+                        height: auto;
+                    }
                 }
             }
         }
