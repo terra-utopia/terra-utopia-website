@@ -130,10 +130,10 @@ export default {
                 align-items: center;
                 justify-content: space-around;
                 border: 1px solid $c-extradark;
-                background: rgba($c-extradark, 0.2);
+                background: rgba($c-extradark, 0.1);
 
                 @media (max-width: 730px) {
-                    flex-wrap: wrap;
+                    flex-wrap: wrap-reverse;
                 }
 
                 .quote{
