@@ -67,7 +67,7 @@
 
 
 <script>
-import infoboxes from "~/assets/necessity-of-a-world-state.js";
+import infoboxes from "~/assets/necessity-of-a-global-democracy.js";
 
 export default {
     _staticData: {  // this custom property is not reactivley bound by Vue (in contrast to the 'data' property)
