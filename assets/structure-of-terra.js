@@ -87,7 +87,7 @@ const institutions = [
             {
                 title: "The Military",
                 htmlContent:`
-                <p>The military of the national states is united and disarmed, forming a global crisis response force. Its main purpose will be fighting humanitarian crises all around the world ensuring peace, stability and democratic values. The minister of defense will be the commander in chief. As long as the process of disarmament is not completed, the parliament must authorize the deployment of the military unless there is imminent danger.</p>
+                <p>The entire military of the national states will be united and completely disarmed, forming an unarmed global crisis response force. Its main purpose will be fighting humanitarian crises all around the world ensuring peace, stability and democratic values. The minister of global security will be the commander in chief. As long as the process of disarmament is not completed, the parliament must authorize the deployment of the military unless there is imminent danger.</p>
                 `
             },
             {
@@ -102,7 +102,7 @@ const institutions = [
         title: "Informative Branch",
         htmlContent: `
         <p>The informative branch includes all institutions that store, publish or deliver information or data, also known as media, especially those reaching a large number of people.</p>
-        <p>By deciding which issues are important enough to cover, the media guides the attention of the public and the legislators, thereby influencing which laws are made. In reporting on changes to the law, executive orders and court rulings, they exercise enormous executive power because if the public did not know the rules, they would not be obeyed, no matter how harshly the police would enforce them. By criticising new laws, they enable the public to judge the work of their politicians, and through investigative journalism they expose crimes and entanglements between politics and business, possibly triggering lawsuits. This shows that the media heavily influences the legislative, judicial and executive powers, with the result that whoever controls them possesses vast power over Terra. Therefore these institutions must have the status of a branch of government meaning that they are completely independent and only subordinate to the people.</p>
+        <p>By deciding which issues are important enough to cover, the media guides the attention of the public and the legislators, thereby influencing which laws are made. In reporting on changes to the law, executive orders and court rulings, they exercise enormous executive power because if the public did not know the rules, they would not be obeyed, no matter how harshly the police would enforce them. By criticising new laws, they enable the public to judge the work of their politicians, and through investigative journalism they expose crimes and entanglements between politics and business, possibly triggering lawsuits. This shows that the media heavily influences the legislative, judicial and executive branches, with the result that whoever controls them possesses vast power over Terra. Therefore these institutions must have the status of a branch of government meaning that they are completely independent and only subordinate to the people.</p>
         `,
         children:[
             {
@@ -114,7 +114,7 @@ const institutions = [
             {
                 title: "Private Media",
                 htmlContent: `
-                <p>Private media exists nonetheless. They have the same rights but need to meet similar quality standards.</p>
+                <p>The existence of private media in parallel to the public service media is allowed. They have the same rights but need to meet similar quality standards. If the influence of the private media grows too large, they may be restricted, democratized or put under state control.</p>
                 `
             },
             {
