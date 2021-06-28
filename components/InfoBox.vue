@@ -102,24 +102,25 @@ export default {
                 }
 
                 tbody tr {
-                    position: relative;
-
-                    
                     &:hover{
                         opacity: 1;
                     }
 
-                    .citation-anchor{
-                        position: absolute;
-                        top: -40vh;
+                    td{
+                        position: relative;
 
-                        &:target ~ a {
-                            text-decoration: underline;
-                            text-decoration-color: $c-extradark;
-                            text-decoration-thickness: 1px;
-                            @include medium-italic;
-                            font-weight: 600;
-                            // background: rgba($c-dark, 0.3);
+                        .citation-anchor{
+                            position: absolute;
+                            top: -40vh;
+
+                            &:target ~ a {
+                                text-decoration: underline;
+                                text-decoration-color: $c-extradark;
+                                text-decoration-thickness: 1px;
+                                @include medium-italic;
+                                font-weight: 600;
+                                // background: rgba($c-dark, 0.3);
+                            }
                         }
                     }
 
