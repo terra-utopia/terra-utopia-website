@@ -34,14 +34,14 @@
                     :htmlContent="infobox.htmlContent"
                 />
             </Card>
-            <Card :heading="'At this point...'" :isSuperHeading="false">
+            <Card :heading="'Forever A Utopia?'" :isSuperHeading="false">
                 <section class="conclusion">
-                    <p>... you may be thinking: "This whole idea sounds convincing, but it will remain a utopia. We will never achieve global democracy, will we?"</p>
+                    <p>This whole idea sounds convincing, but will it not remain a utopia? We will never achieve global democracy, will we?</p>
                     <br>
-                    <p>Firstly, yes, global democracy is a utopian idea.</p>
-                    <p>Secondly, no, that does not mean that it will be impossible to achieve. In the past many ideas such as democracy, a strong welfare state or a world without aristocratic rule have been deemed unthinkable, but are now a reality in many nations.</p>
-                    <p>Thirdly, the greatest utopia of our time is that humanity will survive much longer without overcoming the status quo of international anarchy. Sooner rather than later the national states will fail to combat the global, existential threats and humanity will become extinct. If we do not strive for a utopia in the face of this dystopian future, we have lost all sense of reality.</p>
-                    <p>Fourthly, the question of wether this utopia will become a reality is a self-fulfilling prophecy. If everyone just agreed with these ideas, we could be this society of tomorrow today. If this movement fails, it is not because the goals where unattainable, the ideas unthinkable or the concepts unworkable, but simply because not enough people believed in them.</p>
+                    <p>Yes, global democracy is a utopian idea.</p>
+                    <p>But no, that does not mean that it will be impossible to achieve. In the past, many ideas such as democracy, a strong welfare state or a world without aristocratic rule have been deemed unthinkable, but are now a reality in many nations.</p>
+                    <p>The greatest utopia of our time, however, is that humanity will survive much longer without overcoming the status quo of international anarchy. Sooner rather than later the national states will fail to combat the global, existential threats and humanity will become extinct. To strive for a utopia in the face of this dystopian future is only an expression of the fact that one has fully recognized the severeness of reality.</p>
+                    <p>Lastly, the question of whether this utopia will become a reality is a self-fulfilling prophecy. If everyone agreed with these ideas right away, we could be this society of tomorrow today. Therefore the challenge is not that the goals are unattainable, the ideas unthinkable or the concepts unfeasible, but that we need to convince enough people to stand up for them.</p>
                 </section>
                 <section class="einstein-quote">
                     <div class="quote">

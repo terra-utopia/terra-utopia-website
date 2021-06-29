@@ -10,7 +10,7 @@
                 <br>
                 <p>We want to inspire people with our ideas and encourage them to unite in the struggle against global crises and in the fight for a livable future.</p>
                 <br>
-                <p>We fight for democracy, human rights and dignity, global peace, climate justice, open borders, equality and more. We oppose discrimination of any kind, the exploitation of natural ressources and the abuse of people.</p>
+                <p>We fight for democracy, human rights and dignity, global peace, climate justice, open borders, equality and more. We oppose discrimination of any kind, the exploitation of natural resources and the abuse of people.</p>
                 <div class="line"/>
                 <p>Feel free to contact us via e-mail:</p>
                 <p><a href="mailto:contact@terra-utopia.world">contact@terra-utopia.world</a></p>
