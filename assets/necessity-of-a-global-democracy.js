@@ -117,7 +117,7 @@ const infoboxes = [
                 caption: 'Nations of the global north systematically exploit those of the global south.',
             },
             {
-                imageSrc: '/img/social-inequality/riots.jpg',
+                imageSrc: '/img/social-inequality/barbed-wire.jpg',
                 caption: 'Wealthy nations denying others their fair share will inevitably lead to conflicts of unprecedented scale.',
             },
             {
@@ -144,11 +144,11 @@ const infoboxes = [
         slogan: "",
         slides: [
             {
-                imageSrc: "/img/critical-technology/robot.jpg",
+                imageSrc: "/img/critical-technology/robot2.jpg",
                 caption: "Artificial intelligence is likely to overtake human intelligence in the next few decades."
             },
             {
-                imageSrc: "/img/critical-technology/genetics.jpg",
+                imageSrc: "/img/critical-technology/organic-cells.jpg",
                 caption: "Modern biotechnology gives us immense power over life itself."
             },
             {
@@ -185,7 +185,7 @@ const infoboxes = [
                 caption: "Human rights violations occur every day all around the world."
             },
             {
-                imageSrc: "/img/human-rights/surveillance.jpg",
+                imageSrc: "/img/human-rights/refuge.jpg",
                 caption: "Without a global institution enforcing human rights, they are worthless."
             },
             {
