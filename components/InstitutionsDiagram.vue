@@ -355,8 +355,6 @@ export default {
                 }
             }
             const newIndex = (index+offset)%(elementIDs.length+1);
-            console.log(index);
-            console.log(newIndex);
             if (newIndex == elementIDs.length) {
                 this.$router.push({ path: "" });
             } else {
