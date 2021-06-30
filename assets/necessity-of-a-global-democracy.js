@@ -12,7 +12,7 @@ const infoboxes = [
             },
             {
                 imageSrc: '/img/climate-change/desertification.jpg',
-                caption: 'Further warming will lead to massive food and warter shortages everywhere on earth.',
+                caption: 'Further warming will lead to massive food and water shortages everywhere on earth.',
             },
             {
                 imageSrc: '/img/climate-change/machine-gun.jpg',
