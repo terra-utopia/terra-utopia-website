@@ -38,5 +38,14 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-  }
-}
+  },
+
+  build: {                                                              // quick fix for compile warning,
+    babel: {                                                            // see https://stackoverflow.com/q/67350359
+      plugins: [                                                        //
+        ['@babel/plugin-proposal-private-methods', { loose: true }],    //
+      ],                                                                //
+    },                                                                  //
+  },                                                                    //
+
+};
