@@ -1,5 +1,9 @@
+# javascript files
 node_modules/
+
+# framework files
 .nuxt/
 dist/
 
+# custom note files
 *.tmp
