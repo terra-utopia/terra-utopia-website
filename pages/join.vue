@@ -10,7 +10,7 @@
                 <br>
                 <p>If you want to participate, we invite you:</p>
                 <br>
-                <a href="https://discord.gg/bejkCdQeKy" target="_blank"><ActionButton>Join Us On Discord!</ActionButton></a>
+                <a href="https://discord.gg/Cbx4eQHWTy" target="_blank"><ActionButton>Join Us On Discord!</ActionButton></a>
             </Card>
         </CenteredBodyColumn>
     </main>
