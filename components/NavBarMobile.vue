@@ -30,7 +30,8 @@
                     class="nav-link"
                     :class="{ disabled: !entry.to }"
                     @click.native="collapsed=!!entry.to"
-                >  <!-- `.native` is required for events on `<NuxtLink>` elements in general --><!-- `=!!entry.to` prevents collapse if `entry` is disabled -->
+                >       <!-- `.native` is required for events on `<NuxtLink>` elements in general -->
+                        <!-- `=!!entry.to` prevents collapse if `entry` is disabled -->
                     <span class="nav-link-text-wrapper">
                         <span v-html="entry.name" />
                         <img
@@ -48,11 +49,16 @@
 
 <script>
 export default {
-    props: ['entries', 'activeEntry'],
+    props: ['entries'],
     data() {
         return {
             collapsed: true,
         };
+    },
+    computed: {
+        activeEntry() {
+            return this.entries.filter(entry => entry.active)[0];  // can be `undefined` (if the user is on a `noNavBar: true` route, like `/disclaimer/`)
+        },
     },
 };
 </script>

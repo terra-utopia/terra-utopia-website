@@ -1,19 +1,10 @@
 <template>
     <NavBarDesktop v-if="!isMobileNavigation" :entries="entries" />
-    <NavBarMobile v-else :entries="entries" :activeEntry="activeEntry" />
+    <NavBarMobile v-else :entries="entries" />
 </template>
 
 <script>
-const entriesRaw = [  // without 'active' property
-    { name: 'Home • Necessity Of A Global Democracy', to: '/' },
-    { name: 'Structure Of Terra', to: '/structure-of-terra/' },
-    { name: 'Roadmap', to: '/roadmap/' },
-    { name: 'A New Economic System', to: '' },
-    { name: 'Join', to: '/join/' },
-    { name: 'FAQ', to: '' },
-    { name: 'About', to: '/about/' },
-];
-
+import routeNames from '~/assets/route-names.js';
 
 export default {
     data() {
@@ -22,12 +13,14 @@ export default {
         };
     },
     computed: {
-        entries() {  // entriesRaw + 'active' property
-            return entriesRaw.map(entry => Object.assign({ ...entry }, { active: entry.to === this.$route.path }));
-        },
-        activeEntry() {
-            const activeEntry = this.entries.filter(entry => { return entry.active; })[0];  // can be `undefined` (ie. if user is on a route like `/disclaimer` `/privacy-policy`)
-            return activeEntry;
+        entries() {
+            return routeNames
+                .filter(route => !route.noNavBar)
+                .map(route => ({
+                    name: route.name,
+                    to: route.path,
+                    active: route.path === this.$route.path,
+                }));
         },
     },
     mounted() {
