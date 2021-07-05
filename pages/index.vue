@@ -73,11 +73,6 @@ export default {
     _staticData: {  // this custom property is not reactivley bound by Vue (in contrast to the 'data' property)
         infoboxes,
     },
-    head() {  // metadata for the html '<head></head>' element
-        return {
-            // title: "Terra Utopia - Home - Necessity Of A Global Democracy",
-        };
-    },
 };
 </script>
 

@@ -4,7 +4,7 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'Terra Utopia',
+    title: 'Terra Utopia',  // fallback title, is overridden in `layoutus/default.vue`
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -58,6 +58,7 @@ export default {
   router: {
     middleware: [
       'enforce-routes',     // middleware/enforce-routes.js
+      'update-page-title',  // middleware/update-page-title.js
     ],
   },
 

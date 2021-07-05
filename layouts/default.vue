@@ -10,7 +10,13 @@
 
 
 <script>
-export default {};
+export default {
+    head() {
+        return {
+            title: this.$store.state.pageTitle
+        };
+    },
+};
 </script>
 
 
