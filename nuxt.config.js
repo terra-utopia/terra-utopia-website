@@ -55,6 +55,12 @@ export default {
   build: {
   },
 
+  router: {
+    middleware: [
+      'enforce-routes',     // middleware/enforce-routes.js
+    ],
+  },
+
   build: {                                                              // quick fix for compile warning,
     babel: {                                                            // see https://stackoverflow.com/q/67350359
       plugins: [                                                        //
