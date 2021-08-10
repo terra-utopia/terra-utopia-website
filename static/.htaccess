@@ -1,4 +1,12 @@
+# 'rewrite_engine' docs:
+# https://httpd.apache.org/docs/current/mod/mod_rewrite.html
+
+# enable rewrite engine (off by default for performance reasons)
 RewriteEngine on
-RewriteCond %{HTTPS} !=on
-RewriteCond %{HTTP_HOST} "=terra-utopia.world"
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=307]
+
+# only apply rewrite to non-HTTPS requests to host 'terra-utopia.world'
+RewriteCond "%{HTTPS}" "!=on"
+RewriteCond "%{HTTP_HOST}" "=terra-utopia.world"
+
+# the actual rewrite rule
+RewriteRule "^" "https://%{HTTP_HOST}%{REQUEST_URI}" [R=307]
