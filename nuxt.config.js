@@ -34,21 +34,6 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    ['@nuxtjs/redirect-module', {  // https://github.com/nuxt-community/redirect-module
-      rules: [
-
-        /** enforce that browser's route path ends with a trailing slash */
-        {
-          from: /^([^\?#]+)(?<!\/)(\?.*$|#.*$|$)/,  // 1st bracket: the main url without '?' and '#'  // last group: end character of normal url ('?', '#' or END)  // negative lookbehind in the middle: matches missing trailing slash
-          to: (from, req) => {
-            const dummyOrigin = 'http://xxx';
-            let url = new URL(dummyOrigin + req.url);
-            url.pathname += '/';
-            return url.href.substr(dummyOrigin.length);  // take full url with added trailing slash, but cut-off origin part a the front
-          },
-        },
-      ],
-    }],
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
@@ -57,7 +42,6 @@ export default {
 
   router: {
     middleware: [
-      'enforce-routes',     // middleware/enforce-routes.js
       'update-page-title',  // middleware/update-page-title.js
     ],
   },

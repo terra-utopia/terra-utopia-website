@@ -59,3 +59,12 @@ export function enhanceCitations(contentHtml) {
 export function forceReflow() {
     window.getComputedStyle(window.document.body).getPropertyValue('height');  // the reflow is only triggered when you access a property ('width' in our case) on the 'CSSStyleDeclaration' object
 }
+
+
+/**
+ * @param {string} str the input string
+ * @returns {string} the input string with a trailing slash appended (if it had not existed in the first place)
+ */
+export function ensureTrailingSlash(str) {
+    return str.replace(/(?<!\/)$/, '/')
+}

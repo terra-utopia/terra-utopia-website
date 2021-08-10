@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import routeNames from '~/assets/route-names.js';
+import routeNames, { compareRoutes } from '~/assets/route-names.js';
 
 export default {
     data() {
@@ -19,7 +19,7 @@ export default {
                 .map(route => ({
                     name: route.name,
                     to: route.path,
-                    active: route.path === this.$route.path,
+                    active: compareRoutes(route.path, this.$route.path),
                 }));
         },
     },
